@@ -2,6 +2,13 @@ import logo from "./images/logoLIJ.png";
 import './App.css';
 import firebase from "firebase/app";
 import "firebase/database";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import StageForm from "./components/StageForm";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVRzOlafcGV_2jfKdOJOfx4yFHI6pHORE",
@@ -18,23 +25,42 @@ const db = firebase.database().ref();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Reacting
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/mapform">Start a New Map</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route exact path="/">
+            <div className="App">
+              <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+              </header>
+            </div>
+          </Route>
+          <Route path="/mapform">
+            <NewMap />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
+}
+
+const NewMap = () => {
+  return (
+    <div>
+      <StageForm stage="Awareness"/>
+      <StageForm stage="Lawyer Finding"/>
+    </div>
+  )
 }
 
 export default App;
