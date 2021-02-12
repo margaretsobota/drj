@@ -58,7 +58,8 @@ const NewMap = () => {
   return (
     <div>
       <StageForm stage="Awareness"/>
-      <StageForm stage="Lawyer Finding"/>
+      <StageForm stage="Finding a Lawyer"/>
+      <StageForm stage="Preparing Documents"/>
     </div>
   )
 }
