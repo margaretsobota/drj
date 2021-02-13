@@ -9,8 +9,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     marginBottom: "5px"
   },
-  newButton: {
-    marginTop: "10px"
+  stageButton: {
+    marginTop: "10px",
+    marginRight: "10px"
   }
 }));
 
@@ -24,7 +25,7 @@ const StageForm = ({ stage }) => {
 
   const returnSteps = () => {
     const steps = stepsState.map((step) =>
-      <StepForm />
+      <StepForm/>
     );
     return (
       <Box>
@@ -34,7 +35,8 @@ const StageForm = ({ stage }) => {
   };
 
   const addStep = () => {
-    const newSteps = stepsState.push(newStep);
+    const newSteps = stepsState.concat(newStep);
+    console.log(newSteps);
     setSteps(newSteps);
   }
 
@@ -46,10 +48,17 @@ const StageForm = ({ stage }) => {
       {returnSteps()}
       <Container>
         <Button
-          className={styles.newButton}
+          className={styles.stageButton}
           variant="contained"
+          onClick={addStep}
         >
           New Step
+        </Button>
+        <Button
+           className={styles.stageButton}
+           variant="contained"
+        >
+          Save
         </Button>
       </Container>
     </Container>
