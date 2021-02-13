@@ -3,6 +3,7 @@ import { Paper, Button, Box, Container, TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
+import StarRatings from "react-star-ratings";
 
 const useStyles = makeStyles((theme) => ({
   inputContainer: {
@@ -58,6 +59,11 @@ const StepForm = ({ stage }) => {
           <h3>
             How did this step make you feel?
           </h3>
+          <StarRatings
+            starRatedColor="blue"
+            numberOfStars={6}
+            name="rating"
+          />
         </Container>
       </form>
       <Box
