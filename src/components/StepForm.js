@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StepForm = ({ stage }) => {
+const StepForm = ({ stage, stepKey }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
 
