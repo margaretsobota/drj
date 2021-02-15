@@ -50,7 +50,7 @@ const StageForm = ({ stage }) => {
 
   const returnSteps = () => {
     const steps = stepsState.map((step) =>
-      <StepForm stage={stage} stepKey={step.uuid}/>
+      <StepForm stage={stage} step={step}/>
     );
     return (
       <Box>

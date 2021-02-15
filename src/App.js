@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import logo from "./images/logoLIJ.png";
 import './App.css';
 import firebase from "firebase/app";
@@ -24,6 +25,36 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database().ref();
 
 function App() {
+  // set static user for testing purposes
+  const [user, setUser] = useState({
+    firstName: "Margaret",
+    teamName: "DRJ"
+  });
+  const [team, setTeam] = useState(user.teamName);
+  const [data, setData] = useState({});
+
+  let teamRef;
+
+  const getTeamRef = () => {
+    teamRef = db.child("teams").child(team);
+  };
+
+  getTeamRef();
+
+  // update our data based on which team we are
+  useEffect(() => {
+    const handleData = snap => {
+
+      if(team != null){
+        if (snap.val()){
+          const uuid = team.uuid;
+          setData(snap.val().teams[uuid]);
+      }
+    }}
+    db.on('value', handleData, error => alert(error));
+    return () => { db.off('value', handleData); };
+  }, [team]);
+
   return (
     <Router>
       <div>
