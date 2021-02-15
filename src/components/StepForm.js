@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 const StepForm = ({ stage }) => {
   const styles = useStyles();
+  const [ratingState, setRating] = useState(0);
+
+  const changeRating= ( newRating, name ) => {
+      setRating(newRating);
+    }
 
   return (
     <Container className={styles.stepContainer}>
@@ -60,6 +65,8 @@ const StepForm = ({ stage }) => {
             How did this step make you feel?
           </h3>
           <StarRatings
+            rating={ratingState}
+            changeRating={changeRating}
             starRatedColor="blue"
             numberOfStars={6}
             name="rating"
