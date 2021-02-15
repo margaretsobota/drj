@@ -36,7 +36,6 @@ const StageForm = ({ stage }) => {
 
   const addStep = () => {
     const newSteps = stepsState.concat(newStep);
-    console.log(newSteps);
     setSteps(newSteps);
   }
 

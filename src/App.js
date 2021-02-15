@@ -8,7 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import StageForm from "./components/StageForm";
+import MapForm from "./components/MapForm";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVRzOlafcGV_2jfKdOJOfx4yFHI6pHORE",
@@ -56,11 +56,7 @@ function App() {
 
 const NewMap = () => {
   return (
-    <div>
-      <StageForm stage="Awareness"/>
-      <StageForm stage="Finding a Lawyer"/>
-      <StageForm stage="Preparing Documents"/>
-    </div>
+    <MapForm />
   )
 }
 
