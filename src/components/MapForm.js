@@ -9,19 +9,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const MapForm = ({ team }) => {
+const MapForm = ({ team, mapKey }) => {
   const styles = useStyles();
-  const teamRef = firebase.database().ref("teams").child(team);
-  const newMap = {
-    "awareness": "",
-    "findingLawyer": "",
-    "preparingDocuments": ""
-  };
-
-  // right now this generates infinite maps, but it works!
-  // TO DO: only generate new map upon pushing "start new map"
-  // let mapKey = teamRef.child("maps").push(newMap).key;
-  // console.log(mapKey);
 
   return (
     <Box component="div">

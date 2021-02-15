@@ -52,6 +52,19 @@ function App() {
     return () => { db.off('value', handleData); };
   }, [team]);
 
+  let mapKey;
+
+  const newMap = () => {
+    const teamRef = db.child("teams").child(team);
+    const newMap = {
+      "awareness": "",
+      "findingLawyer": "",
+      "preparingDocuments": ""
+    };
+
+    mapKey = teamRef.child("maps").push(newMap).key;
+  }
+
   return (
     <Router>
       <div>
@@ -61,7 +74,9 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/mapform">Start a New Map</Link>
+              <Link to="/mapform" onClick={newMap}>
+                Start a New Map
+              </Link>
             </li>
           </ul>
         </nav>
@@ -74,7 +89,7 @@ function App() {
             </div>
           </Route>
           <Route path="/mapform">
-            <MapForm team={team} />
+            <MapForm team={team} mapKey={mapKey}/>
           </Route>
         </Switch>
       </div>
