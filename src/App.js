@@ -26,29 +26,26 @@ const db = firebase.database().ref();
 
 function App() {
   // set static user for testing purposes
+  // normally user would be set by firebase auth
   const [user, setUser] = useState({
     firstName: "Margaret",
     teamName: "DRJ"
   });
+  // then derive teamName from the team associated with user
+  // when user creates account they can either create team or join one
   const [team, setTeam] = useState(user.teamName);
+  // this will store our user's data
   const [data, setData] = useState({});
 
-  let teamRef;
-
-  const getTeamRef = () => {
-    teamRef = db.child("teams").child(team);
-  };
-
-  getTeamRef();
-
-  // update our data based on which team we are
+  // update our user's data based on which team we are
   useEffect(() => {
     const handleData = snap => {
 
       if(team != null){
         if (snap.val()){
-          const uuid = team.uuid;
-          setData(snap.val().teams[uuid]);
+          // teamName is a key in the db
+          // we will pass "team" to our map component so they can access the db
+          setData(snap.val().teams[team]);
       }
     }}
     db.on('value', handleData, error => alert(error));
@@ -77,18 +74,12 @@ function App() {
             </div>
           </Route>
           <Route path="/mapform">
-            <NewMap />
+            <MapForm team={team} />
           </Route>
         </Switch>
       </div>
     </Router>
   );
-}
-
-const NewMap = () => {
-  return (
-    <MapForm />
-  )
 }
 
 export default App;
