@@ -24,6 +24,8 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database().ref();
+let mapRef = "before set";
+
 
 function App() {
   // set static user for testing purposes
@@ -37,7 +39,6 @@ function App() {
   const [team, setTeam] = useState(user.teamName);
   // this will store our user's data
   const [data, setData] = useState({});
-
   // update our user's data based on which team we are
   useEffect(() => {
     const handleData = snap => {
@@ -53,7 +54,6 @@ function App() {
     return () => { db.off('value', handleData); };
   }, [team]);
 
-  let mapRef = "before set";
 
   const newMap = () => {
     const teamRef = db.child("teams").child(team);

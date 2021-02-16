@@ -10,12 +10,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 const MapForm = ({ team, mapRef }) => {
   const styles = useStyles();
   // mapRef is undefined!!
   // can try to get mapRef from mapKey??
   // const mapRef = firebase.database().ref().child("teams").child(team).child("divorceMaps").child(mapKey);
-
+  
   const getNewSteps = (phase) => {
     const newStep = {
       title: "",
@@ -27,15 +29,15 @@ const MapForm = ({ team, mapRef }) => {
   };
 
   const stepsObj = {
-    "awareness": getNewSteps(),
-    "findingLawyer": getNewSteps(),
-    "preparingDocuments": getNewSteps()
+    "awareness": getNewSteps("awareness"),
+    "findingLawyer": getNewSteps("findingLawyer"),
+    "preparingDocuments": getNewSteps("preparingDocuments")
   }
 
   const handleSave = () => {
-    for (let value of Object.values(stepsObj)) {
-      for (let step of value) {
-        mapRef.push(step);
+    for (let key of Object.keys(stepsObj)) {
+      for (let step of stepsObj[key]) {
+        mapRef.child(key).push(step);
       }
     }
   };
