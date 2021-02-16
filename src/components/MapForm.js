@@ -1,11 +1,14 @@
 import React from "react";
 import { Box, Button } from "@material-ui/core";
-import StageForm from "./StageForm";
+import PhaseForm from "./PhaseForm";
 import { makeStyles } from '@material-ui/core/styles';
 import "firebase/database";
 
 const useStyles = makeStyles((theme) => ({
-
+  phaseButton: {
+    marginBottom: "10px",
+    marginLeft: "10px"
+  }
 }));
 
 const MapForm = ({ team, mapRef }) => {
@@ -15,7 +18,7 @@ const MapForm = ({ team, mapRef }) => {
     const newStep = {
       title: "",
       description: "",
-      stage: phase,
+      phase: phase,
       rating: ""
     };
     return [newStep];
@@ -39,11 +42,11 @@ const MapForm = ({ team, mapRef }) => {
 
   return (
     <Box component="div">
-      <StageForm stage="Awareness" steps={stepsObj.awareness}/>
-      <StageForm stage="Finding a Lawyer" steps={stepsObj.findingLawyer}/>
-      <StageForm stage="Preparing Documents" steps={stepsObj.preparingDocuments}/>
+      <PhaseForm phase="Awareness" steps={stepsObj.awareness}/>
+      <PhaseForm phase="Finding a Lawyer" steps={stepsObj.findingLawyer}/>
+      <PhaseForm phase="Preparing Documents" steps={stepsObj.preparingDocuments}/>
       <Button
-         className={styles.stageButton}
+         className={styles.phaseButton}
          variant="contained"
          onClick={handleSave}
       >
