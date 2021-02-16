@@ -69,16 +69,12 @@ function App() {
     <Router>
       <Box component="div">
         <nav>
-          <ul>
-            <li>
+          <Box component="div" class="topnav">
               <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/mapform" onClick={newMap}>
-                Start a New Map
-              </Link>
-            </li>
-          </ul>
+              <Link to="/surveyform">Survey</Link>
+              <Link to="/mapform" onClick={newMap}> Map Form</Link>
+              <Link to="/data">Data</Link>
+          </Box>
         </nav>
         <Switch>
           <Route exact path="/">
