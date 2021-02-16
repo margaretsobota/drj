@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StepForm = ({ stage, step }) => {
+const StepForm = ({ phase, step }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
 
@@ -55,7 +55,7 @@ const StepForm = ({ stage, step }) => {
            <DragHandleSharpIcon/>
          </Button>
        </Box>
-       <form style={{display: "flex"}}>
+       <Box component="div" style={{display: "flex"}}>
         <Container className={styles.inputContainer}>
           <TextField
             className={styles.stepTitle}
@@ -83,7 +83,7 @@ const StepForm = ({ stage, step }) => {
             name="rating"
           />
         </Container>
-      </form>
+      </Box>
       <Box
         component="div"
         className={styles.iconContainer}

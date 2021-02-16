@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Button} from "@material-ui/core";
 import StepForm from "./StepForm";
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,8 +20,13 @@ const PhaseForm = ({ phase, steps }) => {
   const styles = useStyles();
   const [stepsState, setSteps] = useState(steps);
 
+  useEffect(() => {
+    setSteps(steps);
+  }, [steps]);
+
   const getNewStep = (phase) => {
     const newStep = {
+      uuid: "",
       title: "",
       description: "",
       phase: phase,
