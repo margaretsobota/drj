@@ -18,35 +18,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StageForm = ({ stage }) => {
+const StageForm = ({ stage, steps }) => {
   const styles = useStyles();
-  const newStep = {
-    uuid: "",
-    title: "",
-    description: "",
-    stage: stage
+  const [stepsState, setSteps] = useState(steps);
+
+  const getNewStep = (phase) => {
+    const newStep = {
+      title: "",
+      description: "",
+      stage: phase,
+      rating: ""
+    };
+    return newStep;
   };
-
-  const getNewStep = () => {
-    const initStep = _.cloneDeep(newStep);
-    initStep.uuid = getNewStepKey(initStep);
-    return initStep;
-  }
-
-  const getNewStepKey = ( step ) => {
-   /* we would do something like this...
-     * const teamUID = "";
-     * his is not correct yet
-     * let newItemKey = firebase.database().ref("teams").child(teamUID).push().key;
-     * also not correct
-     * firebase.database().ref("teams/" + teamUID + "/" + newItemKey).set(step);
-     * return newItemKey;
-   */
-   return "";
-
- };
-
-  const [stepsState, setSteps] = useState([getNewStep()]);
 
   const returnSteps = () => {
     const steps = stepsState.map((step) =>
@@ -58,8 +42,6 @@ const StageForm = ({ stage }) => {
       </Box>
     )
   };
-
-
 
   const addStep = () => {
     const newSteps = stepsState.concat(getNewStep());
@@ -79,12 +61,6 @@ const StageForm = ({ stage }) => {
           onClick={addStep}
         >
           New Step
-        </Button>
-        <Button
-           className={styles.stageButton}
-           variant="contained"
-        >
-          Save
         </Button>
       </Container>
     </Container>

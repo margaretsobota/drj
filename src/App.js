@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Box } from "@material-ui/core";
 import logo from "./images/logoLIJ.png";
 import './App.css';
 import firebase from "firebase/app";
@@ -52,7 +53,7 @@ function App() {
     return () => { db.off('value', handleData); };
   }, [team]);
 
-  let mapKey;
+  let mapRef = "before set";
 
   const newMap = () => {
     const teamRef = db.child("teams").child(team);
@@ -62,12 +63,12 @@ function App() {
       "preparingDocuments": ""
     };
 
-    mapKey = teamRef.child("maps").push(newMap).key;
+    mapRef = teamRef.child("divorceMaps").push(newMap);
   }
 
   return (
     <Router>
-      <div>
+      <Box component="div">
         <nav>
           <ul>
             <li>
@@ -82,17 +83,17 @@ function App() {
         </nav>
         <Switch>
           <Route exact path="/">
-            <div className="App">
+            <Box component="div" className="App">
               <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
               </header>
-            </div>
+            </Box>
           </Route>
           <Route path="/mapform">
-            <MapForm team={team} mapKey={mapKey}/>
+            <MapForm team={team} mapRef={mapRef}/>
           </Route>
         </Switch>
-      </div>
+      </Box>
     </Router>
   );
 }

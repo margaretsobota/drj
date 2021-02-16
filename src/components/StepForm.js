@@ -31,9 +31,18 @@ const StepForm = ({ stage, step }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
 
-  const changeRating= ( newRating, name ) => {
+  const changeRating = ( newRating, name ) => {
+      step.rating = newRating;
       setRating(newRating);
-    }
+  }
+
+  const handleStepTitleChange = (event) => {
+    step.title = event.target.value;
+  }
+
+  const handleStepDescChange = (event) => {
+    step.description = event.target.value;
+  };
 
   return (
     <Container className={styles.stepContainer}>
@@ -52,12 +61,14 @@ const StepForm = ({ stage, step }) => {
             className={styles.stepTitle}
             id="stepTitle"
             label="Step Title"
+            onChange={handleStepTitleChange}
           />
           <TextField
             id="stepDesc"
             label="Step Description"
             variant="outlined"
             multiline
+            onChange={handleStepDescChange}
           />
         </Container>
         <Container className={styles.inputContainer}>
