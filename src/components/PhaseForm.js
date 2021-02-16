@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const PhaseForm = ({ phase, steps }) => {
   const styles = useStyles();
   const [stepsState, setSteps] = useState(steps);
+  console.log("steps", steps);
 
   useEffect(() => {
     setSteps(steps);

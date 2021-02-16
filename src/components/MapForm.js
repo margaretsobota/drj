@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import PhaseForm from "./PhaseForm";
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +15,7 @@ const MapForm = ({ team, mapRef }) => {
   const styles = useStyles();
 
   const getNewSteps = (phase) => {
+    console.log("called");
     const newStep = {
       uuid: "",
       title: "",
@@ -35,23 +36,22 @@ const MapForm = ({ team, mapRef }) => {
     "trial": getNewSteps("trial")
   }
 
+  const [stepsState, setSteps] = useState(stepsObj);
+
   const handleSave = () => {
-    for (let key of Object.keys(stepsObj)) {
-      for (let step of stepsObj[key]) {
+    console.log("obj", stepsObj);
+    for (let key of Object.keys(stepsState)) {
+      for (let step of stepsState[key]) {
         let uuid;
         if (step.uuid.length === 0)
         {
-          console.log("no uuid", step);
           uuid = mapRef.child("phases").child(key).push(step).key;
           step.uuid = uuid;
         }
         else {
-          console.log("has uuid", step);
           uuid = step.uuid;
           mapRef.child("phases").child(key).child(uuid).set(step);
         }
-        // TO DO: there is a bug here!!
-        // do not push step if step already exists!
 
       }
     }
@@ -59,13 +59,13 @@ const MapForm = ({ team, mapRef }) => {
 
   return (
     <Box component="div">
-      <PhaseForm phase="Research" steps={stepsObj.research}/>
-      <PhaseForm phase="Petition" steps={stepsObj.petition}/>
-      <PhaseForm phase="Serve" steps={stepsObj.serve}/>
-      <PhaseForm phase="Disclosure" steps={stepsObj.disclosure}/>
-      <PhaseForm phase="Settlement" steps={stepsObj.settlement}/>
-      <PhaseForm phase="Pre-Trial" steps={stepsObj["pre-trial"]}/>
-      <PhaseForm phase="Trial" steps={stepsObj.trial}/>
+      <PhaseForm phase="Research" steps={stepsState.research}/>
+      <PhaseForm phase="Petition" steps={stepsState.petition}/>
+      <PhaseForm phase="Serve" steps={stepsState.serve}/>
+      <PhaseForm phase="Disclosure" steps={stepsState.disclosure}/>
+      <PhaseForm phase="Settlement" steps={stepsState.settlement}/>
+      <PhaseForm phase="Pre-Trial" steps={stepsState["pre-trial"]}/>
+      <PhaseForm phase="Trial" steps={stepsState.trial}/>
       <Button
          className={styles.phaseButton}
          variant="contained"

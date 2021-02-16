@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const StepForm = ({ phase, step }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
+  console.log("uuid", step.uuid);
 
   const changeRating = ( newRating, name ) => {
       step.rating = newRating;
