@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Container, Button} from "@material-ui/core";
 import StepForm from "./StepForm";
 import { makeStyles } from '@material-ui/core/styles';
-import firebase from 'firebase/app';
 import 'firebase/database';
-import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   stageContainer: {

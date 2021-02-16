@@ -2,22 +2,15 @@ import React from "react";
 import { Box, Button } from "@material-ui/core";
 import StageForm from "./StageForm";
 import { makeStyles } from '@material-ui/core/styles';
-import firebase from "firebase/app";
 import "firebase/database";
-import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
 const MapForm = ({ team, mapRef }) => {
   const styles = useStyles();
-  // mapRef is undefined!!
-  // can try to get mapRef from mapKey??
-  // const mapRef = firebase.database().ref().child("teams").child(team).child("divorceMaps").child(mapKey);
-  
+
   const getNewSteps = (phase) => {
     const newStep = {
       title: "",
@@ -37,6 +30,8 @@ const MapForm = ({ team, mapRef }) => {
   const handleSave = () => {
     for (let key of Object.keys(stepsObj)) {
       for (let step of stepsObj[key]) {
+        // TO DO: there is a bug here!!
+        // do not push step if step already exists!
         mapRef.child(key).push(step);
       }
     }
