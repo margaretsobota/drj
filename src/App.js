@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, MenuItem } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import logo from "./images/logoLIJ.png";
 import './App.css';
 import firebase from "firebase/app";
@@ -11,7 +11,6 @@ import {
   Link
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
-import SurveyForm from "./components/SurveyForm";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVRzOlafcGV_2jfKdOJOfx4yFHI6pHORE",
@@ -71,21 +70,12 @@ function App() {
     <Router>
       <Box component="div">
         <nav>
-          <div class="topnav">
-            <a>
+          <Box component="div" class="topnav">
               <Link to="/">Home</Link>
-            </a>
-            <a>
               <Link to="/surveyform">Survey</Link>
-            </a>
-            <a>
               <Link to="/mapform" onClick={newMap}> Map Form</Link>
-            </a>
-            <a>
               <Link to="/data">Data</Link>
-            </a>
-          </div>
-          
+          </Box>
         </nav>
         <Switch>
           <Route exact path="/">
@@ -97,9 +87,6 @@ function App() {
           </Route>
           <Route path="/mapform">
             <MapForm team={team} mapRef={mapRef}/>
-          </Route>
-          <Route path="/surveyform">
-            <SurveyForm team={team} mapRef={mapRef}/>
           </Route>
         </Switch>
       </Box>
