@@ -58,9 +58,8 @@ function App() {
   const newMap = () => {
     const teamRef = db.child("teams").child(team);
     const newMap = {
-      "awareness": "",
-      "findingLawyer": "",
-      "preparingDocuments": ""
+      "phases": "",
+      "demographics": ""
     };
 
     mapRef = teamRef.child("divorceMaps").push(newMap);

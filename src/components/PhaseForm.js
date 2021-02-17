@@ -1,30 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Button} from "@material-ui/core";
 import StepForm from "./StepForm";
 import { makeStyles } from '@material-ui/core/styles';
 import 'firebase/database';
 
 const useStyles = makeStyles((theme) => ({
-  stageContainer: {
+  phaseContainer: {
     backgroundColor: "#AAB6C5",
     padding: "10px",
     marginBottom: "5px"
   },
-  stageButton: {
+  phaseButton: {
     marginTop: "10px",
     marginRight: "10px"
   }
 }));
 
-const StageForm = ({ stage, steps }) => {
+const PhaseForm = ({ phase, steps }) => {
   const styles = useStyles();
   const [stepsState, setSteps] = useState(steps);
+  console.log("steps", steps);
+
+  useEffect(() => {
+    setSteps(steps);
+  }, [steps]);
 
   const getNewStep = (phase) => {
     const newStep = {
+      uuid: "",
       title: "",
       description: "",
-      stage: phase,
+      phase: phase,
       rating: ""
     };
     return newStep;
@@ -32,7 +38,7 @@ const StageForm = ({ stage, steps }) => {
 
   const returnSteps = () => {
     const steps = stepsState.map((step) =>
-      <StepForm stage={stage} step={step}/>
+      <StepForm phase={phase} step={step}/>
     );
     return (
       <Box>
@@ -47,14 +53,14 @@ const StageForm = ({ stage, steps }) => {
   }
 
   return (
-    <Container className={styles.stageContainer}>
+    <Container className={styles.phaseContainer}>
       <h2>
-        {stage}
+        {phase}
       </h2>
       {returnSteps()}
       <Container>
         <Button
-          className={styles.stageButton}
+          className={styles.phaseButton}
           variant="contained"
           onClick={addStep}
         >
@@ -67,4 +73,4 @@ const StageForm = ({ stage, steps }) => {
 
 
 
-export default StageForm;
+export default PhaseForm;
