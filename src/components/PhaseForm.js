@@ -6,20 +6,26 @@ import 'firebase/database';
 
 const useStyles = makeStyles((theme) => ({
   phaseContainer: {
-    backgroundColor: "#AAB6C5",
+    backgroundColor: "#FCF6EC",
     padding: "10px",
-    marginBottom: "5px"
+    marginBottom: "5px",
+    marginLeft: "72.11px",
+    marginRight: "72.11px"
   },
   phaseButton: {
     marginTop: "10px",
-    marginRight: "10px"
+    marginRight: "10px",
+    background: "#F2F2F2"
+  },
+  phaseTitle: {
+    // fontFamily: "Arboria",
+    // fontSize: "23.5646px"
   }
 }));
 
 const PhaseForm = ({ phase, steps }) => {
   const styles = useStyles();
   const [stepsState, setSteps] = useState(steps);
-  console.log("steps", steps);
 
   useEffect(() => {
     setSteps(steps);
@@ -54,7 +60,7 @@ const PhaseForm = ({ phase, steps }) => {
 
   return (
     <Container className={styles.phaseContainer}>
-      <h2>
+      <h2 className={styles.phaseTitle}>
         {phase}
       </h2>
       {returnSteps()}

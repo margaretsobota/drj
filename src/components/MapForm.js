@@ -39,7 +39,6 @@ const MapForm = ({ team, mapRef }) => {
   const [stepsState, setSteps] = useState(stepsObj);
 
   const handleSave = () => {
-    console.log("obj", stepsObj);
     for (let key of Object.keys(stepsState)) {
       for (let step of stepsState[key]) {
         let uuid;

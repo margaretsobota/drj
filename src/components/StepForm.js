@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 const StepForm = ({ phase, step }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
-  console.log("uuid", step.uuid);
 
   const changeRating = ( newRating, name ) => {
       step.rating = newRating;
@@ -47,7 +46,7 @@ const StepForm = ({ phase, step }) => {
 
   return (
     <Container className={styles.stepContainer}>
-     <Paper style={{paddingBottom: "15px"}}>
+     <Paper style={{paddingBottom: "15px", background: "#F2F2F2"}}>
        <Box
          component="div"
          className={styles.iconContainer}
