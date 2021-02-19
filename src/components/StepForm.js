@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, Button, Box, Container, TextField } from "@material-ui/core";
+import { Button, Box, Container, TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   stepContainer: {
     margin: "37.53px",
-    marginRight: "60px",
     background: "#F2F2F2",
     paddingBottom: "15px",
     width: "840px"

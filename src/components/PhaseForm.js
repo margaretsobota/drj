@@ -3,6 +3,7 @@ import { Box, Container, Button} from "@material-ui/core";
 import StepForm from "./StepForm";
 import { makeStyles } from '@material-ui/core/styles';
 import 'firebase/database';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   phaseContainer: {
@@ -15,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   phaseButton: {
     marginTop: "10px",
     marginRight: "10px",
-    background: "#F2F2F2"
+    background: "#F2F2F2",
+    marginLeft: "10px"
   },
   phaseTitle: {
     // fontFamily: "Arboria",
@@ -70,7 +72,8 @@ const PhaseForm = ({ phase, steps }) => {
           variant="contained"
           onClick={addStep}
         >
-          New Step
+          <AddCircleIcon/>
+          Add Step
         </Button>
       </Container>
     </Container>
