@@ -2,6 +2,8 @@ import React , { useState, useEffect } from "react";
 import { Box, Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import "firebase/database";
+import * as allCurves from '@visx/curve';
+import { LinePath } from '@visx/shape';
 
 const useStyles = makeStyles((theme) => ({
 }));
@@ -9,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
 const Map = ({mapRef}) => {
   const styles = useStyles();
   const [dataState, setData] = useState({});
+
+  const testData = [[1,2], [3,7], [8,2], [1,9]];
 
   useEffect(() => {
     const handleData = snap => {
