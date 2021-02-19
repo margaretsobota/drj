@@ -73,7 +73,7 @@ const PhaseForm = ({ phase, steps }) => {
           onClick={addStep}
         >
           <AddCircleIcon/>
-          Add Step
+          &nbsp;Add Step
         </Button>
       </Container>
     </Container>
