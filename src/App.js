@@ -12,6 +12,7 @@ import {
   Link
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
+import Map from "./components/Map";
 import { makeStyles } from '@material-ui/core/styles';
 
 const firebaseConfig = {
@@ -45,6 +46,7 @@ function App() {
     firstName: "Margaret",
     teamName: "DRJ"
   });
+  const [mapRefState, setMapRef] = useState("");
   // then derive teamName from the team associated with user
   // when user creates account they can either create team or join one
   const [team, setTeam] = useState(user.teamName);
@@ -65,8 +67,6 @@ function App() {
     return () => { db.off('value', handleData); };
   }, [team]);
 
-  let mapRef = "";
-
   const newMap = () => {
     const teamRef = db.child("teams").child(team);
     const newMap = {
@@ -74,7 +74,7 @@ function App() {
       "demographics": ""
     };
 
-    mapRef = teamRef.child("divorceMaps").push(newMap);
+    setMapRef(teamRef.child("divorceMaps").push(newMap));
   }
 
   return (
@@ -98,7 +98,10 @@ function App() {
             </Box>
           </Route>
           <Route path="/mapform">
-            <MapForm team={team} mapRef={mapRef}/>
+            <MapForm mapRef={mapRefState}/>
+          </Route>
+          <Route path="/map">
+            <Map mapRef={mapRefState}/>
           </Route>
         </Switch>
       </Box>

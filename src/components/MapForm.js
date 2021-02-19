@@ -3,19 +3,33 @@ import { Box, Button } from "@material-ui/core";
 import PhaseForm from "./PhaseForm";
 import { makeStyles } from '@material-ui/core/styles';
 import "firebase/database";
+import {
+  Link
+} from "react-router-dom";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 const useStyles = makeStyles((theme) => ({
   phaseButton: {
     marginBottom: "10px",
-    marginLeft: "10px"
+    marginLeft: "10px",
+    background: "#699BF7",
+    color: "#FFFFFF"
+  },
+  mapButton: {
+    marginLeft: "10px",
+    background: "#699BF7",
+    color: "#FFFFFF",
+    marginRight: "72.11px",
+    borderRadius: "5px",
+    textDecoration: "none",
+    padding: "10px"
   }
 }));
 
-const MapForm = ({ team, mapRef }) => {
+const MapForm = ({ mapRef }) => {
   const styles = useStyles();
 
   const getNewSteps = (phase) => {
-    console.log("called");
     const newStep = {
       uuid: "",
       title: "",
@@ -58,6 +72,15 @@ const MapForm = ({ team, mapRef }) => {
 
   return (
     <Box component="div">
+      <Box style={{display: "flex", flexDirection: "row-reverse", marginBottom: "30px"}}>
+        <Link
+          className={styles.mapButton}
+          to="/map"
+        >
+          <PlayArrowIcon/>
+          See Map
+        </Link>
+      </Box>
       <PhaseForm phase="Research" steps={stepsState.research}/>
       <PhaseForm phase="Petition" steps={stepsState.petition}/>
       <PhaseForm phase="Serve" steps={stepsState.serve}/>
