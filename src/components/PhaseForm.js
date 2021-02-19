@@ -7,8 +7,8 @@ import 'firebase/database';
 const useStyles = makeStyles((theme) => ({
   phaseContainer: {
     backgroundColor: "#FCF6EC",
-    padding: "10px",
-    marginBottom: "5px",
+    padding: "16px",
+    marginBottom: "16px",
     marginLeft: "72.11px",
     marginRight: "72.11px"
   },

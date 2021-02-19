@@ -15,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "10px"
   },
   stepContainer: {
-    margin: "5px"
+    margin: "37.53px",
+    marginRight: "60px",
+    background: "#F2F2F2",
+    paddingBottom: "15px",
+    width: "840px"
   },
   iconContainer: {
     display:"flex",
@@ -46,7 +50,6 @@ const StepForm = ({ phase, step }) => {
 
   return (
     <Container className={styles.stepContainer}>
-     <Paper style={{paddingBottom: "15px", background: "#F2F2F2"}}>
        <Box
          component="div"
          className={styles.iconContainer}
@@ -79,7 +82,7 @@ const StepForm = ({ phase, step }) => {
             rating={ratingState}
             changeRating={changeRating}
             starRatedColor="blue"
-            numberOfStars={6}
+            numberOfStars={5}
             name="rating"
           />
         </Container>
@@ -92,7 +95,6 @@ const StepForm = ({ phase, step }) => {
           <HighlightOffSharpIcon/>
         </Button>
       </Box>
-    </Paper>
   </Container>
 )};
 
