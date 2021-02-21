@@ -9,20 +9,28 @@ import {
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 const useStyles = makeStyles((theme) => ({
-  phaseButton: {
-    marginBottom: "10px",
-    marginLeft: "10px",
+  saveButton: {
+    marginBottom: "78px",
+    marginLeft: "72.11px",
+    marginTop: "40px",
     background: "#699BF7",
     color: "#FFFFFF"
   },
   mapButton: {
     marginLeft: "10px",
-    background: "#699BF7",
-    color: "#FFFFFF",
+    background: "#A3D9D1",
+    color: "#2A303D",
     marginRight: "72.11px",
     borderRadius: "5px",
     textDecoration: "none",
-    padding: "10px"
+    padding: "10px",
+    paddingRight: "15px"
+  },
+  arrowIcon : {
+    display: "inline-block",
+    verticalAlign: "middle",
+    paddingBottom: "3px",
+    color: "#2A303D"
   }
 }));
 
@@ -77,8 +85,8 @@ const MapForm = ({ mapRef }) => {
           className={styles.mapButton}
           to="/map"
         >
-          <PlayArrowIcon/>
-          See Map
+          <PlayArrowIcon className={styles.arrowIcon}/>
+          &nbsp;SEE MAP
         </Link>
       </Box>
       <PhaseForm phase="Research" steps={stepsState.research}/>
@@ -89,7 +97,7 @@ const MapForm = ({ mapRef }) => {
       <PhaseForm phase="Pre-Trial" steps={stepsState["pre-trial"]}/>
       <PhaseForm phase="Trial" steps={stepsState.trial}/>
       <Button
-         className={styles.phaseButton}
+         className={styles.saveButton}
          variant="contained"
          onClick={handleSave}
       >

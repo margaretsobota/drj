@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "72.11px"
   },
   phaseButton: {
-    marginTop: "10px",
     marginRight: "10px",
     background: "#F2F2F2",
     marginLeft: "10px"
@@ -71,9 +70,9 @@ const PhaseForm = ({ phase, steps }) => {
           className={styles.phaseButton}
           variant="contained"
           onClick={addStep}
+          startIcon={<AddCircleIcon style={{ color: "#F5BF4F", fontSize: 30 }}/>}
         >
-          <AddCircleIcon/>
-          &nbsp;Add Step
+          Add Step
         </Button>
       </Container>
     </Container>
