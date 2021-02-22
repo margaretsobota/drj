@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react";
+import React , { useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import PhaseForm from "./PhaseForm";
 import { makeStyles } from '@material-ui/core/styles';
@@ -64,7 +64,6 @@ const MapForm = ({ mapRef }) => {
   const handleSave = () => {
     for (let key of Object.keys(stepsState)) {
       for (let step of stepsState[key]) {
-        if (key=== "research") console.log(stepsState[key]);
         let uuid;
         if (step.uuid.length === 0)
         {
