@@ -23,6 +23,57 @@ const Map = ({mapRef}) => {
     return () => { mapRef.off('value', handleData); };
   }, [mapRef]);
 
+  const getArrayRanges = (phases) => {
+    // calc array ranges
+    //    switch(phase) {
+    //      //hard coded
+    //      case "research": {
+    //        phaseMappings[phase].arrStart = 0;
+    //        phaseMappings[phase].arrEnd = phase.phaseTotalSteps;
+    //        break;
+    //      }
+    //      case "petition": {
+    //         phaseMappings["petition"].arrStart = phaseMappings["research"].arrEnd + 1;
+    //         phaseMappings["petition"].arrEnd = phaseMappings["petition"].arrStart + phase.phaseTotalSteps;
+    //         break;
+    //      }
+    //      /* ... */
+  }
+
+  const arrayMap = (phase, step) => {
+    // phaseMappings = {
+    //   research: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
+    //   disclosure: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
+    //   service: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
+    //   ....
+    // }
+    //   dataArr = [];
+    //   stepMap = {};
+    //    startX = phaseMappings[phase].startX;
+    //    totalSteps = phase.phaseTotalSteps;
+    //    padding = phaseMappings[phase].range / (totalSteps + 1);
+    //    stepX = startX + padding*(step.count + 1);
+    //    stepY = step.rating*100; // need to account for graphics Y
+    //    // if this is the first step in a given phase
+    //    switch(phase) {
+    //      //hard coded
+    //      case "research": {
+    //        phaseMappings[phase].arrStart = 0;
+    //        phaseMappings[phase].arrEnd = phase.phaseTotalSteps;
+    //        break;
+    //      }
+    //      case "petition": {
+    //         phaseMappings["petition"].arrStart = phaseMappings["research"].arrEnd + 1;
+    //         phaseMappings["petition"].arrEnd = phaseMappings["petition"].arrStart + phase.phaseTotalSteps;
+    //         break;
+    //      }
+    //      /* ... */
+    //    }
+    //    ind = phaseMappings[phase].arrStart + step.count;
+    //    dataArr.splice(ind, 0, [stepX, stepY]); // could directly index
+    //    stepMap[ind] = step;
+  }
+
   return (
     <Box component="div" style={{paddingLeft:"20px"}}>
       <h1>
