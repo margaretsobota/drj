@@ -60,7 +60,7 @@ const PhaseForm = ({ phase, state }) => {
   return (
     <Container className={styles.phaseContainer}>
       <h2 className={styles.phaseTitle}>
-        {phase}
+        {phase.charAt(0).toUpperCase() + phase.slice(1)}
       </h2>
       {returnSteps()}
       <Container>
