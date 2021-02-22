@@ -1,27 +1,50 @@
-import React , { useState } from "react";
+import React , { useState, useEffect } from "react";
 import { Box, Button } from "@material-ui/core";
 import PhaseForm from "./PhaseForm";
 import { makeStyles } from '@material-ui/core/styles';
 import "firebase/database";
+import {
+  Link
+} from "react-router-dom";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 const useStyles = makeStyles((theme) => ({
-  phaseButton: {
-    marginBottom: "10px",
-    marginLeft: "10px"
+  saveButton: {
+    marginBottom: "78px",
+    marginLeft: "72.11px",
+    marginTop: "40px",
+    background: "#699BF7",
+    color: "#FFFFFF"
+  },
+  mapButton: {
+    marginLeft: "10px",
+    background: "#A3D9D1",
+    color: "#2A303D",
+    marginRight: "72.11px",
+    borderRadius: "5px",
+    textDecoration: "none",
+    padding: "10px",
+    paddingRight: "15px"
+  },
+  arrowIcon : {
+    display: "inline-block",
+    verticalAlign: "middle",
+    paddingBottom: "3px",
+    color: "#2A303D"
   }
 }));
 
-const MapForm = ({ team, mapRef }) => {
+const MapForm = ({ mapRef }) => {
   const styles = useStyles();
 
   const getNewSteps = (phase) => {
-    console.log("called");
     const newStep = {
       uuid: "",
       title: "",
       description: "",
       phase: phase,
-      rating: ""
+      rating: "",
+      count: 0
     };
     return [newStep];
   };
@@ -39,9 +62,9 @@ const MapForm = ({ team, mapRef }) => {
   const [stepsState, setSteps] = useState(stepsObj);
 
   const handleSave = () => {
-    console.log("obj", stepsObj);
     for (let key of Object.keys(stepsState)) {
       for (let step of stepsState[key]) {
+        if (key=== "research") console.log(stepsState[key]);
         let uuid;
         if (step.uuid.length === 0)
         {
@@ -59,6 +82,15 @@ const MapForm = ({ team, mapRef }) => {
 
   return (
     <Box component="div">
+      <Box style={{display: "flex", flexDirection: "row-reverse", marginBottom: "30px"}}>
+        <Link
+          className={styles.mapButton}
+          to="/map"
+        >
+          <PlayArrowIcon className={styles.arrowIcon}/>
+          &nbsp;SEE MAP
+        </Link>
+      </Box>
       <PhaseForm phase="Research" steps={stepsState.research}/>
       <PhaseForm phase="Petition" steps={stepsState.petition}/>
       <PhaseForm phase="Serve" steps={stepsState.serve}/>
@@ -67,7 +99,7 @@ const MapForm = ({ team, mapRef }) => {
       <PhaseForm phase="Pre-Trial" steps={stepsState["pre-trial"]}/>
       <PhaseForm phase="Trial" steps={stepsState.trial}/>
       <Button
-         className={styles.phaseButton}
+         className={styles.saveButton}
          variant="contained"
          onClick={handleSave}
       >

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, Button, Box, Container, TextField } from "@material-ui/core";
+import { Button, Box, Container, TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
@@ -15,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "10px"
   },
   stepContainer: {
-    margin: "5px"
+    margin: "37.53px",
+    background: "#F2F2F2",
+    paddingBottom: "15px",
+    width: "840px"
   },
   iconContainer: {
     display:"flex",
@@ -30,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 const StepForm = ({ phase, step }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
-  console.log("uuid", step.uuid);
 
   const changeRating = ( newRating, name ) => {
       step.rating = newRating;
@@ -47,7 +49,6 @@ const StepForm = ({ phase, step }) => {
 
   return (
     <Container className={styles.stepContainer}>
-     <Paper style={{paddingBottom: "15px"}}>
        <Box
          component="div"
          className={styles.iconContainer}
@@ -80,7 +81,7 @@ const StepForm = ({ phase, step }) => {
             rating={ratingState}
             changeRating={changeRating}
             starRatedColor="blue"
-            numberOfStars={6}
+            numberOfStars={5}
             name="rating"
           />
         </Container>
@@ -93,7 +94,6 @@ const StepForm = ({ phase, step }) => {
           <HighlightOffSharpIcon/>
         </Button>
       </Box>
-    </Paper>
   </Container>
 )};
 

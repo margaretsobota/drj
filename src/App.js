@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@material-ui/core";
 import logo from "./images/logoLIJ.png";
+import logoSmall from "./images/inv_lab_logo_med.png";
 import './App.css';
 import firebase from "firebase/app";
 import "firebase/database";
@@ -11,6 +12,8 @@ import {
   Link
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
+import Map from "./components/Map";
+import { makeStyles } from '@material-ui/core/styles';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVRzOlafcGV_2jfKdOJOfx4yFHI6pHORE",
@@ -24,16 +27,26 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database().ref();
-let mapRef = "before set";
+
+
+const useStyles = makeStyles((theme) => ({
+  headerLogo: {
+    width: "85.81px",
+    height: "85.95px",
+    marginLeft: "55.02px"
+  }
+}));
 
 
 function App() {
+  const styles = useStyles();
   // set static user for testing purposes
   // normally user would be set by firebase auth
   const [user, setUser] = useState({
     firstName: "Margaret",
     teamName: "DRJ"
   });
+  const [mapRefState, setMapRef] = useState("");
   // then derive teamName from the team associated with user
   // when user creates account they can either create team or join one
   const [team, setTeam] = useState(user.teamName);
@@ -54,7 +67,6 @@ function App() {
     return () => { db.off('value', handleData); };
   }, [team]);
 
-
   const newMap = () => {
     const teamRef = db.child("teams").child(team);
     const newMap = {
@@ -62,7 +74,7 @@ function App() {
       "demographics": ""
     };
 
-    mapRef = teamRef.child("divorceMaps").push(newMap);
+    setMapRef(teamRef.child("divorceMaps").push(newMap));
   }
 
   return (
@@ -70,6 +82,7 @@ function App() {
       <Box component="div">
         <nav>
           <Box component="div" class="topnav">
+              <img src={logoSmall} className={styles.headerLogo }alt="logo" />
               <Link to="/">Home</Link>
               <Link to="/surveyform">Survey</Link>
               <Link to="/mapform" onClick={newMap}> Map Form</Link>
@@ -85,7 +98,10 @@ function App() {
             </Box>
           </Route>
           <Route path="/mapform">
-            <MapForm team={team} mapRef={mapRef}/>
+            <MapForm mapRef={mapRefState}/>
+          </Route>
+          <Route path="/map">
+            <Map mapRef={mapRefState}/>
           </Route>
         </Switch>
       </Box>
