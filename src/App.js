@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const styles = useStyles();
+
   // set static user for testing purposes
   // normally user would be set by firebase auth
   const [user, setUser] = useState({
@@ -47,11 +48,14 @@ function App() {
     teamName: "DRJ"
   });
   const [mapRefState, setMapRef] = useState("");
+
   // then derive teamName from the team associated with user
   // when user creates account they can either create team or join one
   const [team, setTeam] = useState(user.teamName);
+  
   // this will store our user's data
   const [data, setData] = useState({});
+
   // update our user's data based on which team we are
   useEffect(() => {
     const handleData = snap => {

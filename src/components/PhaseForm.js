@@ -17,10 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10px",
     background: "#F2F2F2",
     marginLeft: "10px"
-  },
-  phaseTitle: {
-    // fontFamily: "Arboria",
-    // fontSize: "23.5646px"
   }
 }));
 
@@ -35,7 +31,6 @@ const PhaseForm = ({ phase, steps }) => {
 
   const getNewStep = (phase) => {
     setCount(countState + 1);
-    console.log("count", countState);
     const newStep = {
       uuid: "",
       title: "",
@@ -61,7 +56,6 @@ const PhaseForm = ({ phase, steps }) => {
   const addStep = () => {
     const newSteps = stepsState.concat(getNewStep());
     setSteps(newSteps);
-    console.log("state", stepsState);
   }
 
   return (
