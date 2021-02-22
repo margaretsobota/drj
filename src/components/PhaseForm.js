@@ -24,10 +24,9 @@ const useStyles = makeStyles((theme) => ({
 const PhaseForm = ({ phase, state }) => {
   const styles = useStyles();
   let steps = state.stepsState[phase];
-  const [countState, setCount] = useState(0);
+  const [countState, setCount] = useState(1);
 
-  const getNewStep = (phase) => {
-    setCount(countState + 1);
+  const getNewStep = () => {
     const newStep = {
       uuid: "",
       title: "",
@@ -36,6 +35,7 @@ const PhaseForm = ({ phase, state }) => {
       rating: "",
       count: countState
     };
+    setCount(countState + 1);
     return newStep;
   };
 
@@ -55,7 +55,6 @@ const PhaseForm = ({ phase, state }) => {
     const copyState = _.cloneDeep(state.stepsState);
     copyState[phase] = steps;
     state.setSteps(copyState);
-    console.log("updated state", state.stepsState);
   }
 
   return (
