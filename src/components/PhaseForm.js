@@ -4,6 +4,7 @@ import StepForm from "./StepForm";
 import { makeStyles } from '@material-ui/core/styles';
 import 'firebase/database';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   phaseContainer: {
@@ -20,14 +21,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const PhaseForm = ({ phase, steps }) => {
+const PhaseForm = ({ phase, state }) => {
   const styles = useStyles();
-  const [stepsState, setSteps] = useState(steps);
+  let steps = state.stepsState[phase];
   const [countState, setCount] = useState(0);
-
-  useEffect(() => {
-    setSteps(steps);
-  }, [steps]);
 
   const getNewStep = (phase) => {
     setCount(countState + 1);
@@ -43,19 +40,22 @@ const PhaseForm = ({ phase, steps }) => {
   };
 
   const returnSteps = () => {
-    const steps = stepsState.map((step) =>
+    const renderedSteps = steps.map((step) =>
       <StepForm phase={phase} step={step}/>
     );
     return (
       <Box>
-        {steps}
+        {renderedSteps}
       </Box>
     )
   };
 
   const addStep = () => {
-    const newSteps = stepsState.concat(getNewStep());
-    setSteps(newSteps);
+    steps.push(getNewStep());
+    const copyState = _.cloneDeep(state.stepsState);
+    copyState[phase] = steps;
+    state.setSteps(copyState);
+    console.log("updated state", state.stepsState);
   }
 
   return (

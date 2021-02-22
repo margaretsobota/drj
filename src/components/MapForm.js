@@ -91,13 +91,13 @@ const MapForm = ({ mapRef }) => {
           &nbsp;SEE MAP
         </Link>
       </Box>
-      <PhaseForm phase="Research" steps={stepsState.research}/>
-      <PhaseForm phase="Petition" steps={stepsState.petition}/>
-      <PhaseForm phase="Serve" steps={stepsState.serve}/>
-      <PhaseForm phase="Disclosure" steps={stepsState.disclosure}/>
-      <PhaseForm phase="Settlement" steps={stepsState.settlement}/>
-      <PhaseForm phase="Pre-Trial" steps={stepsState["pre-trial"]}/>
-      <PhaseForm phase="Trial" steps={stepsState.trial}/>
+      <PhaseForm phase="research" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="petition" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="serve" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="disclosure" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="settlement" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="pre-trial" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="trial" state={{stepsState, setSteps}}/>
       <Button
          className={styles.saveButton}
          variant="contained"
