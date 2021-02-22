@@ -56,7 +56,6 @@ const PhaseForm = ({ phase, steps }) => {
   const addStep = () => {
     const newSteps = stepsState.concat(getNewStep());
     setSteps(newSteps);
-    console.log("state", stepsState);
   }
 
   return (
