@@ -27,18 +27,22 @@ const useStyles = makeStyles((theme) => ({
 const PhaseForm = ({ phase, steps }) => {
   const styles = useStyles();
   const [stepsState, setSteps] = useState(steps);
+  const [countState, setCount] = useState(0);
 
   useEffect(() => {
     setSteps(steps);
   }, [steps]);
 
   const getNewStep = (phase) => {
+    setCount(countState + 1);
+    console.log("count", countState);
     const newStep = {
       uuid: "",
       title: "",
       description: "",
       phase: phase,
-      rating: ""
+      rating: "",
+      count: countState
     };
     return newStep;
   };
@@ -57,6 +61,7 @@ const PhaseForm = ({ phase, steps }) => {
   const addStep = () => {
     const newSteps = stepsState.concat(getNewStep());
     setSteps(newSteps);
+    console.log("state", stepsState);
   }
 
   return (
