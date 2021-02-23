@@ -71,15 +71,8 @@ const Map = ({mapRef}) => {
           const stepX = startX + padding *(step.count + 1);
           const stepY = step.rating*100;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
-          console.log("hi there step", stepIndex);
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
         }
-        //    stepX = startX + padding*(step.count + 1);
-        //    stepY = step.rating*100; // need to account for graphics Y
-        //    // if this is the first step in a given phase
-        //    ind = phaseMappings[phase].arrStart + step.count;
-        //    dataArr.splice(ind, 0, [stepX, stepY]); // could directly index
-        //    stepMap[ind] = step;
       }
 
       const getDataArray = () => {
@@ -93,9 +86,7 @@ const Map = ({mapRef}) => {
         return dataArr;
       }
 
-      const dataArr = getDataArray();
-      testData = dataArr;
-      console.log(dataArr);
+      testData = getDataArray();
     }
 
   return (
