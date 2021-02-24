@@ -12,6 +12,7 @@ import {
   Link
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
+import SurveyTake2 from "./components/SurveyForm";
 import Map from "./components/Map";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -106,6 +107,9 @@ function App() {
           </Route>
           <Route path="/map">
             <Map mapRef={mapRefState}/>
+          </Route>
+          <Route path="/surveyform">
+            <SurveyTake2 mapRef={mapRefState}/>
           </Route>
         </Switch>
       </Box>
