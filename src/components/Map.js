@@ -1,5 +1,5 @@
 import React , { useState, useEffect } from "react";
-import { Box } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import "firebase/database";
 import * as allCurves from '@visx/curve';
 import { LinePath } from '@visx/shape';
@@ -89,7 +89,9 @@ const Map = ({mapRef}) => {
         Your New Map
       </h1>
       <svg width="1400" height="800">
-        <rect width="1400" height="800" fill="#efefef" rx={14} ry={14} />
+        <rect width="1400" height="800" fill="#FCF6EC" x={14} y={14} />
+        <rect width="130" height="60" fill="#3D7DF3" x={30} y={30} />
+        <text x={60} y={60} fill="white">Research</text>
         {
           testData.map((p) => {
             return (
