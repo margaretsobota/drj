@@ -58,8 +58,6 @@ const PhaseForm = ({ phase, state }) => {
     state.setPhase(copyState);
   }
 
-  console.log("hello new state", state.phaseState);
-
   return (
     <Container className={styles.phaseContainer}>
       <h2 className={styles.phaseTitle}>

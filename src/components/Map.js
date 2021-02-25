@@ -3,18 +3,10 @@ import { Box } from "@material-ui/core";
 import "firebase/database";
 import * as allCurves from '@visx/curve';
 import { LinePath } from '@visx/shape';
-import firebase from "firebase/app";
 
 const Map = ({mapRef}) => {
   const [dataState, setData] = useState({});
   const curveType = "curveNatural";
-
-  // our static map key for test data
-  const db = firebase.database().ref();
-  const teamRef = db.child("teams").child("DRJ");
-  const staticKey = "-MU5lM9BdnKUYviMlTBX";
-  const staticMapRef = teamRef.child("divorceMaps").child(staticKey);
-  mapRef = staticMapRef;
 
   useEffect(() => {
     const handleData = snap => {
@@ -26,7 +18,7 @@ const Map = ({mapRef}) => {
     }}
     mapRef.on('value', handleData, error => alert(error));
     return () => { mapRef.off('value', handleData); };
-  }, [/*mapRef*/]);
+  }, [mapRef]);
 
   let testData = [];
 
@@ -69,7 +61,7 @@ const Map = ({mapRef}) => {
         const padding = phaseMappings[phaseIndex].range / (totalSteps + 1);
         for (let step of Object.values(phaseData.steps)) {
           const stepX = startX + padding *(step.count + 1);
-          const stepY = step.rating*100;
+          const stepY = (6- step.rating) *100;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
         }
