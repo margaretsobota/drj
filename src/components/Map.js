@@ -9,15 +9,17 @@ const Map = ({mapRef}) => {
   const curveType = "curveNatural";
 
   useEffect(() => {
-    const handleData = snap => {
+    if (mapRef) {
+      const handleData = snap => {
 
-      if(mapRef != null){
-        if (snap.val()){
-          setData(snap.val().phases);
-      }
-    }}
-    mapRef.on('value', handleData, error => alert(error));
-    return () => { mapRef.off('value', handleData); };
+        if(mapRef != null){
+          if (snap.val()){
+            setData(snap.val().phases);
+        }
+      }}
+      mapRef.on('value', handleData, error => alert(error));
+      return () => { mapRef.off('value', handleData); };
+    }
   }, [mapRef]);
 
   let testData = [];
