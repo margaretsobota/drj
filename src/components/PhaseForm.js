@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PhaseForm = ({ phase, state }) => {
   const styles = useStyles();
-  let steps = state.stepsState[phase];
+  let steps = state.phaseState[phase].steps;
   const [countState, setCount] = useState(1);
 
   const getNewStep = () => {
@@ -52,10 +52,13 @@ const PhaseForm = ({ phase, state }) => {
 
   const addStep = () => {
     steps.push(getNewStep());
-    const copyState = _.cloneDeep(state.stepsState);
-    copyState[phase] = steps;
-    state.setSteps(copyState);
+    const copyState = _.cloneDeep(state.phaseState);
+    copyState[phase].steps = steps
+    copyState[phase].phaseTotalSteps = copyState[phase].phaseTotalSteps + 1;
+    state.setPhase(copyState);
   }
+
+  console.log("hello new state", state.phaseState);
 
   return (
     <Container className={styles.phaseContainer}>
