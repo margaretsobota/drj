@@ -8,9 +8,6 @@ const Map = ({mapRef}) => {
   const [dataState, setData] = useState({});
   const curveType = "curveNatural";
 
-  // canned test data
-  const testData = [[20,45], [67,67], [200,12], [400,56]];
-
   useEffect(() => {
     const handleData = snap => {
 
@@ -23,64 +20,74 @@ const Map = ({mapRef}) => {
     return () => { mapRef.off('value', handleData); };
   }, [mapRef]);
 
-  const getArrayRanges = (phases) => {
-    // calc array ranges
-    //    switch(phase) {
-    //      //hard coded
-    //      case "research": {
-    //        phaseMappings[phase].arrStart = 0;
-    //        phaseMappings[phase].arrEnd = phase.phaseTotalSteps;
-    //        break;
-    //      }
-    //      case "petition": {
-    //         phaseMappings["petition"].arrStart = phaseMappings["research"].arrEnd + 1;
-    //         phaseMappings["petition"].arrEnd = phaseMappings["petition"].arrStart + phase.phaseTotalSteps;
-    //         break;
-    //      }
-    //      /* ... */
-  }
+  let testData = [];
 
-  const arrayMap = (phase, step) => {
-    // phaseMappings = {
-    //   research: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
-    //   disclosure: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
-    //   service: { startX: cannedData, range: cannedData, arrStart: calc, arrEnd: calc}
-    //   ....
-    // }
-    //   dataArr = [];
-    //   stepMap = {};
-    //    startX = phaseMappings[phase].startX;
-    //    totalSteps = phase.phaseTotalSteps;
-    //    padding = phaseMappings[phase].range / (totalSteps + 1);
-    //    stepX = startX + padding*(step.count + 1);
-    //    stepY = step.rating*100; // need to account for graphics Y
-    //    // if this is the first step in a given phase
-    //    switch(phase) {
-    //      //hard coded
-    //      case "research": {
-    //        phaseMappings[phase].arrStart = 0;
-    //        phaseMappings[phase].arrEnd = phase.phaseTotalSteps;
-    //        break;
-    //      }
-    //      case "petition": {
-    //         phaseMappings["petition"].arrStart = phaseMappings["research"].arrEnd + 1;
-    //         phaseMappings["petition"].arrEnd = phaseMappings["petition"].arrStart + phase.phaseTotalSteps;
-    //         break;
-    //      }
-    //      /* ... */
-    //    }
-    //    ind = phaseMappings[phase].arrStart + step.count;
-    //    dataArr.splice(ind, 0, [stepX, stepY]); // could directly index
-    //    stepMap[ind] = step;
-  }
+    if (Object.keys(dataState).length > 0) {
+      const getArrayRanges = (phases) => {
+        const phaseMappings = {
+          0: {name: "research", startX: 0, range: 200},
+          1: {name: "petition", startX: 201, range: 200},
+          2: {name: "serve", startX: 401, range: 200},
+          3: {name: "disclosure", startX: 601, range: 200},
+          4: {name: "settlement", startX: 801, range: 200},
+          5: {name: "pre-trial", startX: 1001, range: 200},
+          6: {name: "trial", startX: 1201, range: 200}
+        };
+        for(let phaseIndex of Object.keys(phaseMappings)) {
+          let phaseName = phaseMappings[phaseIndex].name;
+          let phase = dataState[phaseName];
+          switch (phaseName) {
+            case "research": {
+              // inclusive, first array index
+              phaseMappings[0].arrStart = 0;
+              // inclusive, last array index
+              phaseMappings[0].arrEnd = phase.phaseTotalSteps - 1;
+              break;
+            }
+            default: {
+              phaseMappings[phaseIndex].arrStart = phaseMappings[phaseIndex - 1].arrEnd + 1;
+              phaseMappings[phaseIndex].arrEnd = phaseMappings[phaseIndex].arrStart + phase.phaseTotalSteps - 1;
+            }
+          }
+        }
+        return phaseMappings;
+      }
+
+      const phaseMappings = getArrayRanges();
+
+      const arrayMap = (phaseIndex, phaseData, dataArr, stepMap) => {
+        const startX = phaseMappings[phaseIndex].startX;
+        const totalSteps = phaseData.phaseTotalSteps;
+        const padding = phaseMappings[phaseIndex].range / (totalSteps + 1);
+        for (let step of Object.values(phaseData.steps)) {
+          const stepX = startX + padding *(step.count + 1);
+          const stepY = (6- step.rating) *100;
+          let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
+          dataArr.splice(stepIndex, 0, [stepX, stepY]);
+        }
+      }
+
+      const getDataArray = () => {
+        const dataArr = [];
+        const stepMap = {};
+        for(let phaseIndex of Object.keys(phaseMappings)) {
+          let phaseName = phaseMappings[phaseIndex].name;
+          let phaseData = dataState[phaseName];
+          arrayMap(phaseIndex, phaseData, dataArr, stepMap);
+        }
+        return dataArr;
+      }
+
+      testData = getDataArray();
+    }
 
   return (
     <Box component="div" style={{paddingLeft:"20px"}}>
       <h1>
         Your New Map
       </h1>
-      <svg width="1000" height="400">
-        <rect width="1000" height="400" fill="#efefef" rx={14} ry={14} />
+      <svg width="1400" height="800">
+        <rect width="1400" height="800" fill="#efefef" rx={14} ry={14} />
         {
           testData.map((p) => {
             return (

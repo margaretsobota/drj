@@ -50,30 +50,33 @@ const MapForm = ({ mapRef }) => {
   };
 
   const stepsObj = {
-    "research": getNewSteps("research"),
-    "petition": getNewSteps("petition"),
-    "serve": getNewSteps("serve"),
-    "disclosure": getNewSteps("disclosure"),
-    "settlement": getNewSteps("settlement"),
-    "pre-trial": getNewSteps("pre-trial"),
-    "trial": getNewSteps("trial")
+    "research": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("research")},
+    "petition": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("petition")},
+    "serve": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("serve")},
+    "disclosure": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("disclosure")},
+    "settlement": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("settlement")},
+    "pre-trial": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("pre-trial")},
+    "trial": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("trial")}
   }
 
-  const [stepsState, setSteps] = useState(stepsObj);
+  const [phaseState, setPhase] = useState(stepsObj);
 
   const handleSave = () => {
-    for (let key of Object.keys(stepsState)) {
-      for (let step of stepsState[key]) {
-        if (key=== "research") console.log(stepsState[key]);
+    for (let key of Object.keys(phaseState)) {
+      let phase = phaseState[key];
+      mapRef.child("phases").child(key).child("phaseTotalSteps").set(phase.phaseTotalSteps);
+      mapRef.child("phases").child(key).child("phaseTime").set(phase.phaseTime);
+
+      for (let step of phaseState[key].steps) {
         let uuid;
         if (step.uuid.length === 0)
         {
-          uuid = mapRef.child("phases").child(key).push(step).key;
+          uuid = mapRef.child("phases").child(key).child("steps").push(step).key;
           step.uuid = uuid;
         }
         else {
           uuid = step.uuid;
-          mapRef.child("phases").child(key).child(uuid).set(step);
+          mapRef.child("phases").child(key).child("steps").child(uuid).set(step);
         }
 
       }
@@ -91,13 +94,13 @@ const MapForm = ({ mapRef }) => {
           &nbsp;SEE MAP
         </Link>
       </Box>
-      <PhaseForm phase="research" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="petition" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="serve" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="disclosure" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="settlement" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="pre-trial" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="trial" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="research" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="petition" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="serve" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="disclosure" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="settlement" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="pre-trial" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="trial" state={{phaseState, setPhase}}/>
       <Button
          className={styles.saveButton}
          variant="contained"
