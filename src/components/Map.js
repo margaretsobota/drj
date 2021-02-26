@@ -141,6 +141,14 @@ const Map = ({mapRef}) => {
                   height={60}
                   fill={phase.fill}
                 />
+                <text
+                  x={(i * 190) + 110}
+                  y="50"
+                  fill={i < 2 ? "#FCF6EC": "#303031"}
+                  style={{fontSize: "19.8925px"}}
+                >
+                  {phase.text}
+                </text>
               </Group>
             )
           })
