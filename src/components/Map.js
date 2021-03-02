@@ -4,6 +4,7 @@ import "firebase/database";
 import * as allCurves from "@visx/curve";
 import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
+import { Text } from '@visx/text';
 
 const Map = ({mapRef}) => {
   const [dataState, setData] = useState({});
@@ -122,6 +123,9 @@ const Map = ({mapRef}) => {
       }
     ];
 
+  const leftOffset = 60;
+  const barWidth = 180;
+
   return (
     <Box component="div" style={{paddingLeft:"20px"}}>
       <svg width="1400" height="800">
@@ -135,20 +139,21 @@ const Map = ({mapRef}) => {
                 left="10"
               >
                 <Bar
-                  x={(i * 190) + 60}
+                  x={(i * 190) + leftOffset}
                   y={14}
-                  width={180}
+                  width={barWidth}
                   height={60}
                   fill={phase.fill}
                 />
-                <text
-                  x={(i * 190) + 110}
+                <Text
+                  x={(i * 190) + leftOffset + barWidth/2}
                   y="50"
                   fill={i < 2 ? "#FCF6EC": "#303031"}
                   style={{fontSize: "19.8925px"}}
+                  textAnchor="middle"
                 >
                   {phase.text}
-                </text>
+                </Text>
               </Group>
             )
           })
