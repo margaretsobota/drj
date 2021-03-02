@@ -128,8 +128,8 @@ const Map = ({mapRef}) => {
 
   return (
     <Box component="div" style={{paddingLeft:"20px"}}>
-      <svg width="1400" height="800">
-        <rect width="1400" height="800" fill="#FCF6EC" x={14} y={14} />
+      <svg width="1400" height="750">
+        <rect width="1400" height="750" fill="#FCF6EC" x={14} y={14} />
         <Bar
           x={26}
           y={24}
@@ -155,7 +155,7 @@ const Map = ({mapRef}) => {
         </Text>
         <Bar
           x={26}
-          y={90}
+          y={100}
           width={40}
           height={500}
           fill={"#F2F2F2"}
@@ -175,6 +175,29 @@ const Map = ({mapRef}) => {
           }}
         >
           STEPS
+        </Text>
+        <Bar
+          x={26}
+          y={620}
+          width={40}
+          height={80}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={660}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          BACKEND
         </Text>
         {
           phaseColumns.map((phase, i) => {
