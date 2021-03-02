@@ -1,8 +1,10 @@
 import React , { useState, useEffect } from "react";
 import { Box } from "@material-ui/core";
 import "firebase/database";
-import * as allCurves from '@visx/curve';
-import { LinePath } from '@visx/shape';
+import * as allCurves from "@visx/curve";
+import { LinePath, Bar } from "@visx/shape";
+import { Group } from "@visx/group";
+import { Text } from '@visx/text';
 
 const Map = ({mapRef}) => {
   const [dataState, setData] = useState({});
@@ -22,7 +24,7 @@ const Map = ({mapRef}) => {
     }
   }, [mapRef]);
 
-  let testData = [];
+  let mapData = [];
 
     if (Object.keys(dataState).length > 0) {
       const getArrayRanges = (phases) => {
@@ -63,7 +65,7 @@ const Map = ({mapRef}) => {
         const padding = phaseMappings[phaseIndex].range / (totalSteps + 1);
         for (let step of Object.values(phaseData.steps)) {
           const stepX = startX + padding *(step.count + 1);
-          const stepY = (6- step.rating) *100;
+          const stepY = (6- step.rating) *100 + 50;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
         }
@@ -80,18 +82,158 @@ const Map = ({mapRef}) => {
         return dataArr;
       }
 
-      testData = getDataArray();
+      mapData = getDataArray();
     }
+
+    const phaseColumns = [
+      {
+        text: "Research",
+        fill: "#3D7DF3",
+        width: "100"
+      },
+      {
+        text: "Petition",
+        fill: "rgba(61, 125, 243, 0.8)",
+        width: "100"
+      },
+      {
+        text: "Serve",
+        fill: "rgba(105, 155, 247, 0.7)",
+        width: "170"
+      },
+      {
+        text: "Disclosure",
+        fill: "rgba(105, 155, 247, 0.5)",
+        width: "250"
+      },
+      {
+        text: "Settlement",
+        fill: "rgba(105, 155, 247, 0.3)",
+        width: "210"
+      },
+      {
+        text: "Pre-Trial",
+        fill: "rgba(105, 155, 247, 0.2)",
+        width: "210"
+      },
+      {
+        text: "Trial",
+        fill: "rgba(105, 155, 247, 0.15)",
+        width: "100"
+      }
+    ];
+
+  const leftOffset = 60;
+  const barWidth = 180;
 
   return (
     <Box component="div" style={{paddingLeft:"20px"}}>
-      <h1>
-        Your New Map
-      </h1>
-      <svg width="1400" height="800">
-        <rect width="1400" height="800" fill="#efefef" rx={14} ry={14} />
+      <svg width="1400" height="750">
+        <rect width="1400" height="750" fill="#FCF6EC" x={14} y={14} />
+        <Bar
+          x={26}
+          y={24}
+          width={40}
+          height={60}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={54}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          PHASES
+        </Text>
+        <Bar
+          x={26}
+          y={100}
+          width={40}
+          height={500}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={340}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          STEPS
+        </Text>
+        <Bar
+          x={26}
+          y={620}
+          width={40}
+          height={80}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={660}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          BACKEND
+        </Text>
         {
-          testData.map((p) => {
+          phaseColumns.map((phase, i) => {
+            return (
+              <Group
+                key={`phaseColumn-${i}`}
+                top="10"
+                left="10"
+              >
+                <Bar
+                  x={(i * 190) + leftOffset}
+                  y={14}
+                  width={barWidth}
+                  height={60}
+                  fill={phase.fill}
+                />
+                <Text
+                  x={(i * 190) + leftOffset + barWidth/2}
+                  y="50"
+                  fill={i < 2 ? "#FCF6EC": "#303031"}
+                  style={{
+                    fontSize: "19.8925px",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "bold"
+                  }}
+                  textAnchor="middle"
+                >
+                  {phase.text}
+                </Text>
+              </Group>
+            )
+          })
+        }
+        {
+          mapData.map((p) => {
             return (
               <circle
                 r={3}
@@ -104,7 +246,7 @@ const Map = ({mapRef}) => {
         }
         <LinePath
           curve={allCurves[curveType]}
-          data={testData}
+          data={mapData}
           stroke="#333"
           shapeRendering="geometricPrecision"
           markerMid="url(#marker-circle)"

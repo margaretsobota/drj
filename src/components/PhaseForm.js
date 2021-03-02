@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) => ({
     padding: "16px",
     marginBottom: "16px",
     marginLeft: "72.11px",
-    marginRight: "72.11px"
+    marginRight: "72.11px",
+    fontFamily: "Raleway",
+    fontWeight: "bold",
+    color: "#303031"
   },
   phaseButton: {
     marginRight: "10px",
