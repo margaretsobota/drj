@@ -153,13 +153,36 @@ const Map = ({mapRef}) => {
         >
           PHASES
         </Text>
+        <Bar
+          x={26}
+          y={90}
+          width={40}
+          height={500}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={340}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          STEPS
+        </Text>
         {
           phaseColumns.map((phase, i) => {
             return (
               <Group
                 key={`phaseColumn-${i}`}
                 top="10"
-                left="15"
+                left="10"
               >
                 <Bar
                   x={(i * 190) + leftOffset}
