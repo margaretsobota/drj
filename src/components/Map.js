@@ -130,13 +130,36 @@ const Map = ({mapRef}) => {
     <Box component="div" style={{paddingLeft:"20px"}}>
       <svg width="1400" height="800">
         <rect width="1400" height="800" fill="#FCF6EC" x={14} y={14} />
+        <Bar
+          x={26}
+          y={24}
+          width={40}
+          height={60}
+          fill={"#F2F2F2"}
+        />
+        <Text
+          x={46}
+          y={54}
+          fill={"#303031"}
+          angle={270}
+          textAnchor="middle"
+          verticalAnchor="middle"
+          style={{
+            fontSize: "12px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "bold"
+          }}
+        >
+          PHASES
+        </Text>
         {
           phaseColumns.map((phase, i) => {
             return (
               <Group
                 key={`phaseColumn-${i}`}
                 top="10"
-                left="10"
+                left="15"
               >
                 <Bar
                   x={(i * 190) + leftOffset}
@@ -149,7 +172,12 @@ const Map = ({mapRef}) => {
                   x={(i * 190) + leftOffset + barWidth/2}
                   y="50"
                   fill={i < 2 ? "#FCF6EC": "#303031"}
-                  style={{fontSize: "19.8925px"}}
+                  style={{
+                    fontSize: "19.8925px",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "bold"
+                  }}
                   textAnchor="middle"
                 >
                   {phase.text}
