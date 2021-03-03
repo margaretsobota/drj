@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row-reverse"
   },
   deleteIcon: {
-    marginTop:"5px",
-    marginRight:"5px"
+    marginTop:"5px"
   }
 }));
 

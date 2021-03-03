@@ -18,19 +18,28 @@ const useStyles = makeStyles((theme) => ({
   },
   mapButton: {
     marginLeft: "10px",
-    background: "#A3D9D1",
+    background: "#F5BF4F",
     color: "#2A303D",
     marginRight: "72.11px",
     borderRadius: "5px",
     textDecoration: "none",
-    padding: "10px",
-    paddingRight: "15px"
+    padding: "5px",
+    paddingRight: "15px",
+    fontFamily: "Roboto",
+    fontSize: "20px",
+    lineHeight: "36px"
   },
   arrowIcon : {
     display: "inline-block",
     verticalAlign: "middle",
     paddingBottom: "3px",
     color: "#2A303D"
+  },
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    marginBottom: "30px",
+    marginRight: "14px"
   }
 }));
 
@@ -85,13 +94,13 @@ const MapForm = ({ mapRef }) => {
 
   return (
     <Box component="div">
-      <Box style={{display: "flex", flexDirection: "row-reverse", marginBottom: "30px"}}>
+      <Box className={styles.buttonContainer}>
         <Link
           className={styles.mapButton}
           to="/map"
         >
           <PlayArrowIcon className={styles.arrowIcon}/>
-          &nbsp;SEE MAP
+          &nbsp;See Map
         </Link>
       </Box>
       <PhaseForm phase="research" state={{phaseState, setPhase}}/>
