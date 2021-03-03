@@ -71,7 +71,7 @@ const StepForm = ({ phase, step }) => {
           />
           <TextField
             id="stepDesc"
-            label="Step Description"
+            label="Enter description of step here"
             variant="outlined"
             multiline
             onChange={handleStepDescChange}

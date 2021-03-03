@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   phaseContainer: {
     backgroundColor: "#FCF6EC",
     padding: "16px",
+    paddingBottom: "30px",
     marginBottom: "16px",
     marginLeft: "72.11px",
     marginRight: "72.11px",
