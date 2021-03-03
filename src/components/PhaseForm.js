@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     width: "130px",
     padding:"10px",
     marginTop: "-10px",
-    boxShadow: "-1.13867px -1.13867px 2.27733px rgba(255, 255, 255, 0.5), 1.13867px 1.13867px 2.27733px rgba(170, 170, 204, 0.25), 2.27733px 2.27733px 4.55467px rgba(170, 170, 204, 0.5), -2.27733px -2.27733px 4.55467px #FFFFFF"
+    boxShadow: "-1.13867px -1.13867px 2.27733px rgba(255, 255, 255, 0.5), 1.13867px 1.13867px 2.27733px rgba(170, 170, 204, 0.25), 2.27733px 2.27733px 4.55467px rgba(170, 170, 204, 0.5), -2.27733px -2.27733px 4.55467px #FCF6EC"
 
   }
 }));

@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "72.11px",
     marginTop: "40px",
     background: "#699BF7",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textDecoration: "none"
   },
   mapButton: {
     marginLeft: "10px",
@@ -27,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "15px",
     fontFamily: "Roboto",
     fontSize: "20px",
-    lineHeight: "36px"
+    lineHeight: "36px",
+    boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF"
   },
   arrowIcon : {
     display: "inline-block",
