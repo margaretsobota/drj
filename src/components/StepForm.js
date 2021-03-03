@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Box, Container, TextField } from "@material-ui/core";
+import { Button, Box, Container, TextField, IconButton } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
@@ -7,6 +7,12 @@ import StarRatings from "react-star-ratings";
 
 const useStyles = makeStyles((theme) => ({
   inputContainer: {
+     display: "flex",
+     flexDirection: "column",
+     flex: 2,
+     padding:"0px"
+  },
+  sentimentContainer: {
      display: "flex",
      flexDirection: "column",
      flex: 1
@@ -17,15 +23,14 @@ const useStyles = makeStyles((theme) => ({
   stepContainer: {
     margin: "37.53px",
     background: "#F2F2F2",
-    paddingBottom: "15px",
     width: "840px"
   },
   iconContainer: {
     display:"flex",
     flexDirection: "row-reverse"
   },
-  deleteIcon: {
-    marginTop:"5px"
+  iconButton: {
+    marginRight:"-5px"
   }
 }));
 
@@ -52,9 +57,9 @@ const StepForm = ({ phase, step }) => {
          component="div"
          className={styles.iconContainer}
        >
-         <Button className={styles.deleteIcon}>
+         <IconButton className={styles.iconButton}>
            <DragHandleSharpIcon/>
-         </Button>
+         </IconButton>
        </Box>
        <Box component="div" style={{display: "flex"}}>
         <Container className={styles.inputContainer}>
@@ -70,11 +75,12 @@ const StepForm = ({ phase, step }) => {
             variant="outlined"
             multiline
             onChange={handleStepDescChange}
+            rows={4}
           />
         </Container>
-        <Container className={styles.inputContainer}>
-          <h3>
-            How did this step make you feel?
+        <Container className={styles.sentimentContainer}>
+          <h3 style={{fontSize:"12px", fontWeight:"400", fontFamily:"Roboto"}}>
+            How did this step <strong>make you feel ?</strong>
           </h3>
           <StarRatings
             rating={ratingState}
@@ -82,6 +88,7 @@ const StepForm = ({ phase, step }) => {
             starRatedColor="blue"
             numberOfStars={5}
             name="rating"
+            starDimension="15px"
           />
         </Container>
       </Box>
@@ -89,9 +96,9 @@ const StepForm = ({ phase, step }) => {
         component="div"
         className={styles.iconContainer}
       >
-        <Button className={styles.deleteIcon}>
+        <IconButton className={styles.iconButton}>
           <HighlightOffSharpIcon/>
-        </Button>
+        </IconButton>
       </Box>
   </Container>
 )};

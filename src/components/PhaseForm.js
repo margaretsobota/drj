@@ -75,10 +75,12 @@ const PhaseForm = ({ phase, state }) => {
     state.setPhase(copyState);
   }
 
+  const phaseIndex = Object.keys(state.phaseState).indexOf(phase);
+
   return (
     <Container className={styles.phaseContainer}>
       <h2 className={styles.phaseTitle}>
-        Phase: <strong>{phase.charAt(0).toUpperCase() + phase.slice(1)}</strong>
+        Phase {phaseIndex + 1}: <strong>{phase.charAt(0).toUpperCase() + phase.slice(1)}</strong>
       </h2>
       {returnSteps()}
       <Container>
