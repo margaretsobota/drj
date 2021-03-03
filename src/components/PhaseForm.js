@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
     padding:"10px",
     marginTop: "-10px",
     boxShadow: "-1.13867px -1.13867px 2.27733px rgba(255, 255, 255, 0.5), 1.13867px 1.13867px 2.27733px rgba(170, 170, 204, 0.25), 2.27733px 2.27733px 4.55467px rgba(170, 170, 204, 0.5), -2.27733px -2.27733px 4.55467px #FCF6EC"
-
+  },
+  phaseTitle: {
+    fontWeight: "400"
   }
 }));
 
@@ -76,7 +78,7 @@ const PhaseForm = ({ phase, state }) => {
   return (
     <Container className={styles.phaseContainer}>
       <h2 className={styles.phaseTitle}>
-        {phase.charAt(0).toUpperCase() + phase.slice(1)}
+        Phase: <strong>{phase.charAt(0).toUpperCase() + phase.slice(1)}</strong>
       </h2>
       {returnSteps()}
       <Container>
