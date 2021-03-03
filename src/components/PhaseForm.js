@@ -20,7 +20,19 @@ const useStyles = makeStyles((theme) => ({
   phaseButton: {
     marginRight: "10px",
     background: "#F2F2F2",
-    marginLeft: "10px"
+    marginLeft: "16px",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    color: "#303031",
+    fontWeight: "bold",
+    fontSize: "14px",
+    lineHeight: "14px",
+    height: "30px",
+    width: "130px",
+    padding:"10px",
+    marginTop: "-10px",
+    boxShadow: "-1.13867px -1.13867px 2.27733px rgba(255, 255, 255, 0.5), 1.13867px 1.13867px 2.27733px rgba(170, 170, 204, 0.25), 2.27733px 2.27733px 4.55467px rgba(170, 170, 204, 0.5), -2.27733px -2.27733px 4.55467px #FFFFFF"
+
   }
 }));
 
