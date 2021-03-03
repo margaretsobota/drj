@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "10px"
   },
   stepContainer: {
-    margin: "37.53px",
+    margin: "0px 0px 15px 37px",
     background: "#F2F2F2",
     width: "840px"
   },
