@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Box, Container, TextField, IconButton } from "@material-ui/core";
+import { Box, Container, TextField, IconButton } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
 import StarRatings from "react-star-ratings";
+import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   inputContainer: {
@@ -34,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StepForm = ({ phase, step }) => {
+const StepForm = ({ phase, step, phaseState, countState }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
+  const stepIndex = step.count;
 
   const changeRating = ( newRating, name ) => {
       step.rating = newRating;
@@ -50,6 +52,18 @@ const StepForm = ({ phase, step }) => {
   const handleStepDescChange = (event) => {
     step.description = event.target.value;
   };
+
+  const deleteStep = () => {
+    const copyState = _.cloneDeep(phaseState.phaseState);
+    copyState[phase].steps.splice(stepIndex, 1);
+    for (let i = stepIndex; i<(copyState[phase].steps).length; i++)
+    {
+      copyState[phase].steps[i].count --;
+    }
+    copyState[phase].phaseTotalSteps --;
+    phaseState.setPhase(copyState);
+    countState.setCount(countState.countState - 1);
+  }
 
   return (
     <Container className={styles.stepContainer}>
@@ -96,7 +110,7 @@ const StepForm = ({ phase, step }) => {
         component="div"
         className={styles.iconContainer}
       >
-        <IconButton className={styles.iconButton}>
+        <IconButton className={styles.iconButton} onClick={deleteStep}>
           <HighlightOffSharpIcon/>
         </IconButton>
       </Box>

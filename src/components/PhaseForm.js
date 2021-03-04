@@ -58,7 +58,12 @@ const PhaseForm = ({ phase, state }) => {
 
   const returnSteps = () => {
     const renderedSteps = steps.map((step) =>
-      <StepForm phase={phase} step={step}/>
+      <StepForm
+        phase={phase}
+        step={step}
+        phaseState={state}
+        countState={{countState, setCount}}
+      />
     );
     return (
       <Box>
