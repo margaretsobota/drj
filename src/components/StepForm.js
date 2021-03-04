@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StepForm = ({ phase, step, phaseState, countState }) => {
+const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
   const stepIndex = step.count;
@@ -63,6 +63,11 @@ const StepForm = ({ phase, step, phaseState, countState }) => {
     copyState[phase].phaseTotalSteps --;
     phaseState.setPhase(copyState);
     countState.setCount(countState.countState - 1);
+    if(step.uuid) {
+      const copyDeletedState = _.cloneDeep(deletedState.deletedState);
+      copyDeletedState.push(step.uuid);
+      deletedState.setDeleted(copyDeletedState);
+    }
   }
 
   return (

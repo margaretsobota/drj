@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MapForm = ({ mapRef }) => {
   const styles = useStyles();
+  const [deletedState, setDeleted] = useState([]);
 
   const getNewSteps = (phase) => {
     const newStep = {
@@ -93,8 +94,15 @@ const MapForm = ({ mapRef }) => {
           uuid = step.uuid;
           mapRef.child("phases").child(key).child("steps").child(uuid).set(step);
         }
-
       }
+
+      console.log("deleted", deletedState);
+
+      for (let uuid of deletedState) {
+        let deletedRef = mapRef.child("phases").child(key).child("steps").child(uuid);
+        deletedRef.remove();
+      }
+      setDeleted([]);
     }
   };
 
@@ -109,13 +117,13 @@ const MapForm = ({ mapRef }) => {
           &nbsp;See Map
         </Link>
       </Box>
-      <PhaseForm phase="research" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="petition" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="serve" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="disclosure" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="settlement" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="pre-trial" state={{phaseState, setPhase}}/>
-      <PhaseForm phase="trial" state={{phaseState, setPhase}}/>
+      <PhaseForm phase="research" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="petition" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="serve" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="disclosure" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="settlement" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="pre-trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <Button
          className={styles.saveButton}
          variant="contained"

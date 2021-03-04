@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const PhaseForm = ({ phase, state }) => {
+const PhaseForm = ({ phase, state, deletedState }) => {
   const styles = useStyles();
   let steps = state.phaseState[phase].steps;
   const [countState, setCount] = useState(1);
@@ -63,6 +63,7 @@ const PhaseForm = ({ phase, state }) => {
         step={step}
         phaseState={state}
         countState={{countState, setCount}}
+        deletedState={deletedState}
       />
     );
     return (
