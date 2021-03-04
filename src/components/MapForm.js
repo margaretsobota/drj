@@ -15,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "40px",
     background: "#699BF7",
     color: "#FFFFFF",
-    textDecoration: "none"
+    textTransform: "none",
+    fontSize: "18px",
+    paddingRight: "45px",
+    paddingLeft: "45px",
+    fontWeight: "400"
   },
   mapButton: {
     marginLeft: "10px",
