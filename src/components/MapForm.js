@@ -96,8 +96,6 @@ const MapForm = ({ mapRef }) => {
         }
       }
 
-      console.log("deleted", deletedState);
-
       for (let uuid of deletedState) {
         let deletedRef = mapRef.child("phases").child(key).child("steps").child(uuid);
         deletedRef.remove();
