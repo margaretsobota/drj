@@ -36,6 +36,7 @@ const Map = ({mapRef}) => {
   }, [mapRef]);
 
   let mapData = [];
+  let stepMapFinal = {};
 
     if (Object.keys(dataState).length > 0) {
       const getArrayRanges = (phases) => {
@@ -79,6 +80,7 @@ const Map = ({mapRef}) => {
           const stepY = (6- step.rating) *96 + 50;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
+          stepMap[stepIndex] = step;
         }
       }
 
@@ -90,10 +92,12 @@ const Map = ({mapRef}) => {
           let phaseData = dataState[phaseName];
           arrayMap(phaseIndex, phaseData, dataArr, stepMap);
         }
-        return dataArr;
+        return [dataArr, stepMap];
       }
 
-      mapData = getDataArray();
+      const results = getDataArray();
+      mapData = results[0];
+      stepMapFinal = results[1];
     }
 
     const phaseColumns = [
@@ -184,7 +188,7 @@ const Map = ({mapRef}) => {
         >
           <path d="M24.5088 0.673065H12.7495M0.990234 0.673065H12.7495M12.7495 0.673065V479.673H0.990234H24.5088" stroke="black" stroke-linecap="round"/>
         </svg>
-        <rect width="1390" height="750" fill="#FCF6EC" x={60} y={14} />
+        <rect width="1390" height="680" fill="#FCF6EC" x={60} y={14} />
         <Bar
           x={labelOffset}
           y={24}
@@ -274,13 +278,29 @@ const Map = ({mapRef}) => {
         }
         {
           mapData.map((p) => {
+            const pointIndex = mapData.indexOf(p);
             return (
-              <circle
-                r={3}
-                cx={p[0]}
-                cy={p[1]}
-                stroke="rgba(33,33,33,0.5)"
-              />
+              <Group>
+                <Text
+                  x={p[0] - 10}
+                  y={p[1] - 20}
+                  fill={"#303031"}
+                  style={{
+                    fontFamily: "Roboto",
+                    fontWeight: "300",
+                    fontSize: "12px",
+                    lineHeight: "11px"
+                  }}
+                >
+                  {stepMapFinal[pointIndex].title}
+                </Text>
+                <circle
+                  r={3}
+                  cx={p[0]}
+                  cy={p[1]}
+                  stroke="rgba(33,33,33,0.5)"
+                />
+              </Group>
             )
           })
         }
