@@ -40,13 +40,13 @@ const Map = ({mapRef}) => {
     if (Object.keys(dataState).length > 0) {
       const getArrayRanges = (phases) => {
         const phaseMappings = {
-          0: {name: "research", startX: 0, range: 200},
-          1: {name: "petition", startX: 201, range: 200},
-          2: {name: "serve", startX: 401, range: 200},
-          3: {name: "disclosure", startX: 601, range: 200},
-          4: {name: "settlement", startX: 801, range: 200},
-          5: {name: "pre-trial", startX: 1001, range: 200},
-          6: {name: "trial", startX: 1201, range: 200}
+          0: {name: "research", startX: 60, range: 200},
+          1: {name: "petition", startX: 261, range: 200},
+          2: {name: "serve", startX: 461, range: 200},
+          3: {name: "disclosure", startX: 661, range: 200},
+          4: {name: "settlement", startX: 861, range: 200},
+          5: {name: "pre-trial", startX: 1061, range: 200},
+          6: {name: "trial", startX: 1261, range: 200}
         };
         for(let phaseIndex of Object.keys(phaseMappings)) {
           let phaseName = phaseMappings[phaseIndex].name;
@@ -76,7 +76,7 @@ const Map = ({mapRef}) => {
         const padding = phaseMappings[phaseIndex].range / (totalSteps + 1);
         for (let step of Object.values(phaseData.steps)) {
           const stepX = startX + padding *(step.count + 1);
-          const stepY = (6- step.rating) *100 + 50;
+          const stepY = (6- step.rating) *96 + 50;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
         }
@@ -135,9 +135,10 @@ const Map = ({mapRef}) => {
     ];
 
   const leftOffset = 100;
-  const barWidth = 180;
+  const barWidth = 170;
   const labelOffset = 66;
   const starOffset = 100;
+  const stepsBarHeight = 480;
 
   return (
     <Box component="div" style={{paddingLeft:"10px"}}>
@@ -156,7 +157,7 @@ const Map = ({mapRef}) => {
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"
-          y={starOffset + 235}
+          y={starOffset + stepsBarHeight/2-30}
           viewBox="0 0 24 24"
           fill="#2A303D"
         >
@@ -166,17 +167,17 @@ const Map = ({mapRef}) => {
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"
-          y={starOffset + 470}
+          y={starOffset + stepsBarHeight-30}
           viewBox="0 0 24 24"
           fill="#2A303D"
         >
           <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524-4.721 2.525.942-5.27-3.861-3.71 5.305-.733 2.335-4.817zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/>
         </svg>
         <svg
-          width="26px"
-          height="600px"
+          width="26"
+          height={stepsBarHeight}
           fill="none"
-          viewBox="0 50 26 481"
+          viewBox="0 0 26 481"
           xmlns="http://www.w3.org/2000/svg"
           x={30}
           y={100}
@@ -206,12 +207,12 @@ const Map = ({mapRef}) => {
           x={labelOffset}
           y={100}
           width={40}
-          height={500}
+          height={stepsBarHeight}
           fill={"#F2F2F2"}
         />
         <Text
           x={labelOffset + 20}
-          y={340}
+          y={stepsBarHeight/2 + 85}
           fill={"#303031"}
           angle={270}
           textAnchor="middle"
@@ -222,14 +223,14 @@ const Map = ({mapRef}) => {
         </Text>
         <Bar
           x={labelOffset}
-          y={620}
+          y={600}
           width={40}
           height={80}
           fill={"#F2F2F2"}
         />
         <Text
           x={labelOffset + 20}
-          y={660}
+          y={640}
           fill={"#303031"}
           angle={270}
           textAnchor="middle"
