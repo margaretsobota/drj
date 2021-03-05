@@ -6,8 +6,6 @@ import * as allCurves from "@visx/curve";
 import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
 import { Text } from "@visx/text";
-import { Axis, Orientation, AxisScale } from "@visx/axis";
-import { scaleLinear } from "@visx/scale";
 
 const useStyles = makeStyles((theme) => ({
   labelText: {
@@ -136,9 +134,9 @@ const Map = ({mapRef}) => {
       }
     ];
 
-  const leftOffset = 90;
+  const leftOffset = 100;
   const barWidth = 180;
-  const labelOffset = 56;
+  const labelOffset = 66;
   const starOffset = 100;
 
   return (
@@ -174,20 +172,18 @@ const Map = ({mapRef}) => {
         >
           <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524-4.721 2.525.942-5.27-3.861-3.71 5.305-.733 2.335-4.817zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/>
         </svg>
-        <Axis
-          orientation={Orientation.left}
-          stroke="#2A303D"
-          tickStroke="#2A303D"
-          numTicks={3}
-          scale={scaleLinear({
-            domain: [0, 1],
-            range: [0, 500],
-          })}
-          tickValues={[]}
-          top={100}
-          left={40}
-        />
-        <rect width="1390" height="750" fill="#FCF6EC" x={44} y={14} />
+        <svg
+          width="26px"
+          height="600px"
+          fill="none"
+          viewBox="0 50 26 481"
+          xmlns="http://www.w3.org/2000/svg"
+          x={30}
+          y={100}
+        >
+          <path d="M24.5088 0.673065H12.7495M0.990234 0.673065H12.7495M12.7495 0.673065V479.673H0.990234H24.5088" stroke="black" stroke-linecap="round"/>
+        </svg>
+        <rect width="1390" height="750" fill="#FCF6EC" x={60} y={14} />
         <Bar
           x={labelOffset}
           y={24}
