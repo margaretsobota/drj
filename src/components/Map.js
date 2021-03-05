@@ -5,8 +5,19 @@ import * as allCurves from "@visx/curve";
 import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
 import { Text } from '@visx/text';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  labelText: {
+    fontSize: "12px",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold"
+  }
+}));
 
 const Map = ({mapRef}) => {
+  const styles = useStyles();
   const [dataState, setData] = useState({});
   const curveType = "curveNatural";
 
@@ -123,79 +134,96 @@ const Map = ({mapRef}) => {
       }
     ];
 
-  const leftOffset = 60;
+  const leftOffset = 80;
   const barWidth = 180;
+  const labelOffset = 46;
+  const starOffset = 100;
 
   return (
-    <Box component="div" style={{paddingLeft:"20px"}}>
-      <svg width="1400" height="750">
-        <rect width="1400" height="750" fill="#FCF6EC" x={14} y={14} />
+    <Box component="div" style={{paddingLeft:"10px"}}>
+      <svg width="1500" height="750">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          y={starOffset}
+          viewBox="0 0 24 24"
+          fill="#2A303D"
+        >
+          <path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          y={starOffset + 235}
+          viewBox="0 0 24 24"
+          fill="#2A303D"
+        >
+           <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524v-12.005zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          y={starOffset + 470}
+          viewBox="0 0 24 24"
+          fill="#2A303D"
+        >
+          <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524-4.721 2.525.942-5.27-3.861-3.71 5.305-.733 2.335-4.817zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z"/>
+        </svg>
+        <rect width="1390" height="750" fill="#FCF6EC" x={34} y={14} />
         <Bar
-          x={26}
+          x={labelOffset}
           y={24}
           width={40}
           height={60}
           fill={"#F2F2F2"}
         />
         <Text
-          x={46}
+          x={labelOffset + 20}
           y={54}
           fill={"#303031"}
           angle={270}
           textAnchor="middle"
           verticalAnchor="middle"
-          style={{
-            fontSize: "12px",
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "bold"
-          }}
+          className={styles.labelText}
         >
           PHASES
         </Text>
         <Bar
-          x={26}
+          x={labelOffset}
           y={100}
           width={40}
           height={500}
           fill={"#F2F2F2"}
         />
         <Text
-          x={46}
+          x={labelOffset + 20}
           y={340}
           fill={"#303031"}
           angle={270}
           textAnchor="middle"
           verticalAnchor="middle"
-          style={{
-            fontSize: "12px",
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "bold"
-          }}
+          className={styles.labelText}
         >
           STEPS
         </Text>
         <Bar
-          x={26}
+          x={labelOffset}
           y={620}
           width={40}
           height={80}
           fill={"#F2F2F2"}
         />
         <Text
-          x={46}
+          x={labelOffset + 20}
           y={660}
           fill={"#303031"}
           angle={270}
           textAnchor="middle"
           verticalAnchor="middle"
-          style={{
-            fontSize: "12px",
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "bold"
-          }}
+          className={styles.labelText}
         >
           BACKEND
         </Text>
