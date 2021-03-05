@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { Button, Box, Container, TextField } from "@material-ui/core";
+import { Box, Container, TextField, IconButton } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import DragHandleSharpIcon from '@material-ui/icons/DragHandleSharp';
 import StarRatings from "react-star-ratings";
+import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   inputContainer: {
+     display: "flex",
+     flexDirection: "column",
+     flex: 2,
+     padding:"0px"
+  },
+  sentimentContainer: {
      display: "flex",
      flexDirection: "column",
      flex: 1
@@ -15,24 +22,23 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "10px"
   },
   stepContainer: {
-    margin: "37.53px",
+    margin: "0px 0px 15px 37px",
     background: "#F2F2F2",
-    paddingBottom: "15px",
     width: "840px"
   },
   iconContainer: {
     display:"flex",
     flexDirection: "row-reverse"
   },
-  deleteIcon: {
-    marginTop:"5px",
-    marginRight:"5px"
+  iconButton: {
+    marginRight:"-5px"
   }
 }));
 
-const StepForm = ({ phase, step }) => {
+const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
   const styles = useStyles();
   const [ratingState, setRating] = useState(0);
+  const stepIndex = step.count;
 
   const changeRating = ( newRating, name ) => {
       step.rating = newRating;
@@ -47,15 +53,32 @@ const StepForm = ({ phase, step }) => {
     step.description = event.target.value;
   };
 
+  const deleteStep = () => {
+    const copyState = _.cloneDeep(phaseState.phaseState);
+    copyState[phase].steps.splice(stepIndex, 1);
+    for (let i = stepIndex; i<(copyState[phase].steps).length; i++)
+    {
+      copyState[phase].steps[i].count --;
+    }
+    copyState[phase].phaseTotalSteps --;
+    phaseState.setPhase(copyState);
+    countState.setCount(countState.countState - 1);
+    if(step.uuid) {
+      const copyDeletedState = _.cloneDeep(deletedState.deletedState);
+      copyDeletedState.push(step.uuid);
+      deletedState.setDeleted(copyDeletedState);
+    }
+  }
+
   return (
     <Container className={styles.stepContainer}>
        <Box
          component="div"
          className={styles.iconContainer}
        >
-         <Button className={styles.deleteIcon}>
+         <IconButton className={styles.iconButton}>
            <DragHandleSharpIcon/>
-         </Button>
+         </IconButton>
        </Box>
        <Box component="div" style={{display: "flex"}}>
         <Container className={styles.inputContainer}>
@@ -67,15 +90,16 @@ const StepForm = ({ phase, step }) => {
           />
           <TextField
             id="stepDesc"
-            label="Step Description"
+            label="Enter description of step here"
             variant="outlined"
             multiline
             onChange={handleStepDescChange}
+            rows={4}
           />
         </Container>
-        <Container className={styles.inputContainer}>
-          <h3>
-            How did this step make you feel?
+        <Container className={styles.sentimentContainer}>
+          <h3 style={{fontSize:"12px", fontWeight:"400", fontFamily:"Roboto"}}>
+            How did this step <strong>make you feel ?</strong>
           </h3>
           <StarRatings
             rating={ratingState}
@@ -83,6 +107,7 @@ const StepForm = ({ phase, step }) => {
             starRatedColor="blue"
             numberOfStars={5}
             name="rating"
+            starDimension="15px"
           />
         </Container>
       </Box>
@@ -90,9 +115,9 @@ const StepForm = ({ phase, step }) => {
         component="div"
         className={styles.iconContainer}
       >
-        <Button className={styles.deleteIcon}>
+        <IconButton className={styles.iconButton} onClick={deleteStep}>
           <HighlightOffSharpIcon/>
-        </Button>
+        </IconButton>
       </Box>
   </Container>
 )};
