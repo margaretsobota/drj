@@ -12,8 +12,13 @@ import {
   Link
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
-import SurveyTake2 from "./components/SurveyForm";
 import Map from "./components/Map";
+import Step1 from "./components/Steps/Step1";
+import Step2 from "./components/Steps/Step2";
+import Step3 from "./components/Steps/Step3";
+import FinalStep from "./components/Steps/FinalStep";
+
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const firebaseConfig = {
@@ -40,6 +45,21 @@ const useStyles = makeStyles((theme) => ({
 
 
 function App() {
+
+  const demographicsObj = {
+    gender: "",
+    age: "",
+    income: "",
+    education: "",
+    city: "",
+    distance: "",
+    representation: "",
+    process: "",
+    district: ""
+  };
+
+  const [demographicState, setDemographics] = useState(demographicsObj);
+
   const styles = useStyles();
 
   // set static user for testing purposes
@@ -91,7 +111,6 @@ function App() {
               <Link to="/">Home</Link>
               <Link to="/surveyform">Survey</Link>
               <Link to="/mapform" onClick={newMap}> Map Form</Link>
-              <Link to="/data">Data</Link>
           </Box>
         </nav>
         <Switch>
@@ -109,7 +128,16 @@ function App() {
             <Map mapRef={mapRefState}/>
           </Route>
           <Route path="/surveyform">
-            <SurveyTake2 mapRef={mapRefState}/>
+            <Step1 demographicState={{demographicState, setDemographics}} />
+          </Route>
+          <Route path="/step2">
+            <Step2 demographicState={{demographicState, setDemographics}}/>
+          </Route>
+          <Route path="/step3">
+            <Step3 demographicState={{demographicState, setDemographics}}/>
+          </Route>
+          <Route path="/confirmationPage">
+            <FinalStep demographicState={{demographicState, setDemographics}} mapRef={mapRefState}/>
           </Route>
         </Switch>
       </Box>
