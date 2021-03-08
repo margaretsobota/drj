@@ -121,19 +121,19 @@ function App() {
               </header>
             </Box>
           </Route>
-          <Route path="/mapform">
+          <Route path="/mapForm">
             <MapForm mapRef={mapRefState}/>
           </Route>
           <Route path="/map">
             <Map mapRef={mapRefState}/>
           </Route>
-          <Route path="/surveyform">
+          <Route path="/surveyForm0">
             <Step1 demographicState={{demographicState, setDemographics}} />
           </Route>
-          <Route path="/step2">
+          <Route path="/surveyForm1">
             <Step2 demographicState={{demographicState, setDemographics}}/>
           </Route>
-          <Route path="/step3">
+          <Route path="/surveyForm2">
             <Step3 demographicState={{demographicState, setDemographics}}/>
           </Route>
           <Route path="/confirmationPage">
