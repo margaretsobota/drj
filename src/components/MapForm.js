@@ -14,28 +14,44 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "72.11px",
     marginTop: "40px",
     background: "#699BF7",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textTransform: "none",
+    fontSize: "18px",
+    paddingRight: "45px",
+    paddingLeft: "45px",
+    fontWeight: "400"
   },
   mapButton: {
     marginLeft: "10px",
-    background: "#A3D9D1",
+    background: "#F5BF4F",
     color: "#2A303D",
     marginRight: "72.11px",
     borderRadius: "5px",
     textDecoration: "none",
-    padding: "10px",
-    paddingRight: "15px"
+    padding: "5px",
+    paddingRight: "15px",
+    fontFamily: "Roboto",
+    fontSize: "20px",
+    lineHeight: "36px",
+    boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF"
   },
   arrowIcon : {
     display: "inline-block",
     verticalAlign: "middle",
     paddingBottom: "3px",
     color: "#2A303D"
+  },
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    marginBottom: "30px",
+    marginRight: "14px"
   }
 }));
 
 const MapForm = ({ mapRef }) => {
   const styles = useStyles();
+  const [deletedState, setDeleted] = useState([]);
 
   const getNewSteps = (phase) => {
     const newStep = {
@@ -50,54 +66,62 @@ const MapForm = ({ mapRef }) => {
   };
 
   const stepsObj = {
-    "research": getNewSteps("research"),
-    "petition": getNewSteps("petition"),
-    "serve": getNewSteps("serve"),
-    "disclosure": getNewSteps("disclosure"),
-    "settlement": getNewSteps("settlement"),
-    "pre-trial": getNewSteps("pre-trial"),
-    "trial": getNewSteps("trial")
+    "research": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("research")},
+    "petition": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("petition")},
+    "serve": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("serve")},
+    "disclosure": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("disclosure")},
+    "settlement": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("settlement")},
+    "pre-trial": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("pre-trial")},
+    "trial": {phaseTime: 0, phaseTotalSteps: 1, steps: getNewSteps("trial")}
   }
 
-  const [stepsState, setSteps] = useState(stepsObj);
+  const [phaseState, setPhase] = useState(stepsObj);
 
   const handleSave = () => {
-    for (let key of Object.keys(stepsState)) {
-      for (let step of stepsState[key]) {
-        if (key=== "research") console.log(stepsState[key]);
+    for (let key of Object.keys(phaseState)) {
+      let phase = phaseState[key];
+      mapRef.child("phases").child(key).child("phaseTotalSteps").set(phase.phaseTotalSteps);
+      mapRef.child("phases").child(key).child("phaseTime").set(phase.phaseTime);
+
+      for (let step of phaseState[key].steps) {
         let uuid;
         if (step.uuid.length === 0)
         {
-          uuid = mapRef.child("phases").child(key).push(step).key;
+          uuid = mapRef.child("phases").child(key).child("steps").push(step).key;
           step.uuid = uuid;
         }
         else {
           uuid = step.uuid;
-          mapRef.child("phases").child(key).child(uuid).set(step);
+          mapRef.child("phases").child(key).child("steps").child(uuid).set(step);
         }
-
       }
+
+      for (let uuid of deletedState) {
+        let deletedRef = mapRef.child("phases").child(key).child("steps").child(uuid);
+        deletedRef.remove();
+      }
+      setDeleted([]);
     }
   };
 
   return (
     <Box component="div">
-      <Box style={{display: "flex", flexDirection: "row-reverse", marginBottom: "30px"}}>
+      <Box className={styles.buttonContainer}>
         <Link
           className={styles.mapButton}
           to="/map"
         >
           <PlayArrowIcon className={styles.arrowIcon}/>
-          &nbsp;SEE MAP
+          &nbsp;See Map
         </Link>
       </Box>
-      <PhaseForm phase="research" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="petition" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="serve" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="disclosure" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="settlement" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="pre-trial" state={{stepsState, setSteps}}/>
-      <PhaseForm phase="trial" state={{stepsState, setSteps}}/>
+      <PhaseForm phase="research" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="petition" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="serve" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="disclosure" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="settlement" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="pre-trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
+      <PhaseForm phase="trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <Button
          className={styles.saveButton}
          variant="contained"

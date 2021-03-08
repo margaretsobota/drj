@@ -1,12 +1,7 @@
 import React from "react";
-import { Button, Container, TextField, MenuItem, Select, InputLabel, FormControl, FormHelperText } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -29,18 +24,17 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  returnButton:{ 
-    background: "#FFFFFF", 
-    border: "1px solid #699BF7", 
+  returnButton:{
+    background: "#FFFFFF",
+    border: "1px solid #699BF7",
     boxSizing: "border-box",
     borderRadius: "5px",
     marginRight: "20px",
     marginTop:"40px",
     padding: "20px"
   },
-  saveButton: { 
-    background: "#FFFFFF", 
-    border: "1px solid #699BF7", 
+  saveButton: {
+    border: "1px solid #699BF7",
     background:"#699BF7",
     boxSizing: "border-box",
     borderRadius: "5px",
@@ -48,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop:"40px",
     padding: "20px"
   }
-  
+
 }));
 
-function FinalStep({demographicState, mapRef}) {
+function ConfirmationPage({demographicState, mapRef}) {
   console.log("here's the map", mapRef)
   const styles = useStyles();
   return (
@@ -84,10 +78,10 @@ function FinalStep({demographicState, mapRef}) {
       <h2>
         Court District: {demographicState.demographicState["district"]}
       </h2>
-      
+
       </Container>
     <Container align="right">
-    <Link to="/step3">
+    <Link to="/surveyForm2">
     <Button type="primary" className={styles.returnButton}>
       Return
     </Button>
@@ -95,10 +89,10 @@ function FinalStep({demographicState, mapRef}) {
     <Button type="primary" className={styles.saveButton}>
       Confirm
     </Button>
-    
+
   </Container>
   </Container>
   );
 }
 
-export default FinalStep;
+export default ConfirmationPage;

@@ -13,10 +13,10 @@ import {
 } from "react-router-dom";
 import MapForm from "./components/MapForm";
 import Map from "./components/Map";
-import Step1 from "./components/Steps/Step1";
-import Step2 from "./components/Steps/Step2";
-import Step3 from "./components/Steps/Step3";
-import FinalStep from "./components/Steps/FinalStep";
+import SurveyForm0 from "./components/surveyForm/SurveyForm0";
+import SurveyForm1 from "./components/surveyForm/SurveyForm1";
+import SurveyForm2 from "./components/surveyForm/SurveyForm2";
+import ConfirmationPage from "./components/surveyForm/ConfirmationPage";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -73,7 +73,7 @@ function App() {
   // then derive teamName from the team associated with user
   // when user creates account they can either create team or join one
   const [team, setTeam] = useState(user.teamName);
-  
+
   // this will store our user's data
   const [data, setData] = useState({});
 
@@ -109,8 +109,8 @@ function App() {
           <Box component="div" class="topnav">
               <img src={logoSmall} className={styles.headerLogo }alt="logo" />
               <Link to="/">Home</Link>
-              <Link to="/surveyform">Survey</Link>
-              <Link to="/mapform" onClick={newMap}> Map Form</Link>
+              <Link to="/surveyForm0">Survey</Link>
+              <Link to="/mapForm" onClick={newMap}> Map Form</Link>
           </Box>
         </nav>
         <Switch>
@@ -128,16 +128,16 @@ function App() {
             <Map mapRef={mapRefState}/>
           </Route>
           <Route path="/surveyForm0">
-            <Step1 demographicState={{demographicState, setDemographics}} />
+            <SurveyForm0 demographicState={{demographicState, setDemographics}} />
           </Route>
           <Route path="/surveyForm1">
-            <Step2 demographicState={{demographicState, setDemographics}}/>
+            <SurveyForm1 demographicState={{demographicState, setDemographics}}/>
           </Route>
           <Route path="/surveyForm2">
-            <Step3 demographicState={{demographicState, setDemographics}}/>
+            <SurveyForm2 demographicState={{demographicState, setDemographics}}/>
           </Route>
           <Route path="/confirmationPage">
-            <FinalStep demographicState={{demographicState, setDemographics}} mapRef={mapRefState}/>
+            <ConfirmationPage demographicState={{demographicState, setDemographics}} mapRef={mapRefState}/>
           </Route>
         </Switch>
       </Box>
