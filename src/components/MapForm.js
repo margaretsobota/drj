@@ -21,18 +21,22 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "45px",
     fontWeight: "400"
   },
-  mapButton: {
-    marginLeft: "10px",
-    background: "#F5BF4F",
-    color: "#2A303D",
-    marginRight: "72.11px",
-    borderRadius: "5px",
+  mapLink: {
     textDecoration: "none",
-    padding: "5px",
-    paddingRight: "15px",
+    color: "#2A303D",
+    textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "20px",
     lineHeight: "36px",
+    fontWeight: "normal"
+  },
+  mapButton: {
+    marginLeft: "10px",
+    background: "#F5BF4F",
+    marginRight: "72.11px",
+    borderRadius: "5px",
+    padding: "5px",
+    paddingRight: "15px",
     boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF"
   },
   arrowIcon : {
@@ -107,13 +111,17 @@ const MapForm = ({ mapRef }) => {
   return (
     <Box component="div">
       <Box className={styles.buttonContainer}>
-        <Link
-          className={styles.mapButton}
-          to="/map"
+        <Button className={styles.mapButton}
+          onClick={handleSave}
         >
-          <PlayArrowIcon className={styles.arrowIcon}/>
-          &nbsp;See Map
-        </Link>
+          <Link
+            className={styles.mapLink}
+            to="/map"
+          >
+            <PlayArrowIcon className={styles.arrowIcon}/>
+            &nbsp;See Map
+          </Link>
+        </Button>
       </Box>
       <PhaseForm phase="research" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <PhaseForm phase="petition" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
