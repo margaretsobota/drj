@@ -286,6 +286,13 @@ const Map = ({mapRef}) => {
             )
           })
         }
+        <LinePath
+          curve={allCurves[curveType]}
+          data={mapData}
+          stroke="#333"
+          shapeRendering="geometricPrecision"
+          markerMid="url(#marker-circle)"
+        />
         {
           mapData.map((p) => {
             const pointIndex = mapData.indexOf(p);
@@ -306,7 +313,7 @@ const Map = ({mapRef}) => {
                 </Text>
                 <circle
                   id={"circle" + pointIndex}
-                  r={3}
+                  r={10}
                   cx={p[0]}
                   cy={p[1]}
                   stroke="rgba(33,33,33,0.5)"
@@ -332,13 +339,6 @@ const Map = ({mapRef}) => {
             )
           })
         }
-        <LinePath
-          curve={allCurves[curveType]}
-          data={mapData}
-          stroke="#333"
-          shapeRendering="geometricPrecision"
-          markerMid="url(#marker-circle)"
-        />
       </svg>
     </Box>
   )
