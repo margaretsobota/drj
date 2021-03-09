@@ -144,6 +144,16 @@ const Map = ({mapRef}) => {
   const starOffset = 100;
   const stepsBarHeight = 480;
 
+  const handleHover = (event) => {
+    const pointIndex = (event.target.id).substring(6);
+    document.getElementById("description" + pointIndex).style.visibility = "visible";
+  };
+
+  const handleHoverEnd = (event) => {
+    const pointIndex = (event.target.id).substring(6);
+    document.getElementById("description" + pointIndex).style.visibility = "hidden";
+  };
+
   return (
     <Box component="div" style={{paddingLeft:"10px"}}>
       <svg width="1500" height="750">
@@ -295,11 +305,29 @@ const Map = ({mapRef}) => {
                   {stepMapFinal[pointIndex].title}
                 </Text>
                 <circle
+                  id={"circle" + pointIndex}
                   r={3}
                   cx={p[0]}
                   cy={p[1]}
                   stroke="rgba(33,33,33,0.5)"
+                  onMouseOver={handleHover}
+                  onMouseOut={handleHoverEnd}
                 />
+                <Text
+                  id={"description" + pointIndex}
+                  x={p[0] - 10}
+                  y={p[1] + 30}
+                  fill={"#303031"}
+                  style={{
+                    fontFamily: "Roboto",
+                    fontWeight: "300",
+                    fontSize: "12px",
+                    lineHeight: "11px",
+                    visibility: "hidden"
+                  }}
+                >
+                  {stepMapFinal[pointIndex].description}
+                </Text>
               </Group>
             )
           })
