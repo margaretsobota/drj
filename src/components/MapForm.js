@@ -111,7 +111,9 @@ const MapForm = ({ mapRef }) => {
   return (
     <Box component="div">
       <Box className={styles.buttonContainer}>
-        <Button className={styles.mapButton}>
+        <Button className={styles.mapButton}
+          onClick={handleSave}
+        >
           <Link
             className={styles.mapLink}
             to="/map"
