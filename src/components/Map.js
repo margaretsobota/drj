@@ -317,8 +317,8 @@ const Map = ({mapRef}) => {
                   cx={p[0]}
                   cy={p[1]}
                   stroke="rgba(33,33,33,0.5)"
-                  onMouseOver={handleHover}
-                  onMouseOut={handleHoverEnd}
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleHoverEnd}
                 />
                 <Text
                   id={"description" + pointIndex}
@@ -330,11 +330,14 @@ const Map = ({mapRef}) => {
                     fontWeight: "300",
                     fontSize: "12px",
                     lineHeight: "11px",
-                    visibility: "hidden"
+                    visibility: "hidden",
+                    background:"#FFFFF"
                   }}
+                  width={175}
+                  verticalAnchor={"start"}
                 >
-                  {stepMapFinal[pointIndex].description}
-                </Text>
+                    {stepMapFinal[pointIndex].description}
+                  </Text>
               </Group>
             )
           })
