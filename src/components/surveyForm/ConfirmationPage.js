@@ -33,16 +33,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop:"40px",
     padding: "20px"
   },
-  saveButton: {
+  buttonLink: {
+    textDecoration: "none",
+    color: "#005AFF",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400"
+  },
+  prevButton: {
+    padding: "10px 35px 10px 35px",
+    border: "1px solid #699BF7"
+  },
+  nextButton: {
+    padding: "10px 35px 10px 35px",
     border: "1px solid #699BF7",
-    background:"#699BF7",
-    boxSizing: "border-box",
-    borderRadius: "5px",
-    marginRight: "20px",
-    marginTop:"40px",
-    padding: "20px"
+    float: "right"
   }
-
 }));
 
 function ConfirmationPage({demographicState, mapRef}) {
@@ -51,47 +59,53 @@ function ConfirmationPage({demographicState, mapRef}) {
   return (
     <Container>
       <Container className={styles.formControl}>
-      <h2>
-        Gender: {demographicState.demographicState["gender"]}
-      </h2>
-      <h2>
-        Age: {demographicState.demographicState["age"]}
-      </h2>
-      <h2>
-        Average Household Income: {demographicState.demographicState["income"]}
-      </h2>
-      <h2>
-        Highest Achieved Levl of Education: {demographicState.demographicState["education"]}
-      </h2>
-      <h2>
-        City of Residence: {demographicState.demographicState["city"]}
-      </h2>
-      <h2>
-        Distance Traveled to Court: {demographicState.demographicState["distance"]}
-      </h2>
-      <h2>
-        Were you represented by a lawyer?: {demographicState.demographicState["representation"]}
-      </h2>
-      <h2>
-        Court Process: <i>{demographicState.demographicState["process"]}</i>
-      </h2>
-      <h2>
-        Court District: {demographicState.demographicState["district"]}
-      </h2>
-
+        <h2>
+          Gender: {demographicState.demographicState["gender"]}
+        </h2>
+        <h2>
+          Age: {demographicState.demographicState["age"]}
+        </h2>
+        <h2>
+          Average Household Income: {demographicState.demographicState["income"]}
+        </h2>
+        <h2>
+          Highest Achieved Levl of Education: {demographicState.demographicState["education"]}
+        </h2>
+        <h2>
+          City of Residence: {demographicState.demographicState["city"]}
+        </h2>
+        <h2>
+          Distance Traveled to Court: {demographicState.demographicState["distance"]}
+        </h2>
+        <h2>
+          Were you represented by a lawyer?: {demographicState.demographicState["representation"]}
+        </h2>
+        <h2>
+          Court Process: <i>{demographicState.demographicState["process"]}</i>
+        </h2>
+        <h2>
+          Court District: {demographicState.demographicState["district"]}
+        </h2>
       </Container>
-    <Container align="right">
-    <Link to="/surveyForm2">
-    <Button type="primary" className={styles.returnButton}>
-      Return
-    </Button>
-    </Link>
-    <Button type="primary" className={styles.saveButton}>
-      Confirm
-    </Button>
-
-  </Container>
-  </Container>
+      <Container align="left" style={{paddingLeft: "10px", marginTop: "10px"}}>
+        <Button
+          type="primary"
+          className={styles.prevButton}
+        >
+          <Link className={styles.buttonLink} to="/surveyForm2">
+            Previous
+          </Link>
+        </Button>
+        <Button
+          type="primary"
+          className={styles.nextButton}
+        >
+          <Link className={styles.buttonLink} to="/">
+            Next
+          </Link>
+        </Button>
+      </Container>
+    </Container>
   );
 }
 
