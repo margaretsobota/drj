@@ -6,6 +6,7 @@ import * as allCurves from "@visx/curve";
 import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
 import { Text } from "@visx/text";
+import Title from "./Title";
 
 const useStyles = makeStyles((theme) => ({
   labelText: {
@@ -13,17 +14,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold"
-  },
-  title: {
-    fontSize: "30px",
-    color: "#3F414E",
-    fontStyle: "normal",
-    lineHeight: "12px"
-  },
-  subTitle: {
-    fontSize: "24px",
-    fontWeight: "300",
-    lineHeight: "12px"
   },
   downloadButton: {
     marginBottom: "78px",
@@ -355,21 +345,10 @@ const Map = ({mapRef}) => {
 
   return (
     <Box component="div" style={{paddingLeft:"10px", fontFamily: "Roboto"}}>
-      <Box style={{display: "flex", flexDirection:"row", marginLeft: "55px"}}>
-        <svg width="63" height="64" viewBox="0 0 63 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0.112305" y="0.640366" width="62.507" height="62.507" rx="31.2535" fill="white"/>
-          <circle opacity="0.2" cx="31.3656" cy="31.8939" r="25.0028" fill="#13949B"/>
-          <circle opacity="0.4" cx="31.3654" cy="31.8939" r="18.7521" fill="#13949B"/>
-          <circle opacity="0.6" cx="31.3657" cy="31.8939" r="13.2827" fill="#13949B"/>
-          <circle cx="31.366" cy="31.8939" r="7.03204" fill="#13949B"/>
-        </svg>
-        <Box>
-          <h1 className={styles.title}> Journey Map </h1>
-          <p className={styles.subTitle}>
-            Porttitor mattis nulla justo commodo at maecenas porta, eu ultricies ut.
-          </p>
-        </Box>
-      </Box>
+      <Title
+        title="Journey Map"
+        subtitle="Porttitor mattis nulla justo commodo at maecenas porta, eu ultricies ut."
+      />
       <svg width="1500" height="750">
         <svg
           xmlns="http://www.w3.org/2000/svg"
