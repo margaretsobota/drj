@@ -101,7 +101,7 @@ function ConfirmationPage({demographicState, mapRef}) {
           className={styles.nextButton}
         >
           <Link className={styles.buttonLink} to="/">
-            Next
+            Confirm
           </Link>
         </Button>
       </Container>

@@ -77,7 +77,7 @@ const Map = ({mapRef}) => {
         const padding = phaseMappings[phaseIndex].range / (totalSteps + 1);
         for (let step of Object.values(phaseData.steps)) {
           const stepX = startX + padding *(step.count + 1);
-          const stepY = (6- step.rating) *96 + 50;
+          const stepY = (6- step.rating) *80 + 50;
           let stepIndex = phaseMappings[phaseIndex].arrStart + step.count;
           dataArr.splice(stepIndex, 0, [stepX, stepY]);
           stepMap[stepIndex] = step;
