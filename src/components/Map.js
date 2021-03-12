@@ -41,13 +41,13 @@ const Map = ({mapRef}) => {
     if (Object.keys(dataState).length > 0) {
       const getArrayRanges = (phases) => {
         const phaseMappings = {
-          0: {name: "research", startX: 60, range: 200},
-          1: {name: "petition", startX: 261, range: 200},
-          2: {name: "serve", startX: 461, range: 200},
-          3: {name: "disclosure", startX: 661, range: 200},
-          4: {name: "settlement", startX: 861, range: 200},
-          5: {name: "pre-trial", startX: 1061, range: 200},
-          6: {name: "trial", startX: 1261, range: 200}
+          0: {name: "research", startX: 110, range: 190},
+          1: {name: "petition", startX: 291, range: 170},
+          2: {name: "serve", startX: 491, range: 170},
+          3: {name: "disclosure", startX: 681, range: 170},
+          4: {name: "settlement", startX: 871, range: 170},
+          5: {name: "pre-trial", startX: 1061, range: 170},
+          6: {name: "trial", startX: 1251, range: 170}
         };
         for(let phaseIndex of Object.keys(phaseMappings)) {
           let phaseName = phaseMappings[phaseIndex].name;
@@ -103,38 +103,31 @@ const Map = ({mapRef}) => {
     const phaseColumns = [
       {
         text: "Research",
-        fill: "#3D7DF3",
-        width: "100"
+        fill: "#3D7DF3"
       },
       {
         text: "Petition",
-        fill: "rgba(61, 125, 243, 0.8)",
-        width: "100"
+        fill: "rgba(61, 125, 243, 0.8)"
       },
       {
         text: "Serve",
-        fill: "rgba(105, 155, 247, 0.7)",
-        width: "170"
+        fill: "rgba(105, 155, 247, 0.7)"
       },
       {
         text: "Disclosure",
-        fill: "rgba(105, 155, 247, 0.5)",
-        width: "250"
+        fill: "rgba(105, 155, 247, 0.5)"
       },
       {
         text: "Settlement",
-        fill: "rgba(105, 155, 247, 0.3)",
-        width: "210"
+        fill: "rgba(105, 155, 247, 0.3)"
       },
       {
         text: "Pre-Trial",
-        fill: "rgba(105, 155, 247, 0.2)",
-        width: "210"
+        fill: "rgba(105, 155, 247, 0.2)"
       },
       {
         text: "Trial",
-        fill: "rgba(105, 155, 247, 0.15)",
-        width: "100"
+        fill: "rgba(105, 155, 247, 0.15)"
       }
     ];
 
@@ -289,7 +282,8 @@ const Map = ({mapRef}) => {
         <LinePath
           curve={allCurves[curveType]}
           data={mapData}
-          stroke="#333"
+          stroke="rgba(33,18,20,0.5)"
+          strokeWidth={2}
           shapeRendering="geometricPrecision"
           markerMid="url(#marker-circle)"
         />
@@ -312,14 +306,32 @@ const Map = ({mapRef}) => {
                   {stepMapFinal[pointIndex].title}
                 </Text>
                 <circle
+                  fill="#242055"
                   id={"circle" + pointIndex}
-                  r={10}
+                  r={18}
                   cx={p[0]}
                   cy={p[1]}
-                  stroke="rgba(33,33,33,0.5)"
+                  stroke="rgba(42,48,61,0.5)"
                   onMouseEnter={handleHover}
                   onMouseLeave={handleHoverEnd}
                 />
+                <svg
+                  width="25"
+                  height="25"
+                  x={p[0] - 13}
+                  y={p[1] - 13}
+                  viewBox="0 0 25 25"
+                  fill="#FFFFFF"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    id={"iconpa" + pointIndex}
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleHoverEnd}
+                    d="M16.2812 0.162659C11.5872 0.162659 7.78125 3.96866 7.78125 8.66266C7.78125 9.70495 7.9789 10.6989 8.32227 11.6216L0.78125 19.1627V24.1627H5.78125V21.1627H8.78125V18.1627H11.7812L13.3223 16.6216C14.245 16.965 15.239 17.1627 16.2812 17.1627C20.9753 17.1627 24.7812 13.3567 24.7812 8.66266C24.7812 3.96866 20.9753 0.162659 16.2812 0.162659ZM18.2812 4.16266C19.6623 4.16266 20.7812 5.28166 20.7812 6.66266C20.7812 8.04366 19.6623 9.16266 18.2812 9.16266C16.9002 9.16266 15.7812 8.04366 15.7812 6.66266C15.7812 5.28166 16.9002 4.16266 18.2812 4.16266Z"
+                    fill="white"
+                  />
+                </svg>
                 <Text
                   id={"description" + pointIndex}
                   x={p[0] - 10}
