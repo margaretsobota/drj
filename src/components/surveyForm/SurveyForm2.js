@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7",
-    float: "right"
+    float: "right",
+    background: "#699BF7"
   },
   label: {
     fontFamily: "Roboto",
@@ -162,7 +162,11 @@ const SurveyForm2 = ({demographicState}) => {
           type="primary"
           className={styles.nextButton}
         >
-          <Link className={styles.buttonLink} to="/confirmationPage">
+        <Link
+          className={styles.buttonLink}
+          style={{color: "#FFFFFF"}}
+          to="/confirmationPage"
+        >
             Next
           </Link>
         </Button>

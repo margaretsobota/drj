@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7",
-    float: "right"
+    float: "right",
+    background: "#699BF7"
   }
 }));
 
@@ -100,7 +100,7 @@ function ConfirmationPage({demographicState, mapRef}) {
           type="primary"
           className={styles.nextButton}
         >
-          <Link className={styles.buttonLink} to="/">
+          <Link className={styles.buttonLink} style={{color:"#FFFFFF"}} to="/">
             Confirm
           </Link>
         </Button>

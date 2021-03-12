@@ -37,17 +37,17 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonLink: {
     textDecoration: "none",
-    color: "#005AFF",
     textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "18px",
     lineHeight: "36px",
-    fontWeight: "400"
+    fontWeight: "400",
+    color: "#FFFFFF"
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7",
-    float: "right"
+    float: "right",
+    background: "#699BF7"
   },
   label: {
     fontFamily: "Roboto",
