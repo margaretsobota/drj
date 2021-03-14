@@ -7,6 +7,8 @@ import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
 import { Text } from "@visx/text";
 import Title from "./Title";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 const useStyles = makeStyles((theme) => ({
   labelText: {
@@ -343,13 +345,48 @@ const Map = ({mapRef}) => {
     document.getElementById("description" + pointIndex).style.visibility = "hidden";
   };
 
+  const handleDownload = (event) => {
+    console.log("ready to download ...");
+    const pdf = new jsPDF("p", "px", "a4");
+
+    const element = document.getElementById("container");
+    console.log(pdf);
+    // element.setAttribute("width", element.getBoundingClientRect().width);
+    // element.setAttribute("height", element.getBoundingClientRect().height);
+
+    html2canvas(element, {
+      scrollX: 0, 
+      scrollY: 0
+      // windowWidth: element.offsetWidth * 2,
+      // windowHeight: element.offsetWidth * 2
+    }).then((canvas) => {
+      console.log(canvas);
+        const imgData = canvas.toDataURL("image/png");
+        pdf.addImage(imgData, "JPEG", 0, -200);
+        pdf.save("download.pdf");
+    });
+    // pdf.addImage(element, 'PNG', 0, 0);
+    // pdf.save("myPDF.pdf");
+    // console.log(element);
+    // doc
+    //   .svg(element)
+    //   .then(() => {
+    //     // save the created pdf
+    //     //doc.save("myPDF.pdf");
+    //   });
+  }
+
   return (
-    <Box component="div" style={{paddingLeft:"10px", fontFamily: "Roboto"}}>
+    <Box
+      id="container"
+      component="div"
+      style={{paddingLeft:"10px", fontFamily: "Roboto"}}
+    >
       <Title
         title="Journey Map"
         subtitle="Porttitor mattis nulla justo commodo at maecenas porta, eu ultricies ut."
       />
-      <svg width="1500" height="750">
+      <svg id="containerSVG" width="1500" height="750">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -539,7 +576,10 @@ const Map = ({mapRef}) => {
           })
         }
       </svg>
-      <Button className={styles.downloadButton}>
+      <Button
+        className={styles.downloadButton}
+        onClick = {handleDownload}
+      >
         Download PDF
       </Button>
     </Box>
