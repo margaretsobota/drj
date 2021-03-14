@@ -347,10 +347,12 @@ const Map = ({mapRef}) => {
 
   const handleDownload = (event) => {
     console.log("ready to download ...");
-    const pdf = new jsPDF("p", "px", "a4");
+    const pdf = new jsPDF("p", "pt", "a4");
 
     const element = document.getElementById("container");
     console.log("pdf", pdf);
+    pdf.internal.pageSize.setWidth(element.offsetWidth);
+    pdf.internal.pageSize.setHeight(element.offsetHeight);
     var width = pdf.internal.pageSize.getWidth();
     var height = pdf.internal.pageSize.getHeight();
 
