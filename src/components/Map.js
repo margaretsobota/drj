@@ -350,37 +350,27 @@ const Map = ({mapRef}) => {
     const pdf = new jsPDF("p", "px", "a4");
 
     const element = document.getElementById("container");
-    console.log(pdf);
-    // element.setAttribute("width", element.getBoundingClientRect().width);
-    // element.setAttribute("height", element.getBoundingClientRect().height);
+    console.log("pdf", pdf);
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
 
     html2canvas(element, {
-      scrollX: 0, 
-      scrollY: 0
-      // windowWidth: element.offsetWidth * 2,
-      // windowHeight: element.offsetWidth * 2
     }).then((canvas) => {
       console.log(canvas);
         const imgData = canvas.toDataURL("image/png");
-        pdf.addImage(imgData, "JPEG", 0, -200);
+        pdf.addImage(imgData, "JPEG", 0, -300, width, height);
         pdf.save("download.pdf");
     });
-    // pdf.addImage(element, 'PNG', 0, 0);
-    // pdf.save("myPDF.pdf");
-    // console.log(element);
-    // doc
-    //   .svg(element)
-    //   .then(() => {
-    //     // save the created pdf
-    //     //doc.save("myPDF.pdf");
-    //   });
   }
 
   return (
     <Box
       id="container"
       component="div"
-      style={{paddingLeft:"10px", fontFamily: "Roboto"}}
+      style={{
+        paddingLeft:"10px",
+        fontFamily: "Roboto"
+      }}
     >
       <Title
         title="Journey Map"
