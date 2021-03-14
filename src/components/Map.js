@@ -347,7 +347,7 @@ const Map = ({mapRef}) => {
 
   const handleDownload = (event) => {
     console.log("ready to download ...");
-    const pdf = new jsPDF("p", "pt", "a4");
+    const pdf = new jsPDF("p", "px", "a1");
 
     const element = document.getElementById("container");
     console.log("pdf", pdf);
@@ -357,10 +357,11 @@ const Map = ({mapRef}) => {
     var height = pdf.internal.pageSize.getHeight();
 
     html2canvas(element, {
+      scrollY: -window.scrollY
     }).then((canvas) => {
       console.log(canvas);
         const imgData = canvas.toDataURL("image/png");
-        pdf.addImage(imgData, "JPEG", 0, -300, width, height);
+        pdf.addImage(imgData, "JPEG", 0, 20, width, height);
         pdf.save("download.pdf");
     });
   }
