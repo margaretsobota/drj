@@ -357,7 +357,6 @@ const Map = ({mapRef}) => {
     html2canvas(element, {
       scrollY: -window.scrollY
     }).then((canvas) => {
-      console.log(canvas);
         const imgData = canvas.toDataURL("image/png");
         pdf.addImage(imgData, "JPEG", 0, 20, width, height);
         pdf.save("download.pdf");
