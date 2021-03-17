@@ -13,10 +13,16 @@ const useStyles = makeStyles((theme) => ({
      flex: 2,
      padding:"0px"
   },
+  inputRowContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 2,
+    padding:"0px"
+ },
   sentimentContainer: {
      display: "flex",
      flexDirection: "column",
-     flex: 1
+     flex: 2,
   },
   stepTitle: {
     paddingBottom: "10px"
@@ -51,6 +57,9 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
 
   const handleStepDescChange = (event) => {
     step.description = event.target.value;
+  };
+  const handleStepTimeChange = (event) => {
+    step.time = event.target.value;
   };
 
   const deleteStep = () => {
@@ -96,7 +105,9 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             onChange={handleStepDescChange}
             rows={4}
           />
+          
         </Container>
+        
         <Container className={styles.sentimentContainer}>
           <h3 style={{fontSize:"12px", fontWeight:"400", fontFamily:"Roboto"}}>
             How did this step <strong>make you feel ?</strong>
@@ -109,7 +120,14 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             name="rating"
             starDimension="15px"
           />
+          <TextField
+            id="stepTime"
+            label="How many days did this take?"
+            variant="outlined"
+            onChange={handleStepTimeChange}
+          />
         </Container>
+        
       </Box>
       <Box
         component="div"

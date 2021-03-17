@@ -50,8 +50,13 @@ const useStyles = makeStyles((theme) => ({
   nextButton: {
     padding: "10px 35px 10px 35px",
     float: "right",
-    background: "#699BF7"
+    background: "#CCCCCC"
   },
+  nextButton2: {
+    padding: "10px 35px 10px 35px",
+    float: "right",
+    background: "#699BF7",
+    },
   label: {
     fontFamily: "Roboto",
     fontSize: "19px",
@@ -71,7 +76,9 @@ const SurveyForm2 = ({demographicState}) => {
     demographicState.setDemographics(copyState)
     console.log(copyState)
   }
-
+  const isDisabled = () => {
+    return demographicState.demographicState["representation"]=="" || demographicState.demographicState["process"]=="" || demographicState.demographicState["district"]==""
+  }
   return (
     <Box>
       <Box style={{marginLeft: "130px"}}>
@@ -89,6 +96,8 @@ const SurveyForm2 = ({demographicState}) => {
             name="representation"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["representation"]}
+
           >
             <MenuItem value={"yes"}>Yes</MenuItem>
             <MenuItem value={"no"}>No</MenuItem>
@@ -104,6 +113,8 @@ const SurveyForm2 = ({demographicState}) => {
             name="process"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["process"]}
+
           >
             <MenuItem value={"divorce"}>Divorce</MenuItem>
           </Select>
@@ -117,8 +128,9 @@ const SurveyForm2 = ({demographicState}) => {
             name="district"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["district"]}
+
           >
-            <MenuItem value={0}>Puerto Plata</MenuItem>
             <MenuItem value={1}>Distrito Nacional</MenuItem>
             <MenuItem value={2}>Santo Domingo </MenuItem>
             <MenuItem value={3}>Monte Plata</MenuItem>
@@ -154,6 +166,8 @@ const SurveyForm2 = ({demographicState}) => {
             <MenuItem value={33}>Montecristi</MenuItem>
             <MenuItem value={34}>Dajabón </MenuItem>
             <MenuItem value={35}>Santiago Rodríguez</MenuItem>
+            <MenuItem value={36}>Puerto Plata</MenuItem>
+
 
           </Select>
           <FormHelperText>Elige el tribunal que utilizaste</FormHelperText>
@@ -170,6 +184,7 @@ const SurveyForm2 = ({demographicState}) => {
           <Button
             type="primary"
             className={styles.nextButton}
+            className={isDisabled() ? styles.nextButton : styles.nextButton2}
           >
           <Link
             className={styles.buttonLink}
