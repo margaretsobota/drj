@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px 35px 10px 35px",
     float: "right",
     background: "#CCCCCC",
-    //background={!isDisabled()? "#000000": "#699BF7"}
   },
   nextButton2: {
     padding: "10px 35px 10px 35px",

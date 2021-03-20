@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
     textAlign: "center",
     fontSize: "14px",
-    border: "2px solid #666",
+    background: "#FFF",
+    border: "2px solid #FFF",
     
     }   
 }));

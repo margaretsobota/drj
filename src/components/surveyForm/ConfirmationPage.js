@@ -131,7 +131,7 @@ function ConfirmationPage({demographicState, mapRef}) {
 
   }
   return (
-    <Box>
+    <Box style={{background: "#FCF6EC"}}>
       <Box style={{marginLeft: "130px"}}>
         <Title
           title="Help us by verifying"
@@ -216,8 +216,8 @@ function ConfirmationPage({demographicState, mapRef}) {
       </Container>
       <Container align="center" style={{paddingLeft: "10px", marginTop: "10px"}}>
         <h2>Is this information correct?</h2>
-        <p>If the information is correct, please continue with the process <br></br>
-        If it is not, please go back and correct it
+        <p>If the information is correct please select Confirm <br></br>
+        If it is not, please return to correct it
         </p>
         
         <Button
