@@ -1,20 +1,21 @@
 import React from "react";
-import { Button, Container } from "@material-ui/core";
+import { Button, Container, Box } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import _ from "lodash";
+import Title from "../Title";
+import ConfirmationObjs from "../ConfirmationObjs";
+
 
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    justifyContent: "left",
-    alignItems: "left",
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    maxWidth: '100%',
-
+    display: "grid",
+    justifyContent: "center",
+    gridTemplateColumns: "550px 550px"
+   
   },
+
   inputContainer: {
     background: "rgba(163, 217, 209, 0.2)",
     alignItems: "center",
@@ -46,12 +47,15 @@ const useStyles = makeStyles((theme) => ({
   },
   prevButton: {
     padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7"
+    border: "1px solid #699BF7",
+    marginRight: "20px",
+    marginBottom: "20px",
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
-    float: "right",
-    background: "#699BF7"
+    marginLeft: "20px",
+    background: "#699BF7",
+    marginBottom: "20px",
   }
 }));
 
@@ -123,46 +127,105 @@ function ConfirmationPage({demographicState, mapRef}) {
       else if (copyState==35){return "Santiago Rodríguez"}
       else if (copyState==36){return "Puerto Plata"}
     }
+    
 
   }
   return (
-    <Container>
+    <Box>
+      <Box style={{marginLeft: "130px"}}>
+        <Title
+          title="Help us by verifying"
+          subtitle="the information:"
+        />
+      </Box>
+
       <Container className={styles.formControl}>
-        <h2>
-          Gender: {demographicState.demographicState["gender"]}
-        </h2>
-        <h2>
-          Age: {convertValue("age")}
-        </h2>
-        <h2>
-          Average Household Income: {convertValue("income")}
-        </h2>
-        <h2>
-          Highest Achieved Levl of Education: {demographicState.demographicState["education"]}
-        </h2>
-        <h2>
-          City of Residence: {demographicState.demographicState["city"]}
-        </h2>
-        <h2>
-          Distance Traveled to Court: {convertValue("distance")}
-        </h2>
-        <h2>
-          Were you represented by a lawyer?: {demographicState.demographicState["representation"]}
-        </h2>
-        <h2>
-          Court Process: {demographicState.demographicState["process"]}
-        </h2>
-        <h2>
-          Court District: {convertValue("district")}
-        </h2>
+          <Box>
+          <ConfirmationObjs
+            number = "1"
+            title="Gender:"
+            subtitle={demographicState.demographicState["gender"]}
+          />
+          </Box>
+          <Box>
+          <ConfirmationObjs
+            number = "2"
+            title="Age:"
+            subtitle={convertValue("age")}
+          />
+          </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "3"
+            title="Average household income:"
+            subtitle={convertValue("income")}
+          />
+        </Box>
+
+        <Box >
+          <ConfirmationObjs
+            number = "4"
+            title="Highest Achieved Level of Education:"
+            subtitle={demographicState.demographicState["education"]}
+          />
+        </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "5"
+            title="City of Residence:"
+            subtitle={demographicState.demographicState["city"]}
+          />
+        </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "6"
+            title="Distance Traveled to Court:"
+            subtitle={convertValue("distance")}
+          />
+        </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "7"
+            title="Were you represented by a lawyer?:"
+            subtitle={demographicState.demographicState["representation"]}
+          />
+        </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "8"
+            title="Court Process:"
+            subtitle= {demographicState.demographicState["process"]}
+            />
+        </Box>
+
+        <Box>
+          <ConfirmationObjs
+            number = "9"
+            title="Court District:"
+            subtitle={convertValue("district")}
+          />
+        </Box>
+        
+        
+        
       </Container>
-      <Container align="left" style={{paddingLeft: "10px", marginTop: "10px"}}>
+      <Container align="center" style={{paddingLeft: "10px", marginTop: "10px"}}>
+        <h2>Is this information correct?</h2>
+        <p>If the information is correct, please continue with the process <br></br>
+        If it is not, please go back and correct it
+        </p>
+        
         <Button
           type="primary"
           className={styles.prevButton}
         >
           <Link className={styles.buttonLink} to="/surveyForm2">
-            Previous
+            Return
           </Link>
         </Button>
         <Button
@@ -170,11 +233,11 @@ function ConfirmationPage({demographicState, mapRef}) {
           className={styles.nextButton}
         >
           <Link className={styles.buttonLink} style={{color:"#FFFFFF"}} to="/mapForm">
-            Confirm
+            YES Confirm
           </Link>
         </Button>
       </Container>
-    </Container>
+    </Box>
   );
 }
 
