@@ -37,7 +37,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   buttonLink: {
-    textDecoration: "none",
+    textDecoration: "none"
+  },
+  nextButton: {
+    padding: "10px 35px 10px 35px",
+    float: "right",
+    background: "#CCCCCC",
     textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "18px",
@@ -45,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "400",
     color: "#FFFFFF"
   },
-  nextButton: {
-    padding: "10px 35px 10px 35px",
-    float: "right",
-    background: "#CCCCCC",
-  },
   nextButton2: {
     padding: "10px 35px 10px 35px",
     float: "right",
     background: "#699BF7",
-
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400",
+    color: "#FFFFFF"
   },
   label: {
     fontFamily: "Roboto",
@@ -141,17 +146,19 @@ const SurveyForm0 = ({demographicState}) => {
             <MenuItem value={4}>RD$867,000 or greater</MenuItem>
           </Select>
         </Container>
-        <Container align="left" style={{paddingLeft: "10px", marginTop: "100px"}} >
+        <Container
+          align="left"
+          style={{paddingLeft: "10px", marginTop: "100px"}}
+        >
+        <Link className={styles.buttonLink} to="/surveyForm1">
           <Button
             disabled={isDisabled()}
             type="primary"
             className={isDisabled() ? styles.nextButton : styles.nextButton2}
           >
-            <Link className={styles.buttonLink} to="/surveyForm1">
-              Next
-            </Link>
+            Next
           </Button>
-
+        </Link>
         </Container>
     </Container>
   </Box>

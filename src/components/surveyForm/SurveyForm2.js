@@ -35,28 +35,40 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   buttonLink: {
-    textDecoration: "none",
-    color: "#005AFF",
+    textDecoration: "none"
+  },
+  prevButton: {
+    padding: "10px 35px 10px 35px",
+    border: "1px solid #699BF7",
     textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "18px",
     lineHeight: "36px",
-    fontWeight: "400"
-  },
-  prevButton: {
-    padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7"
+    fontWeight: "400",
+    color: "#005AFF",
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
     float: "right",
-    background: "#CCCCCC"
+    background: "#CCCCCC",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400",
+    color: "#FFFFFF"
   },
   nextButton2: {
     padding: "10px 35px 10px 35px",
     float: "right",
     background: "#699BF7",
-    },
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400",
+    color: "#FFFFFF"
+  },
   label: {
     fontFamily: "Roboto",
     fontSize: "19px",
@@ -172,28 +184,30 @@ const SurveyForm2 = ({demographicState}) => {
           </Select>
           <FormHelperText>Elige el tribunal que utilizaste</FormHelperText>
         </Container>
-        <Container align="left" style={{paddingLeft: "10px", marginTop: "100px"}}>
-          <Button
-            type="primary"
-            className={styles.prevButton}
-          >
-            <Link className={styles.buttonLink} to="/surveyForm1">
+        <Container
+          align="left"
+          style={{paddingLeft: "10px", marginTop: "100px"}}
+        >
+          <Link className={styles.buttonLink} to="/surveyForm1">
+            <Button
+              type="primary"
+              className={styles.prevButton}
+            >
               Previous
-            </Link>
-          </Button>
-          <Button
-            type="primary"
-            className={styles.nextButton}
-            className={isDisabled() ? styles.nextButton : styles.nextButton2}
-          >
+            </Button>
+          </Link>
           <Link
             className={styles.buttonLink}
             style={{color: "#FFFFFF"}}
             to="/confirmationPage"
           >
+            <Button
+              type="primary"
+              className={isDisabled() ? styles.nextButton : styles.nextButton2}
+            >
               Next
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Container>
     </Container>
   </Box>
