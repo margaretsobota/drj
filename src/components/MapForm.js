@@ -22,27 +22,24 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "400"
   },
   mapLink: {
-    textDecoration: "none",
-    color: "#2A303D",
-    textTransform: "none",
-    fontFamily: "Roboto",
-    fontSize: "20px",
-    lineHeight: "36px",
-    fontWeight: "normal"
+    textDecoration: "none"
   },
   mapButton: {
     marginLeft: "10px",
     background: "#F5BF4F",
     marginRight: "72.11px",
     borderRadius: "5px",
-    padding: "5px",
-    paddingRight: "15px",
-    boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF"
+    width: "135px",
+    boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF",
+    color: "#2A303D",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "20px",
+    lineHeight: "30px",
+    fontWeight: "normal"
   },
   arrowIcon : {
     display: "inline-block",
-    verticalAlign: "middle",
-    paddingBottom: "3px",
     color: "#2A303D"
   },
   buttonContainer: {
@@ -112,17 +109,18 @@ const MapForm = ({ mapRef }) => {
   return (
     <Box component="div">
       <Box className={styles.buttonContainer}>
-        <Button className={styles.mapButton}
-          onClick={handleSave}
+        <Link
+          className={styles.mapLink}
+          to="/map"
         >
-          <Link
-            className={styles.mapLink}
-            to="/map"
+          <Button
+            className={styles.mapButton}
+            onClick={handleSave}
+            startIcon={<PlayArrowIcon className={styles.arrowIcon}/>}
           >
-            <PlayArrowIcon className={styles.arrowIcon}/>
-            &nbsp;See Map
-          </Link>
-        </Button>
+            See Map
+          </Button>
+        </Link>
       </Box>
       <PhaseForm phase="research" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <PhaseForm phase="petition" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>

@@ -60,7 +60,10 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
   };
 
   const handleStepTimeChange = (event) => {
-    step.time = parseInt(event.target.value);
+    const newTime = parseInt(event.target.value);
+    if (isNaN(newTime))
+      return;
+    step.time = newTime;
     const copyState = _.cloneDeep(phaseState.phaseState);
     copyState[phase].phaseTime = copyState[phase].phaseTime + step.time;
     phaseState.setPhase(copyState);
