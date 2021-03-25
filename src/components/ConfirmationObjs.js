@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     lineHeight: "20px",
     marginLeft: "5px"
-    
+
   },
   subTitle: {
     fontSize: "20px",
     fontWeight: "300",
     lineHeight: "20px",
     marginLeft: "32px"
-    
+
   },
   numberCircle :{
     width: "20px",
@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "14px",
     background: "#FFF",
     border: "2px solid #FFF",
-    
-    }   
+
+    }
 }));
 
 const ConfirmationObjs = ({number, title, subtitle}) => {

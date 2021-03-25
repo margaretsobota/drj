@@ -121,9 +121,15 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
       else if (copyState===35){return "Santiago Rodríguez"}
       else if (copyState===36){return "Puerto Plata"}
     }
-
-
   }
+
+  const handleSave = () => {
+    for (let key of Object.keys(demographicState.demographicState)) {
+      let demographic = demographicState.demographicState[key];
+      mapRef.child("demographics").child(key).set(demographic);
+    }
+  };
+
   return (
     <Box style={{background: "#FCF6EC"}}>
       <Box style={{marginLeft: "130px"}}>
@@ -218,6 +224,7 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
         <Button
           type="primary"
           className={styles.nextButton}
+          onClick={handleSave}
         >
           <Link
             className={styles.buttonLink}

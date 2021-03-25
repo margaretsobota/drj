@@ -58,6 +58,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
   const handleStepDescChange = (event) => {
     step.description = event.target.value;
   };
+
   const handleStepTimeChange = (event) => {
     step.time = event.target.value;
   };
@@ -122,6 +123,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             id="stepTime"
             label="How many days did this take?"
             variant="outlined"
+            style = {{marginTop: "57px"}}
             onChange={handleStepTimeChange}
           />
         </Container>
