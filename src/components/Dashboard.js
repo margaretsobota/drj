@@ -5,7 +5,9 @@ import DashboardImage from "./DashboardImage";
 const Dashboard = () => {
   return (
     <Box component="div">
-      <DashboardImage/>
+      <Box component="div" style={{marginLeft: "50%"}}>
+        <DashboardImage/>
+      </Box>
     </Box>
   )
 }
