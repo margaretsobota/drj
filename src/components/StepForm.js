@@ -60,7 +60,10 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
   };
 
   const handleStepTimeChange = (event) => {
-    step.time = event.target.value;
+    step.time = parseInt(event.target.value);
+    const copyState = _.cloneDeep(phaseState.phaseState);
+    copyState[phase].phaseTime = copyState[phase].phaseTime + step.time;
+    phaseState.setPhase(copyState);
   };
 
   const deleteStep = () => {
@@ -71,6 +74,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
       copyState[phase].steps[i].count --;
     }
     copyState[phase].phaseTotalSteps --;
+    copyState[phase].phaseTime = copyState[phase].phaseTime - step.time;
     phaseState.setPhase(copyState);
     countState.setCount(countState.countState - 1);
     if(step.uuid) {
