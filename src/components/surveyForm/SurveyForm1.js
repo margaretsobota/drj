@@ -51,7 +51,12 @@ const useStyles = makeStyles((theme) => ({
   nextButton: {
     padding: "10px 35px 10px 35px",
     float: "right",
-    background: "#699BF7"
+    background: "#CCCCCC"
+  },
+  nextButton2: {
+    padding: "10px 35px 10px 35px",
+    float: "right",
+    background: "#699BF7",
   },
   label: {
     fontFamily: "Roboto",
@@ -67,10 +72,13 @@ const SurveyForm1 = ({demographicState}) => {
   const styles = useStyles();
 
   const handleSave = (event) => {
-    const copyState = _.cloneDeep(demographicState.demographicState)
-    copyState[event.target.name] = event.target.value
-    demographicState.setDemographics(copyState)
-    console.log(copyState)
+    const copyState = _.cloneDeep(demographicState.demographicState);
+    copyState[event.target.name] = event.target.value;
+    demographicState.setDemographics(copyState);
+  }
+  
+  const isDisabled = () => {
+    return demographicState.demographicState["education"] === "" || demographicState.demographicState["city"] === "" || demographicState.demographicState["distance"] === "";
   }
 
   return (
@@ -90,6 +98,8 @@ const SurveyForm1 = ({demographicState}) => {
             name="education"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["education"]}
+
           >
             <MenuItem value={"preescolar"}>Nivel preescolar</MenuItem>
             <MenuItem value={"primaria"}>Nivel primaria</MenuItem>
@@ -110,6 +120,8 @@ const SurveyForm1 = ({demographicState}) => {
             variant="outlined"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["city"]}
+
           >
           </TextField>
         </Container>
@@ -121,13 +133,15 @@ const SurveyForm1 = ({demographicState}) => {
             name="distance"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["distance"]}
+
           >
-            <MenuItem value={0}>Under 10km</MenuItem>
-            <MenuItem value={1}>11km-19km</MenuItem>
-            <MenuItem value={2}>20km-29km</MenuItem>
-            <MenuItem value={3}>30km-39km</MenuItem>
-            <MenuItem value={4}>40km-49km</MenuItem>
-            <MenuItem value={5}>Over 50km</MenuItem>
+            <MenuItem value={1}>Under 10km</MenuItem>
+            <MenuItem value={2}>11km-19km</MenuItem>
+            <MenuItem value={3}>20km-29km</MenuItem>
+            <MenuItem value={4}>30km-39km</MenuItem>
+            <MenuItem value={5}>40km-49km</MenuItem>
+            <MenuItem value={6}>Over 50km</MenuItem>
           </Select>
           <FormHelperText>Please indicate approximately how long it took you to travel to court</FormHelperText>
         </Container>
@@ -142,7 +156,8 @@ const SurveyForm1 = ({demographicState}) => {
           </Button>
           <Button
             type="primary"
-            className={styles.nextButton}
+            className={isDisabled() ? styles.nextButton : styles.nextButton2}
+            disabled={isDisabled()}
           >
             <Link
               className={styles.buttonLink}

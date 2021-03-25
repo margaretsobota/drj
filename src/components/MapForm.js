@@ -61,6 +61,7 @@ const MapForm = ({ mapRef }) => {
     const newStep = {
       uuid: "",
       title: "",
+      time:"",
       description: "",
       phase: phase,
       rating: "",

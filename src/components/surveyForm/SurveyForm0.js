@@ -5,6 +5,7 @@ import {
   MenuItem,
   Select,
   InputLabel,
+  Tooltip, // eslint-disable-line
   Box
 } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,7 +48,13 @@ const useStyles = makeStyles((theme) => ({
   nextButton: {
     padding: "10px 35px 10px 35px",
     float: "right",
-    background: "#699BF7"
+    background: "#CCCCCC",
+  },
+  nextButton2: {
+    padding: "10px 35px 10px 35px",
+    float: "right",
+    background: "#699BF7",
+
   },
   label: {
     fontFamily: "Roboto",
@@ -63,12 +70,14 @@ const SurveyForm0 = ({demographicState}) => {
   const styles = useStyles();
 
   const handleSave = (event) => {
-    const copyState = _.cloneDeep(demographicState.demographicState)
-    copyState[event.target.name] = event.target.value
-    demographicState.setDemographics(copyState)
-    console.log(copyState)
+    const copyState = _.cloneDeep(demographicState.demographicState);
+    copyState[event.target.name] = event.target.value;
+    demographicState.setDemographics(copyState);
   }
 
+  const isDisabled = () => {
+    return demographicState.demographicState["income"] === "" || demographicState.demographicState["age"] === "" || demographicState.demographicState["gender"] === "";
+  }
 
   return (
     <Box>
@@ -84,10 +93,12 @@ const SurveyForm0 = ({demographicState}) => {
             1. What is your gender?
           </InputLabel>
           <Select
-            required
+            required="True"
             name="gender"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["gender"]}
+
           >
             <MenuItem value={"male"}>Male</MenuItem>
             <MenuItem value={"female"}>Female</MenuItem>
@@ -101,14 +112,16 @@ const SurveyForm0 = ({demographicState}) => {
             name="age"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["age"]}
+
           >
-            <MenuItem value={0}>Under 18</MenuItem>
-            <MenuItem value={1}>18-24</MenuItem>
-            <MenuItem value={2}>25-34</MenuItem>
-            <MenuItem value={3}>35-44</MenuItem>
-            <MenuItem value={4}>45-54</MenuItem>
-            <MenuItem value={5}>55-64</MenuItem>
-            <MenuItem value={6}>65+</MenuItem>
+            <MenuItem value={1}>Under 18</MenuItem>
+            <MenuItem value={2}>18-24</MenuItem>
+            <MenuItem value={3}>25-34</MenuItem>
+            <MenuItem value={4}>35-44</MenuItem>
+            <MenuItem value={5}>45-54</MenuItem>
+            <MenuItem value={6}>55-64</MenuItem>
+            <MenuItem value={7}>65+</MenuItem>
           </Select>
         </Container>
         <Container className={styles.inputContainer}>
@@ -119,22 +132,26 @@ const SurveyForm0 = ({demographicState}) => {
             name="income"
             onChange={handleSave}
             style={{width:'200px'}}
+            defaultValue={demographicState.demographicState["income"]}
+
           >
-            <MenuItem value={0}>RD$416,000 or below</MenuItem>
-            <MenuItem value={1}>RD$416,000-624,000</MenuItem>
-            <MenuItem value={2}>RD$624,000-827,000</MenuItem>
-            <MenuItem value={3}>RD$867,000 or greater</MenuItem>
+            <MenuItem value={1}>RD$416,000 or below</MenuItem>
+            <MenuItem value={2}>RD$416,000-624,000</MenuItem>
+            <MenuItem value={3}>RD$624,000-827,000</MenuItem>
+            <MenuItem value={4}>RD$867,000 or greater</MenuItem>
           </Select>
         </Container>
-        <Container align="left" style={{paddingLeft: "10px", marginTop: "100px"}}>
+        <Container align="left" style={{paddingLeft: "10px", marginTop: "100px"}} >
           <Button
+            disabled={isDisabled()}
             type="primary"
-            className={styles.nextButton}
+            className={isDisabled() ? styles.nextButton : styles.nextButton2}
           >
             <Link className={styles.buttonLink} to="/surveyForm1">
               Next
             </Link>
           </Button>
+
         </Container>
     </Container>
   </Box>

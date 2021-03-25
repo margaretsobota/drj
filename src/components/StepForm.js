@@ -13,10 +13,16 @@ const useStyles = makeStyles((theme) => ({
      flex: 2,
      padding:"0px"
   },
+  inputRowContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 2,
+    padding:"0px"
+ },
   sentimentContainer: {
      display: "flex",
      flexDirection: "column",
-     flex: 1
+     flex: 2,
   },
   stepTitle: {
     paddingBottom: "10px"
@@ -53,6 +59,13 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
     step.description = event.target.value;
   };
 
+  const handleStepTimeChange = (event) => {
+    step.time = parseInt(event.target.value);
+    const copyState = _.cloneDeep(phaseState.phaseState);
+    copyState[phase].phaseTime = copyState[phase].phaseTime + step.time;
+    phaseState.setPhase(copyState);
+  };
+
   const deleteStep = () => {
     const copyState = _.cloneDeep(phaseState.phaseState);
     copyState[phase].steps.splice(stepIndex, 1);
@@ -61,6 +74,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
       copyState[phase].steps[i].count --;
     }
     copyState[phase].phaseTotalSteps --;
+    copyState[phase].phaseTime = copyState[phase].phaseTime - step.time;
     phaseState.setPhase(copyState);
     countState.setCount(countState.countState - 1);
     if(step.uuid) {
@@ -108,6 +122,13 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             numberOfStars={5}
             name="rating"
             starDimension="15px"
+          />
+          <TextField
+            id="stepTime"
+            label="How many days did this take?"
+            variant="outlined"
+            style = {{marginTop: "57px"}}
+            onChange={handleStepTimeChange}
           />
         </Container>
       </Box>

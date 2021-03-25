@@ -64,7 +64,7 @@ function App() {
 
   // set static user for testing purposes
   // normally user would be set by firebase auth
-  const [user, setUser] = useState({
+  const [user, setUser] = useState({ // eslint-disable-line
     firstName: "Margaret",
     teamName: "DRJ"
   });
@@ -72,10 +72,10 @@ function App() {
 
   // then derive teamName from the team associated with user
   // when user creates account they can either create team or join one
-  const [team, setTeam] = useState(user.teamName);
+  const [team, setTeam] = useState(user.teamName); // eslint-disable-line
 
   // this will store our user's data
-  const [data, setData] = useState({});
+  const [data, setData] = useState({}); // eslint-disable-line
 
   // update our user's data based on which team we are
   useEffect(() => {
@@ -109,7 +109,7 @@ function App() {
           <Box component="div" class="topnav">
               <img src={logoSmall} className={styles.headerLogo }alt="logo" />
               <Link to="/">Home</Link>
-              <Link to="/surveyForm0">Survey</Link>
+              <Link to="/surveyForm0" onClick={newMap}> Survey</Link>
               <Link to="/mapForm" onClick={newMap}> Map Form</Link>
           </Box>
         </nav>

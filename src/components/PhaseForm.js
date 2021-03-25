@@ -47,6 +47,7 @@ const PhaseForm = ({ phase, state, deletedState }) => {
     const newStep = {
       uuid: "",
       title: "",
+      time: "",
       description: "",
       phase: phase,
       rating: "",
