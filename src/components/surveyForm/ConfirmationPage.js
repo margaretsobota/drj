@@ -3,7 +3,7 @@ import { Button, Container, Box } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Title from "../Title";
-import ConfirmationObjs from "../ConfirmationObjs";
+import ConfirmationObjs from "./ConfirmationObjs";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

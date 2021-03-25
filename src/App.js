@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@material-ui/core";
-import logo from "./images/logoLIJ.png";
 import logoSmall from "./images/inv_lab_logo_med.png";
 import './App.css';
 import firebase from "firebase/app";
@@ -17,6 +16,7 @@ import SurveyForm0 from "./components/surveyForm/SurveyForm0";
 import SurveyForm1 from "./components/surveyForm/SurveyForm1";
 import SurveyForm2 from "./components/surveyForm/SurveyForm2";
 import ConfirmationPage from "./components/surveyForm/ConfirmationPage";
+import Dashboard from "./components/Dashboard";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -116,9 +116,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Box component="div" className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-              </header>
+              <Dashboard/>
             </Box>
           </Route>
           <Route path="/mapForm">
