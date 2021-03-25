@@ -36,27 +36,39 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   buttonLink: {
-    textDecoration: "none",
-    color: "#005AFF",
+    textDecoration: "none"
+  },
+  prevButton: {
+    padding: "10px 35px 10px 35px",
+    border: "1px solid #699BF7",
     textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "18px",
     lineHeight: "36px",
-    fontWeight: "400"
-  },
-  prevButton: {
-    padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7"
+    fontWeight: "400",
+    color: "#005AFF",
   },
   nextButton: {
     padding: "10px 35px 10px 35px",
     float: "right",
-    background: "#CCCCCC"
+    background: "#CCCCCC",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400",
+    color: "#FFFFFF"
   },
   nextButton2: {
     padding: "10px 35px 10px 35px",
     float: "right",
     background: "#699BF7",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400",
+    color: "#FFFFFF"
   },
   label: {
     fontFamily: "Roboto",
@@ -76,7 +88,7 @@ const SurveyForm1 = ({demographicState}) => {
     copyState[event.target.name] = event.target.value;
     demographicState.setDemographics(copyState);
   }
-  
+
   const isDisabled = () => {
     return demographicState.demographicState["education"] === "" || demographicState.demographicState["city"] === "" || demographicState.demographicState["distance"] === "";
   }
@@ -146,28 +158,28 @@ const SurveyForm1 = ({demographicState}) => {
           <FormHelperText>Please indicate approximately how long it took you to travel to court</FormHelperText>
         </Container>
         <Container align="left" style={{paddingLeft: "10px", marginTop: "100px"}}>
-          <Button
-            type="primary"
-            className={styles.prevButton}
-          >
-            <Link className={styles.buttonLink} to="/surveyForm0">
+          <Link className={styles.buttonLink} to="/surveyForm0">
+            <Button
+              type="primary"
+              className={styles.prevButton}
+            >
               Previous
-            </Link>
-          </Button>
-          <Button
-            type="primary"
-            className={isDisabled() ? styles.nextButton : styles.nextButton2}
-            disabled={isDisabled()}
+            </Button>
+          </Link>
+          <Link
+            className={styles.buttonLink}
+            style={{color: "#FFFFFF"}}
+            to="/surveyForm2"
           >
-            <Link
-              className={styles.buttonLink}
-              style={{color: "#FFFFFF"}}
-              to="/surveyForm2"
+            <Button
+              type="primary"
+              className={isDisabled() ? styles.nextButton : styles.nextButton2}
+              disabled={isDisabled()}
             >
               Next
-            </Link>
-          </Button>
-        </Container>
+            </Button>
+          </Link>
+      </Container>
     </Container>
   </Box>
 )};

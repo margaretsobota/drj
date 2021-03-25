@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@material-ui/core";
-import logo from "./images/logoLIJ.png";
+import { Box, Button } from "@material-ui/core";
 import logoSmall from "./images/inv_lab_logo_med.png";
 import './App.css';
 import firebase from "firebase/app";
@@ -17,6 +16,7 @@ import SurveyForm0 from "./components/surveyForm/SurveyForm0";
 import SurveyForm1 from "./components/surveyForm/SurveyForm1";
 import SurveyForm2 from "./components/surveyForm/SurveyForm2";
 import ConfirmationPage from "./components/surveyForm/ConfirmationPage";
+import DashboardImage from "./components/DashboardImage";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,7 +39,40 @@ const useStyles = makeStyles((theme) => ({
   headerLogo: {
     width: "85.81px",
     height: "85.95px",
-    marginLeft: "55.02px"
+    marginLeft: "55.02px",
+    marginTop: "40px"
+  },
+  title: {
+    flex: "1",
+    textAlign: "left",
+    marginLeft: "10%",
+    fontFamily: "Raleway",
+    lineHeight: "70px",
+    fontSize: "25px",
+    marginTop: "30px"
+  },
+  registerButton: {
+    marginRight: "40px",
+    background: "#AEC9FB",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    height: "40px",
+    width: "110px",
+    fontWeight: "normal",
+    boxShadow: "4.03969px 4.03969px 8.07939px rgba(170, 170, 204, 0.5), -4.03969px -4.03969px 8.07939px #FFFFFF"
+  },
+  loginButton: {
+    marginRight: "40px",
+    background: "#A3D9D1",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    height: "40px",
+    width: "110px",
+    fontWeight: "normal",
+    boxShadow: "4.03969px 4.03969px 8.07939px rgba(170, 170, 204, 0.5), -4.03969px -4.03969px 8.07939px #FFFFFF"
+  },
+  link: {
+    textDecoration: "none"
   }
 }));
 
@@ -107,18 +140,41 @@ function App() {
       <Box component="div">
         <nav>
           <Box component="div" class="topnav">
-              <img src={logoSmall} className={styles.headerLogo }alt="logo" />
-              <Link to="/">Home</Link>
-              <Link to="/surveyForm0" onClick={newMap}> Survey</Link>
-              <Link to="/mapForm" onClick={newMap}> Map Form</Link>
+            <img src={logoSmall} className={styles.headerLogo} alt="logo" />
           </Box>
         </nav>
         <Switch>
           <Route exact path="/">
-            <Box component="div" className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-              </header>
+            <Box component="div" style={{display: "flex", flexDirection: "row"}}>
+              <Box component="div" className={styles.title}>
+                <h1 style={{fontWeight: "normal"}}>
+                  Welcome!
+                </h1>
+                <h1 style={{fontWeight: "normal"}}>
+                  Login or register to enter the process inputs
+                </h1>
+                <Link
+                  className={styles.link}
+                  to="/surveyForm0"
+                  onClick={newMap}
+                >
+                  <Button className={styles.loginButton}>
+                    Login
+                  </Button>
+                </Link>
+                <Link
+                  className={styles.link}
+                  to="/surveyForm0"
+                  onClick={newMap}
+                >
+                  <Button className={styles.registerButton}>
+                    Register
+                  </Button>
+                </Link>
+              </Box>
+              <Box component="div" style={{flex: "1"}}>
+                <DashboardImage/>
+              </Box>
             </Box>
           </Route>
           <Route path="/mapForm">
