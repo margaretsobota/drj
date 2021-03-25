@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
   headerLogo: {
     width: "85.81px",
     height: "85.95px",
-    marginLeft: "55.02px"
+    marginLeft: "55.02px",
+    marginTop: "40px"
   },
   title: {
     flex: "1",
@@ -47,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10%",
     fontFamily: "Raleway",
     lineHeight: "70px",
-    fontSize: "25px"
+    fontSize: "25px",
+    marginTop: "30px"
   },
   registerButton: {
     marginRight: "40px",
@@ -136,7 +138,7 @@ function App() {
       <Box component="div">
         <nav>
           <Box component="div" class="topnav">
-            <img src={logoSmall} className={styles.headerLogo }alt="logo" />
+            <img src={logoSmall} className={styles.headerLogo} alt="logo" />
           </Box>
         </nav>
         <Switch>
