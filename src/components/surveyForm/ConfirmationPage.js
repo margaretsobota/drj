@@ -22,35 +22,32 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  returnButton:{
-    background: "#FFFFFF",
-    border: "1px solid #699BF7",
-    boxSizing: "border-box",
-    borderRadius: "5px",
-    marginRight: "20px",
-    marginTop:"40px",
-    padding: "20px"
-  },
   buttonLink: {
-    textDecoration: "none",
-    color: "#005AFF",
+    textDecoration: "none"
+  },
+  prevButton: {
+    padding: "10px 35px 10px 35px",
+    marginRight: "20px",
+    marginBottom: "20px",
+    background: "#969696",
+    color: "#FFFFFF",
     textTransform: "none",
     fontFamily: "Roboto",
     fontSize: "18px",
     lineHeight: "36px",
     fontWeight: "400"
   },
-  prevButton: {
-    padding: "10px 35px 10px 35px",
-    border: "1px solid #699BF7",
-    marginRight: "20px",
-    marginBottom: "20px",
-  },
   nextButton: {
     padding: "10px 35px 10px 35px",
     marginLeft: "20px",
     background: "#699BF7",
     marginBottom: "20px",
+    color: "#FFFFFF",
+    textTransform: "none",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    lineHeight: "36px",
+    fontWeight: "400"
   }
 }));
 
@@ -213,27 +210,27 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
         <p>If the information is correct please select Confirm <br></br>
         If it is not, please return to correct it
         </p>
-        <Button
-          type="primary"
-          className={styles.prevButton}
-        >
-          <Link className={styles.buttonLink} to="/surveyForm2">
-            Return
-          </Link>
-        </Button>
-        <Button
-          type="primary"
-          className={styles.nextButton}
-          onClick={handleSave}
-        >
-          <Link
-            className={styles.buttonLink}
-            style={{color:"#FFFFFF"}}
-            to="/mapForm"
+        <Link className={styles.buttonLink} to="/surveyForm2">
+          <Button
+            type="primary"
+            className={styles.prevButton}
           >
-            YES Confirm
-          </Link>
-        </Button>
+            No... go back
+          </Button>
+        </Link>
+        <Link
+          className={styles.buttonLink}
+          style={{color:"#FFFFFF"}}
+          to="/mapForm"
+        >
+          <Button
+            type="primary"
+            className={styles.nextButton}
+            onClick={handleSave}
+          >
+            YES! Continue
+          </Button>
+        </Link>
       </Container>
     </Box>
   );

@@ -58,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     height: "40px",
     width: "110px",
-    fontWeight: "normal"
+    fontWeight: "normal",
+    boxShadow: "4.03969px 4.03969px 8.07939px rgba(170, 170, 204, 0.5), -4.03969px -4.03969px 8.07939px #FFFFFF"
   },
   loginButton: {
     marginRight: "40px",
@@ -67,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     height: "40px",
     width: "110px",
-    fontWeight: "normal"
+    fontWeight: "normal",
+    boxShadow: "4.03969px 4.03969px 8.07939px rgba(170, 170, 204, 0.5), -4.03969px -4.03969px 8.07939px #FFFFFF"
   },
   link: {
     textDecoration: "none"
