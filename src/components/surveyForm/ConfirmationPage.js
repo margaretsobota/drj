@@ -132,7 +132,7 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
 
   return (
     <Box style={{background: "#FCF6EC"}}>
-      <Box style={{marginLeft: "130px"}}>
+      <Box style={{marginLeft: "130px", paddingTop: "20px"}}>
         <Title
           title="Help us by verifying"
           subtitle="the information:"
