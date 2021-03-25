@@ -5,7 +5,7 @@ import {
   MenuItem,
   Select,
   InputLabel,
-  Tooltip,
+  Tooltip, // eslint-disable-line
   Box
 } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,13 +70,13 @@ const SurveyForm0 = ({demographicState}) => {
   const styles = useStyles();
 
   const handleSave = (event) => {
-    const copyState = _.cloneDeep(demographicState.demographicState)
-    copyState[event.target.name] = event.target.value
-    demographicState.setDemographics(copyState)
-
+    const copyState = _.cloneDeep(demographicState.demographicState);
+    copyState[event.target.name] = event.target.value;
+    demographicState.setDemographics(copyState);
   }
+
   const isDisabled = () => {
-    return demographicState.demographicState["income"]=="" || demographicState.demographicState["age"]=="" || demographicState.demographicState["gender"]==""
+    return demographicState.demographicState["income"] === "" || demographicState.demographicState["age"] === "" || demographicState.demographicState["gender"] === "";
   }
 
   return (
@@ -98,7 +98,7 @@ const SurveyForm0 = ({demographicState}) => {
             onChange={handleSave}
             style={{width:'200px'}}
             defaultValue={demographicState.demographicState["gender"]}
-            
+
           >
             <MenuItem value={"male"}>Male</MenuItem>
             <MenuItem value={"female"}>Female</MenuItem>
@@ -135,7 +135,6 @@ const SurveyForm0 = ({demographicState}) => {
             defaultValue={demographicState.demographicState["income"]}
 
           >
-            {console.log(demographicState)}
             <MenuItem value={1}>RD$416,000 or below</MenuItem>
             <MenuItem value={2}>RD$416,000-624,000</MenuItem>
             <MenuItem value={3}>RD$624,000-827,000</MenuItem>
@@ -152,7 +151,7 @@ const SurveyForm0 = ({demographicState}) => {
               Next
             </Link>
           </Button>
-          
+
         </Container>
     </Container>
   </Box>

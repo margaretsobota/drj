@@ -105,9 +105,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             onChange={handleStepDescChange}
             rows={4}
           />
-          
         </Container>
-        
         <Container className={styles.sentimentContainer}>
           <h3 style={{fontSize:"12px", fontWeight:"400", fontFamily:"Roboto"}}>
             How did this step <strong>make you feel ?</strong>
@@ -127,7 +125,6 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
             onChange={handleStepTimeChange}
           />
         </Container>
-        
       </Box>
       <Box
         component="div"

@@ -72,13 +72,13 @@ const SurveyForm1 = ({demographicState}) => {
   const styles = useStyles();
 
   const handleSave = (event) => {
-    const copyState = _.cloneDeep(demographicState.demographicState)
-    copyState[event.target.name] = event.target.value
-    demographicState.setDemographics(copyState)
-    console.log(copyState)
+    const copyState = _.cloneDeep(demographicState.demographicState);
+    copyState[event.target.name] = event.target.value;
+    demographicState.setDemographics(copyState);
   }
+  
   const isDisabled = () => {
-    return demographicState.demographicState["education"]=="" || demographicState.demographicState["city"]=="" || demographicState.demographicState["distance"]==""
+    return demographicState.demographicState["education"] === "" || demographicState.demographicState["city"] === "" || demographicState.demographicState["distance"] === "";
   }
 
   return (
