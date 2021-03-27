@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Title from "../Title";
 import ConfirmationObjs from "./ConfirmationObjs";
+import backgroundImage from "../../images/confirmationBackground.svg";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -128,110 +129,120 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
   };
 
   return (
-    <Box style={{background: "#FCF6EC"}}>
-      <Box style={{marginLeft: "130px", paddingTop: "20px"}}>
-        <Title
-          title="Help us by verifying"
-          subtitle="the information:"
-        />
-      </Box>
-
-      <Container className={styles.formControl}>
-          <Box>
-          <ConfirmationObjs
-            number = "1"
-            title="Gender:"
-            subtitle={demographicState.demographicState["gender"]}
-          />
-          </Box>
-          <Box>
-          <ConfirmationObjs
-            number = "2"
-            title="Age:"
-            subtitle={convertValue("age")}
-          />
-          </Box>
-
-        <Box>
-          <ConfirmationObjs
-            number = "3"
-            title="Average household income:"
-            subtitle={convertValue("income")}
-          />
-        </Box>
-        <Box >
-          <ConfirmationObjs
-            number = "4"
-            title="Highest Achieved Level of Education:"
-            subtitle={demographicState.demographicState["education"]}
-          />
-        </Box>
-        <Box>
-          <ConfirmationObjs
-            number = "5"
-            title="City of Residence:"
-            subtitle={demographicState.demographicState["city"]}
-          />
-        </Box>
-        <Box>
-          <ConfirmationObjs
-            number = "6"
-            title="Distance Traveled to Court:"
-            subtitle={convertValue("distance")}
-          />
-        </Box>
-        <Box>
-          <ConfirmationObjs
-            number = "7"
-            title="Were you represented by a lawyer?:"
-            subtitle={demographicState.demographicState["representation"]}
-          />
-        </Box>
-        <Box>
-          <ConfirmationObjs
-            number = "8"
-            title="Court Process:"
-            subtitle= {demographicState.demographicState["process"]}
-            />
-        </Box>
-        <Box>
-          <ConfirmationObjs
-            number = "9"
-            title="Court District:"
-            subtitle={convertValue("district")}
-          />
-        </Box>
-      </Container>
-      <Container
-        align="center"
-        style={{paddingLeft: "10px", marginTop: "10px"}}
+    <Box style={{
+      background: "#FCF6EC",
+      width: "100%",
+      height: "100%"
+    }}>
+      <Box
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          height: "100%"
+        }}
       >
-        <h2>Is this information correct?</h2>
-        <p>If the information is correct please select Confirm <br></br>
-        If it is not, please return to correct it
-        </p>
-        <Link className={styles.buttonLink} to="/surveyForm2">
-          <Button
-            type="primary"
-            className={styles.prevButton}
-          >
-            No... go back
-          </Button>
-        </Link>
-        <Link
-          className={styles.buttonLink}
-          style={{color:"#FFFFFF"}}
-          to="/mapForm"
+        <Box style={{marginLeft: "130px", paddingTop: "150px"}}>
+          <Title
+            title="Help us by verifying"
+            subtitle="the information:"
+          />
+        </Box>
+        <Container className={styles.formControl}>
+            <Box>
+            <ConfirmationObjs
+              number = "1"
+              title="Gender:"
+              subtitle={demographicState.demographicState["gender"]}
+            />
+            </Box>
+            <Box>
+            <ConfirmationObjs
+              number = "2"
+              title="Age:"
+              subtitle={convertValue("age")}
+            />
+            </Box>
+
+          <Box>
+            <ConfirmationObjs
+              number = "3"
+              title="Average household income:"
+              subtitle={convertValue("income")}
+            />
+          </Box>
+          <Box >
+            <ConfirmationObjs
+              number = "4"
+              title="Highest Achieved Level of Education:"
+              subtitle={demographicState.demographicState["education"]}
+            />
+          </Box>
+          <Box>
+            <ConfirmationObjs
+              number = "5"
+              title="City of Residence:"
+              subtitle={demographicState.demographicState["city"]}
+            />
+          </Box>
+          <Box>
+            <ConfirmationObjs
+              number = "6"
+              title="Distance Traveled to Court:"
+              subtitle={convertValue("distance")}
+            />
+          </Box>
+          <Box>
+            <ConfirmationObjs
+              number = "7"
+              title="Were you represented by a lawyer?:"
+              subtitle={demographicState.demographicState["representation"]}
+            />
+          </Box>
+          <Box>
+            <ConfirmationObjs
+              number = "8"
+              title="Court Process:"
+              subtitle= {demographicState.demographicState["process"]}
+              />
+          </Box>
+          <Box>
+            <ConfirmationObjs
+              number = "9"
+              title="Court District:"
+              subtitle={convertValue("district")}
+            />
+          </Box>
+        </Container>
+        <Container
+          align="center"
+          style={{paddingLeft: "10px", marginTop: "10px"}}
         >
-          <Button
-            type="primary"
-            className={styles.nextButton}
-            onClick={handleSave}
+          <h2>Is this information correct?</h2>
+          <p>If the information is correct please select Confirm <br></br>
+          If it is not, please return to correct it
+          </p>
+          <Link className={styles.buttonLink} to="/surveyForm2">
+            <Button
+              type="primary"
+              className={styles.prevButton}
+            >
+              No... go back
+            </Button>
+          </Link>
+          <Link
+            className={styles.buttonLink}
+            style={{color:"#FFFFFF"}}
+            to="/mapForm"
           >
-            YES! Continue
-          </Button>
-        </Link>
-      </Container>
+            <Button
+              type="primary"
+              className={styles.nextButton}
+              onClick={handleSave}
+            >
+              YES! Continue
+            </Button>
+          </Link>
+        </Container>
+      </Box>
     </Box>
   );
 }

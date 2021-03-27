@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
     width: "85.81px",
     height: "85.95px",
     marginLeft: "55.02px",
-    marginTop: "40px"
+    marginTop: "40px",
+    zIndex: "10",
+    position: "fixed"
+  },
+  topNav: {
+    background: "none"
   },
   title: {
     flex: "1",
@@ -138,14 +143,22 @@ function App() {
   return (
     <Router>
       <Box component="div">
-        <nav>
-          <Box component="div" class="topnav">
-            <img src={logoSmall} className={styles.headerLogo} alt="logo" />
+        <nav className={styles.topNav}>
+          <Box component="div">
+            <img
+              id="logo"
+              src={logoSmall}
+              className={styles.headerLogo}
+              alt="logo"
+            />
           </Box>
         </nav>
         <Switch>
           <Route exact path="/">
-            <Box component="div" style={{display: "flex", flexDirection: "row"}}>
+            <Box
+              component="div"
+              style={{display: "flex", flexDirection: "row", paddingTop: "200px"}}
+            >
               <Box component="div" className={styles.title}>
                 <h1 style={{fontWeight: "normal"}}>
                   Welcome!

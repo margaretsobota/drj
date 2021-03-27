@@ -27,7 +27,6 @@ const Title = ({title, subtitle}) => {
   return (
     <Box className={styles.container}>
       <svg width="63" height="64" viewBox="0 0 63 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0.112305" y="0.640366" width="62.507" height="62.507" rx="31.2535" fill="white"/>
         <circle opacity="0.2" cx="31.3656" cy="31.8939" r="25.0028" fill="#13949B"/>
         <circle opacity="0.4" cx="31.3654" cy="31.8939" r="18.7521" fill="#13949B"/>
         <circle opacity="0.6" cx="31.3657" cy="31.8939" r="13.2827" fill="#13949B"/>

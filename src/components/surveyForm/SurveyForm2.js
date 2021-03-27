@@ -92,7 +92,7 @@ const SurveyForm2 = ({demographicState}) => {
     return demographicState.demographicState["representation"] === "" || demographicState.demographicState["process"] === "" || demographicState.demographicState["district"] === "";
   }
   return (
-    <Box>
+    <Box style={{paddingTop: "150px"}}>
       <Box style={{marginLeft: "130px"}}>
         <Title
           title="Ayúdanos Contestando"
