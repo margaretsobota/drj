@@ -150,14 +150,14 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
             <Box>
             <ConfirmationObjs
               number = "1"
-              title="Gender:"
+              title="What is your gender?"
               subtitle={demographicState.demographicState["gender"]}
             />
             </Box>
             <Box>
             <ConfirmationObjs
               number = "2"
-              title="Age:"
+              title="What is your age?"
               subtitle={convertValue("age")}
             />
             </Box>
@@ -165,82 +165,89 @@ const ConfirmationPage = ({demographicState, mapRef}) => {
           <Box>
             <ConfirmationObjs
               number = "3"
-              title="Average household income:"
+              title="Annual household income?"
               subtitle={convertValue("income")}
             />
           </Box>
           <Box >
             <ConfirmationObjs
               number = "4"
-              title="Highest Achieved Level of Education:"
+              title="Highest level of education?"
               subtitle={demographicState.demographicState["education"]}
             />
           </Box>
           <Box>
             <ConfirmationObjs
               number = "5"
-              title="City of Residence:"
+              title="City of residence?"
               subtitle={demographicState.demographicState["city"]}
             />
           </Box>
           <Box>
             <ConfirmationObjs
               number = "6"
-              title="Distance Traveled to Court:"
+              title="Distance traveled to court?"
               subtitle={convertValue("distance")}
             />
           </Box>
           <Box>
             <ConfirmationObjs
               number = "7"
-              title="Were you represented by a lawyer?:"
+              title="Did you have legal representation?"
               subtitle={demographicState.demographicState["representation"]}
             />
           </Box>
           <Box>
             <ConfirmationObjs
               number = "8"
-              title="Court Process:"
+              title="What was the type of legal process?"
               subtitle= {demographicState.demographicState["process"]}
               />
           </Box>
           <Box>
             <ConfirmationObjs
               number = "9"
-              title="Court District:"
+              title="Which court district?"
               subtitle={convertValue("district")}
             />
           </Box>
         </Container>
         <Container
           align="center"
-          style={{paddingLeft: "10px", marginTop: "10px"}}
+          style={{
+            paddingLeft: "10px",
+            marginTop: "10px",
+            fontFamily: "Roboto"
+          }}
         >
-          <h2>Is this information correct?</h2>
-          <p>If the information is correct please select Confirm <br></br>
-          If it is not, please return to correct it
+          <h2>Is this the correct information?</h2>
+          <p style={{fontWeight: "300"}}>
+            If it is not, please go back and correct it. <br/>
+            If the information is correct, please continue with the process.
           </p>
-          <Link className={styles.buttonLink} to="/surveyForm2">
-            <Button
-              type="primary"
-              className={styles.prevButton}
+          <Box style={{paddingTop: "10px"}}>
+            <Link className={styles.buttonLink} to="/surveyForm2">
+              <Button
+                type="primary"
+                className={styles.prevButton}
+              >
+                No... go back
+              </Button>
+            </Link>
+            <Link
+              className={styles.buttonLink}
+              style={{color:"#FFFFFF"}}
+              to="/mapForm"
             >
-              No... go back
-            </Button>
-          </Link>
-          <Link
-            className={styles.buttonLink}
-            style={{color:"#FFFFFF"}}
-            to="/mapForm"
-          >
-            <Button
-              type="primary"
-              className={styles.nextButton}
-              onClick={handleSave}
-            >
-              YES! Continue
-            </Button>
-          </Link>
+              <Button
+                type="primary"
+                className={styles.nextButton}
+                onClick={handleSave}
+              >
+                YES! Continue
+              </Button>
+            </Link>
+          </Box>
         </Container>
       </Box>
     </Box>

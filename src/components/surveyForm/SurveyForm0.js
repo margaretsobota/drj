@@ -88,8 +88,8 @@ const SurveyForm0 = ({demographicState}) => {
     <Box style={{paddingTop: "150px"}}>
       <Box style={{marginLeft: "130px"}}>
         <Title
-          title="Ayúdanos Contestando"
-          subtitle="Las siguientes preguntas:"
+          title="Help us by answering"
+          subtitle="these questions:"
         />
       </Box>
       <Container className={styles.formControl}>
