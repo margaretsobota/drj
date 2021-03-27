@@ -45,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed"
   },
   topNav: {
-    background: "none",
-    zIndex: 10
+    background: "none"
   },
   title: {
     flex: "1",
@@ -145,8 +144,13 @@ function App() {
     <Router>
       <Box component="div">
         <nav className={styles.topNav}>
-          <Box component="div" className={styles.topNav}>
-            <img id="logo" src={logoSmall} className={styles.headerLogo} alt="logo" />
+          <Box component="div">
+            <img
+              id="logo"
+              src={logoSmall}
+              className={styles.headerLogo}
+              alt="logo"
+            />
           </Box>
         </nav>
         <Switch>
