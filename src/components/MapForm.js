@@ -11,9 +11,20 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 const useStyles = makeStyles((theme) => ({
   saveButton: {
     marginBottom: "78px",
-    marginLeft: "72.11px",
+    marginRight: "30px",
     marginTop: "40px",
     background: "#699BF7",
+    color: "#FFFFFF",
+    textTransform: "none",
+    fontSize: "18px",
+    paddingRight: "45px",
+    paddingLeft: "45px",
+    fontWeight: "400"
+  },
+  closeButton: {
+    marginBottom: "78px",
+    marginTop: "40px",
+    background: "#7F7F7F",
     color: "#FFFFFF",
     textTransform: "none",
     fontSize: "18px",
@@ -132,13 +143,26 @@ const MapForm = ({ mapRef }) => {
       <PhaseForm phase="settlement" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <PhaseForm phase="pre-trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
       <PhaseForm phase="trial" state={{phaseState, setPhase}} deletedState={{deletedState, setDeleted}}/>
-      <Button
-         className={styles.saveButton}
-         variant="contained"
-         onClick={handleSave}
-      >
-        Save
-      </Button>
+      <Box style={{marginLeft: "72.11px"}}>
+        <Button
+           className={styles.saveButton}
+           variant="contained"
+           onClick={handleSave}
+        >
+          Save
+        </Button>
+        <Link className={styles.mapLink} to="/">
+          <Button
+             className={styles.closeButton}
+             variant="contained"
+             onClick={() => {
+               headerLogo.style.position = "fixed";
+             }}
+          >
+            Close Process
+          </Button>
+        </Link>
+      </Box>
     </Box>
   )
 };
