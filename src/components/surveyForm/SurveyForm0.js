@@ -85,7 +85,7 @@ const SurveyForm0 = ({demographicState}) => {
   }
 
   return (
-    <Box>
+    <Box style={{paddingTop: "150px"}}>
       <Box style={{marginLeft: "130px"}}>
         <Title
           title="Ayúdanos Contestando"

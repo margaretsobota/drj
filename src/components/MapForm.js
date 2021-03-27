@@ -54,6 +54,10 @@ const MapForm = ({ mapRef }) => {
   const styles = useStyles();
   const [deletedState, setDeleted] = useState([]);
 
+  const headerLogo = document.getElementById("logo");
+  console.log(headerLogo);
+  headerLogo.style.position = "relative";
+
   const getNewSteps = (phase) => {
     const newStep = {
       uuid: "",

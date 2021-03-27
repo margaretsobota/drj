@@ -364,7 +364,7 @@ const Map = ({mapRef}) => {
   }
 
   return (
-    <Box>
+    <Box style={{paddingTop: "50px"}}>
       <Box
         id="container"
         component="div"
