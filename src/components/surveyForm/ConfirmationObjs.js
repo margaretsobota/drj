@@ -22,15 +22,16 @@ const useStyles = makeStyles((theme) => ({
     color: "#2A303D",
     fontStyle: "normal",
     lineHeight: "20px",
-    marginLeft: "5px"
+    marginLeft: "5px",
+    fontWeight: "900"
 
   },
   subTitle: {
     fontSize: "20px",
     fontWeight: "300",
     lineHeight: "20px",
-    marginLeft: "32px"
-
+    marginLeft: "32px",
+    marginTop: "5px"
   },
   numberCircle :{
     width: "20px",
@@ -40,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "14px",
     background: "#FFF",
     border: "2px solid #FFF",
-
-    }
+    fontWeight: "900"
+  }
 }));
 
 const ConfirmationObjs = ({number, title, subtitle}) => {
