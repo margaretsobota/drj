@@ -6,6 +6,7 @@ import * as allCurves from "@visx/curve";
 import { LinePath, Bar } from "@visx/shape";
 import { Group } from "@visx/group";
 import { Text } from "@visx/text";
+import { Label } from '@visx/annotation';
 import Title from "./Title";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 const Map = ({mapRef}) => {
   const styles = useStyles();
   const [dataState, setData] = useState({});
+  const [visibleIndex, setVisibleIndex] = useState(-1);
   const curveType = "curveNatural";
 
   useEffect(() => {
@@ -337,12 +339,11 @@ const Map = ({mapRef}) => {
 
   const handleHover = (event) => {
     const pointIndex = (event.target.id).substring(6);
-    document.getElementById("description" + pointIndex).style.visibility = "visible";
+    setVisibleIndex(parseInt(pointIndex));
   };
 
   const handleHoverEnd = (event) => {
-    const pointIndex = (event.target.id).substring(6);
-    document.getElementById("description" + pointIndex).style.visibility = "hidden";
+    setVisibleIndex(-1);
   };
 
   const handleDownload = (event) => {
@@ -544,24 +545,26 @@ const Map = ({mapRef}) => {
                     onMouseLeave={handleHoverEnd}
                   />
                   {getIcon(pointIndex, p)}
-                  <Text
-                    id={"description" + pointIndex}
-                    x={p[0] - 10}
-                    y={p[1] + 30}
-                    fill={"#303031"}
-                    style={{
+                  <Label
+                    x={p[0] + 175}
+                    y={p[1] + 25}
+                    fontColor={"#303031"}
+                    backgroundFill={"#FFFFFF"}
+                    titleFontWeight={"300"}
+                    titleFontSize={"12"}
+                    titleProps={{
                       fontFamily: "Roboto",
-                      fontWeight: "300",
-                      fontSize: "12px",
                       lineHeight: "11px",
-                      visibility: "hidden",
-                      background:"#FFFFF"
+                      visibility: visibleIndex === pointIndex ? "visible" : "hidden",
+                      background:"#FFFFFF"
                     }}
-                    width={175}
+                    backgroundProps={{ stroke: "#242055"}}
+                    showAnchorLine={false}
+                    width={visibleIndex === pointIndex ? "175" : "0"}
                     verticalAnchor={"start"}
-                  >
-                      {stepMapFinal[pointIndex].description}
-                    </Text>
+                    showBackground={true}
+                    title={stepMapFinal[pointIndex].description}
+                  />
                 </Group>
               )
             })
