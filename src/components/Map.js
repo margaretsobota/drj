@@ -554,11 +554,15 @@ const Map = ({mapRef}) => {
                     titleFontSize={"12"}
                     titleProps={{
                       fontFamily: "Roboto",
-                      lineHeight: "11px",
+                      lineHeight: "14px",
                       visibility: visibleIndex === pointIndex ? "visible" : "hidden",
                       background:"#FFFFFF"
                     }}
-                    backgroundProps={{ stroke: "#242055"}}
+                    backgroundProps={{
+                      stroke: "#242055",
+                      strokeWidth: "2px",
+                      rx: "12"
+                    }}
                     showAnchorLine={false}
                     width={visibleIndex === pointIndex ? "175" : "0"}
                     verticalAnchor={"start"}
