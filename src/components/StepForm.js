@@ -116,7 +116,7 @@ const StepForm = ({ phase, step, phaseState, countState, deletedState }) => {
         </Container>
         <Container className={styles.sentimentContainer}>
           <h3 style={{fontSize:"12px", fontWeight:"400", fontFamily:"Roboto"}}>
-            How did this step <strong>make you feel ?</strong>
+            How <strong>satisifed</strong> were you with the <strong>legal process</strong> during this step?
           </h3>
           <StarRatings
             rating={ratingState}

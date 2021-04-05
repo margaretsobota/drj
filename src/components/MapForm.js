@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#F5BF4F",
     marginRight: "72.11px",
     borderRadius: "5px",
-    width: "135px",
+    width: "190px",
     boxShadow: "3.55051px 3.55051px 7.10103px rgba(170, 170, 204, 0.5), -3.55051px -3.55051px 7.10103px #FFFFFF",
     color: "#2A303D",
     textTransform: "none",
@@ -132,7 +132,7 @@ const MapForm = ({ mapRef }) => {
             onClick={handleSave}
             startIcon={<PlayArrowIcon className={styles.arrowIcon}/>}
           >
-            See Map
+            Journey Map
           </Button>
         </Link>
       </Box>
