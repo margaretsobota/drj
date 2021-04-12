@@ -2,6 +2,7 @@
 
 ## Definitions
 **Team**: a group of users who have access to a shared repository of customer journey maps
+
 **Phase**: A pre-researched and already provided stage in the given legal process. Cannot be altered by users. Each phase must include at least one step from each user. Called “PhaseForm” in database
 **Step**: Specific action/event in the customer’s legal process. Falls under one of the given, pre-defined phases. Called “StepForm” in database
 **Frontend Step**: User inputted step. Dynamic, can be added or deleted
