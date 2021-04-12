@@ -113,7 +113,7 @@
 -	Currently functional and dynamically using live, user-inputted data from Firebase 
 -	To be added to downloadable visualization
     - Backend steps at bottom of map visualization
-    - List of inputted phase information (all steps) as shown on Map Form page
+    - List of inputted phase information (all steps) as shown on `/mapForm` page
 -	Bug exists where map download has different font style than map visualization
 -	Update Y-axis to be manipulable
     - Give users the option to select which variable should be measured along Y-axis and adjust visualization to map the newly selected variable
@@ -147,6 +147,15 @@
 - Saving and Retrieving Data to/from Database
     - Link to Firebase documentation: https://firebase.google.com/docs/guides
 
+### Web Hosting
+- Documentation: https://firebase.google.com/docs/hosting
+- Stable url: https://drj-app-4012a.web.app/
+- Steps to deploy:
+    1. Go to root directory of app
+    2. Run `yarn build`
+    3. Run `firebase deploy`
+    4. View stable url link
+    *Note: may need to use incognito window or clear cache to view immediate changes
 
 ## React Overview
 
