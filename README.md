@@ -84,6 +84,16 @@
 - Upon hovering over each step, the description of the step appears in a white box below the step's symbol
 - The `Download PDF` button saves a PDF version of the Citizen Journey Map to the user's local desktop
 
+## Future Steps
+
+### General Platform
+- Decide on a project name
+-	Click Lab ENJ Logo to return to home page (crash page)
+-	Translate into Spanish
+-	Design available at https://www.figma.com/file/Ama8y5nX0rTCff8W0SB8aC/Journey-Map---RD---Divorce?node-id=0%3A1
+-	Mockups available at https://app.mural.co/t/tfdcabogados3277/m/tfdcabogados3277/1612975978631/98463ab07c6220f0ca831a3049492b60f5848139
+
+
 ## Firebase Overview
 
 ## React Overview
