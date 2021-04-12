@@ -151,10 +151,10 @@
 - Documentation: https://firebase.google.com/docs/hosting
 - Stable url: https://drj-app-4012a.web.app/
 - Steps to deploy:
-    + 1 Go to root directory of app
-    + 2 Run `yarn build`
-    + 3 Run `firebase deploy`
-    + 4 View stable url link
+    1 Go to root directory of app
+    2 Run `yarn build`
+    3 Run `firebase deploy`
+    4 View stable url link
     *Note: may need to use incognito window or clear cache to view immediate changes
 
 ## React Overview
