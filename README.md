@@ -93,6 +93,12 @@
 -	Design available at https://www.figma.com/file/Ama8y5nX0rTCff8W0SB8aC/Journey-Map---RD---Divorce?node-id=0%3A1
 -	Mockups available at https://app.mural.co/t/tfdcabogados3277/m/tfdcabogados3277/1612975978631/98463ab07c6220f0ca831a3049492b60f5848139
 
+### `/`
+-	Create user accounts (Currently not functional)
+  - Users create accounts within teams (ex: DRJ)
+  - Teams have access to all user maps within one team
+
+
 
 ## Firebase Overview
 
