@@ -90,14 +90,39 @@
 - Decide on a project name
 -	Click Lab ENJ Logo to return to home page (crash page)
 -	Translate into Spanish
+- Add database authentication, presently anyone can edit the database
 -	Design available at https://www.figma.com/file/Ama8y5nX0rTCff8W0SB8aC/Journey-Map---RD---Divorce?node-id=0%3A1
 -	Mockups available at https://app.mural.co/t/tfdcabogados3277/m/tfdcabogados3277/1612975978631/98463ab07c6220f0ca831a3049492b60f5848139
 
 ### `/`
 -	Create user accounts (Currently not functional)
-  - Users create accounts within teams (ex: DRJ)
-  - Teams have access to all user maps within one team
+    - Users create accounts within teams (ex: DRJ)
+    - Teams have access to all user maps within one team
 
+### `/surveyForm#`
+-	Currently fully functional
+-	To adjust confirmation page, edit `/components/surveyForm/confirmationPage.js`
+-	To adjust survey questions or add new, edit `/components/surveyForm/surveyForm#.js`
+
+### `/mapForm`
+-	Currently functional
+-	Change order button functionality needs to be built
+-	To adjust phases and phase titles, edit `stepsObj` in `components/mapForm.js` and titles and number of `PhaseForm` objects in `components/mapForm.js`
+
+### `/map`
+-	Currently functional and dynamically using live, user-inputted data from Firebase 
+-	To be added to downloadable visualization
+    - Backend steps at bottom of map visualization
+    - List of inputted phase information (all steps) as shown on Map Form page
+-	Bug exists where map download has different font style than map visualization
+-	Update Y-axis to be manipulable
+    - Give users the option to select which variable should be measured along Y-axis and adjust visualization to map the newly selected variable
+
+### `/statistics`
+-	Partial functionality
+-	Data is correctly stored in Firebase, however no statistics page has been created to date
+-	Data can be manipulated either within the platform or externally through another platform, as data is all saved to the external Firebase database
+-	Data Page with visualizations and options to choose what to visualize needs to be created
 
 
 ## Firebase Overview
