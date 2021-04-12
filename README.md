@@ -1,4 +1,4 @@
-# Code Overview
+# Citizen Journey Map Project Codebase Overview
 
 ## App Walkthrough
 
@@ -7,6 +7,7 @@
 - App dashboard
 - "Login" and "Register" buttons both lead to `/surveyForm0` page, which begins to Citizen Journey Map process
 - includes original art by Daniela and ENJ logo
+- "Login" or "Register" button creates new `mapRef` data object and saves it to Firebase database
 
 ### `/surveyForm0`
 
@@ -29,7 +30,14 @@
 - "Previous" button goes to `/surveyForm1`
 - "Next" button goes to `/confirmationPage` only when all questions have been answered 
 
-### `confirmationPage`
+### `/confirmationPage`
+- Lists user's answers to all survey questions 
+- Allows user to verify survey responses before moving on to data entry phase of Citizen Journey Map process
+- "No... go back button" goes back to `/surveyForm2`
+- "Yes! Continue" button saves demographic information to `demographics` key of `mapRef` data object and saves to Firebase database
+- "Yes! Continue" also goes to `/mapForm` data entry page
+
+### `/mapForm`
 - 
 
 
