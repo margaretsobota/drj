@@ -1,5 +1,19 @@
 # Citizen Journey Map Project Codebase Overview
 
+## Definitions
+**Team**: a group of users who have access to a shared repository of customer journey maps
+**Phase**: A pre-researched and already provided stage in the given legal process. Cannot be altered by users. Each phase must include at least one step from each user. Called “PhaseForm” in database
+**Step**: Specific action/event in the customer’s legal process. Falls under one of the given, pre-defined phases. Called “StepForm” in database
+**Frontend Step**: User inputted step. Dynamic, can be added or deleted
+**Backend Step**: Pre-provided list of steps taken by a court on a particular process
+**Journey Map**: A visualization of a user's process through a given legal system. Referenced as “Map Visualization”
+**X-Axis**: Component of Journey Map visualization depicting all of the phases to complete a specific legal process
+**Y-Axis**: Component of Journey Map visualization depicting star rating from 1 (bottom) to 5 (top) of a particular step
+**User Account**: User's login associated with a team. Given access to their team’s storage of maps
+**Team Database**: set of all the user map data inputted by a particular team
+**Category Database**: set of all data from a specific court across all categories or of all data from a specific procedure across all courts
+**Category**: specific court/legal process that the map is associated with (must be defined at time of map creation)
+
 ## App Walkthrough
 
 ### `/`
