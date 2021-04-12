@@ -132,6 +132,7 @@ Overview
 - All data is housed on a live Google Firebase database
 - Access can be obtained through citizenjourneymap@gmail.com
 - The password for this gmail account can be found in the Closing Email sent by Dana Johnson
+
 Data
 - All Citizen Journey Map data is stored into a team-specific key in the database (ex. “DRJ”)
 - Each team then stores data into a specific court process (ex. Divorce)
