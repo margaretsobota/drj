@@ -38,6 +38,19 @@
 - "Yes! Continue" also goes to `/mapForm` data entry page
 
 ### `/mapForm`
+- data entry portion of Citizen Journey Map process
+- populates page with one `PhaseForm` for each of the seven pre-defined phases
+- phases defined in `MapForm.js` file
+- populates each `PhaseForm` with one `StepForm` by default
+- Each `StepForm` allows users to enter title, description, rating, and stepTime information
+- Each `PhaseForm` has an "AddStep" button that adds a new step to the current `PhaseForm`
+- Each `StepForm` has a delete button that removes the current step from the `PhaseForm`
+- At the bottom of the page, the "Save" button saves user-entered information to `phases` key of `mapRef` data object and saves to Firebase database
+- The "Save" button updates database to reflected newly added or deleted steps 
+- The "Close Process" button directs user back to the `/` dashboard and terminates the Citizen Journey Map process
+- The "Journey Map" button performs the same functions as the "Save" button and redirects to the `/map' page
+
+### `/map`
 - 
 
 
