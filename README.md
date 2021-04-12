@@ -2,15 +2,37 @@
 
 ## App Walkthrough
 
-### '/' 
+### `/`
 
 - App dashboard
-- "Login" and "Register" buttons both lead to '/surveyForm0' page
+- "Login" and "Register" buttons both lead to `/surveyForm0` page, which begins to Citizen Journey Map process
 - includes original art by Daniela and ENJ logo
 
-### 'surveyForm0'
+### `/surveyForm0`
 
+- First survey page and beginning of Citizen Journey Map process
+- Asks demographic information about gender, age, and household income
+- "Previous" button goes to `/`
+- "Next" button goes to `/surveyForm1` only when all questions have been answered 
+
+### `/surveyForm1`
+
+- Second survey page and continuation of Citizen Journey Map process
+- Asks demographic information about education level, residence city, and kilometers traveled
+- "Previous" button goes to `/surveyForm0`
+- "Next" button goes to `/surveyForm2` only when all questions have been answered 
+
+### `/surveyForm2`
+
+- Final survey page and continuation of Citizen Journey Map process
+- Asks demographic information about legal representation, legal process type, and court distirct
+- "Previous" button goes to `/surveyForm1`
+- "Next" button goes to `/confirmationPage` only when all questions have been answered 
+
+### `confirmationPage`
 - 
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
