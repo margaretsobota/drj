@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# Code Overview
+
+## App Walkthrough
+
+### '/' 
+
+- App dashboard
+- "Login" and "Register" buttons both lead to '/surveyForm0' page
+- includes original art by Daniela and ENJ logo
+
+### 'surveyForm0'
+
+- 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
