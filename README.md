@@ -5,32 +5,32 @@
 ### `/`
 
 - App dashboard
-- `Login` and `Register` buttons both lead to `/surveyForm0` page, which begins to Citizen Journey Map process
+- `Login` and `Register` buttons both lead to `/surveyForm0` page, which begins the Citizen Journey Map process
 - `Login` or `Register` button creates new `mapRef` data object and saves it to Firebase database
 
 ### `/surveyForm0`
 
-- First survey page and beginning of Citizen Journey Map process
+- First (of 3) survey page and beginning of Citizen Journey Map process
 - Asks demographic information about gender, age, and household income
 - `Previous` button goes to `/`
-- `Next` button goes to `/surveyForm1` only when all questions have been answered 
+- `Next` button goes to `/surveyForm1` and is only clickable once all questions have been answered 
 
 ### `/surveyForm1`
 
-- Second survey page and continuation of Citizen Journey Map process
-- Asks demographic information about education level, residence city, and kilometers traveled
+- Second (of 3) survey page and continuation of Citizen Journey Map process
+- Asks demographic information about education level, city of residence, and distance (in kilometers) traveled to the court
 - `Previous` button goes to `/surveyForm0`
 - `Next` button goes to `/surveyForm2` only when all questions have been answered 
 
 ### `/surveyForm2`
 
-- Final survey page and continuation of Citizen Journey Map process
+- Final (of 3) survey page and continuation of Citizen Journey Map process
 - Asks demographic information about legal representation, legal process type, and court distirct
 - `Previous` button goes to `/surveyForm1`
 - `Next` button goes to `/confirmationPage` only when all questions have been answered 
 
 ### `/confirmationPage`
-- Lists user's answers to all survey questions 
+- Lists user's answers to all survey questions by manually mapping key values to desired selected choices
 - Allows user to verify survey responses before moving on to data entry phase of Citizen Journey Map process
 - `No... go back` button goes back to `/surveyForm2`
 - `Yes! Continue` button saves demographic information to `demographics` key of `mapRef` data object and saves to Firebase database
@@ -38,22 +38,23 @@
 
 ### `/mapForm`
 - Data entry portion of Citizen Journey Map process
-- Populates page with one `PhaseForm` for each of the seven pre-defined phases
+- Populates page with one `PhaseForm` for each of the pre-defined phases
 - Phases defined in `MapForm.js` file
-- Populates each `PhaseForm` with one `StepForm` by default
-- Each `StepForm` allows users to enter title, description, sentiment rating, and stepTime information
+- Populates each `PhaseForm` with one `StepForm` by default. Users MUST input at least one step per phase
+- Each `StepForm` asks users to enter title, description, sentiment rating, and stepTime information
 - Each `PhaseForm` has an "AddStep" button that adds a new step to the current `PhaseForm`
 - Each `StepForm` has a delete button that removes the current step from the `PhaseForm`
+- Each `StepForm` has a change order that has no functionality
 - At the bottom of the page, the "Save" button saves user-entered information to `phases` key of `mapRef` data object and saves to Firebase database
 - The `Save` button updates database to reflected newly added or deleted steps 
-- The `Close Process` button directs user back to the `/` dashboard and terminates the Citizen Journey Map process
-- The `Journey Map` button performs the same functions as the `Save` button and redirects to the `/map' page
+- The `Close Process` button at the bottom of all `PhaseForm` directs user back to the `/` dashboard and terminates the Citizen Journey Map process
+- The `Journey Map` button in the upper left corner performs the same functions as the `Save` button and redirects to the `/map' page
 
 ### `/map`
 - Last step of Citizen Journey Map process
-- Displays a visual Citizen Journey map based on the user-entered information from the `/mapForm` page
-- Horizontal axis displays the seven pre-defined phases
-- Vertical axis represents the user's sentiment rating of each step in the process
+- Displays a visual Citizen Journey map based on the live user-entered information from the `/mapForm` page
+- Horizontal axis (X-axis) displays the pre-defined phases
+- Vertical axis (Y-axis) represents the user's sentiment rating of each step in the process
 - Each step is given a symbol based on which phase it is associated with and the title of the step is displayed above it
 - Upon hovering over each step, the description of the step appears in a white box below the step's symbol
 - The `Download PDF` button saves a PDF version of the Citizen Journey Map to the user's local desktop
