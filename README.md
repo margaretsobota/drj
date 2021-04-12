@@ -128,16 +128,16 @@
 ## Firebase Overview
 
 ### Database
-- Overview
-    - All data is housed on a live Google Firebase database
-    - Access can be obtained through citizenjourneymap@gmail.com
-    - The password for this gmail account can be found in the Closing Email sent by Dana Johnson
-- Data
-    - All Citizen Journey Map data is stored into a team-specific key in the database (ex. “DRJ”)
-    - Each team then stores data into a specific court process (ex. Divorce)
-    - A list of all user map data is included under the court process key
+Overview
+- All data is housed on a live Google Firebase database
+- Access can be obtained through citizenjourneymap@gmail.com
+- The password for this gmail account can be found in the Closing Email sent by Dana Johnson
+Data
+- All Citizen Journey Map data is stored into a team-specific key in the database (ex. “DRJ”)
+- Each team then stores data into a specific court process (ex. Divorce)
+- A list of all user map data is included under the court process key
     - Each user map has a unique user ID (UUID)
-    - Individual user maps store both demographic and phase data
+- Individual user maps store both demographic and phase data
     - Demographic data contains responses recorded within the Demographic Survey. Mapping of demographic data keys to their values can be accessed in /components/surveyForm/confirmationPage.js
     - Phase data contains user-entered data from the `/mapForm` page. Data from each phase is stored alphabetically by phase name (Firebase requirement). 
     - `phaseTime` stores the summed number of days a user has indicated for each step in that phase. 
@@ -148,9 +148,9 @@
     - Link to Firebase documentation: https://firebase.google.com/docs/guides
 
 ### Web Hosting
-Documentation: https://firebase.google.com/docs/hosting
-Stable url: https://drj-app-4012a.web.app/
-Steps to deploy:
+- Documentation: https://firebase.google.com/docs/hosting
+- Stable url: https://drj-app-4012a.web.app/
+- Steps to deploy:
 1. Go to root directory of app
 2. Run `yarn build`
 3. Run `firebase deploy`
