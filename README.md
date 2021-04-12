@@ -127,6 +127,27 @@
 
 ## Firebase Overview
 
+### Database
+- Overview
+    - All data is housed on a live Google Firebase database
+    - Access can be obtained through citizenjourneymap@gmail.com
+    - The password for this gmail account can be found in the Closing Email sent by Dana Johnson
+- Data
+    - All Citizen Journey Map data is stored into a team-specific key in the database (ex. “DRJ”)
+    - Each team then stores data into a specific court process (ex. Divorce)
+    - A list of all user map data is included under the court process key
+    - Each user map has a unique user ID (UUID)
+    - Individual user maps store both demographic and phase data
+    - Demographic data contains responses recorded within the Demographic Survey. Mapping of demographic data keys to their values can be accessed in /components/surveyForm/confirmationPage.js
+    - Phase data contains user-entered data from the `/mapForm` page. Data from each phase is stored alphabetically by phase name (Firebase requirement). 
+    - `phaseTime` stores the summed number of days a user has indicated for each step in that phase. 
+    - `phaseTotalSteps` stores the total number of steps under a given phase
+    - Step data for each individual step is stored under a new UUID
+    - All categories are required and will have responses
+- Saving and Retrieving Data to/from Database
+    - Link to Firebase documentation: https://firebase.google.com/docs/guides
+
+
 ## React Overview
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
